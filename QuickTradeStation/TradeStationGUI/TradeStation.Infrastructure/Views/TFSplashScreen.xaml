@@ -1,0 +1,28 @@
+﻿<Window x:Class="TradeStation.Infrastructure.Views.TFSplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:manager="clr-namespace:TradeStation.Infrastructure.Managers"
+        Title="SplashScreen"
+        Height="300"
+        Width="500"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <manager:TFSplashScreenWrapper x:Key="TFSplashScreenWrapper" />
+    </Window.Resources>
+
+    <Border BorderBrush="Black" BorderThickness="1">
+        <Grid>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Width="100" Height="100"
+                       Source="{DynamicResource AosuLogo}" />
+                <TextBlock Margin="0,10,0,0" Text="傲 速 交 易 终 端" TextAlignment="Center" Foreground="#FF7F27" FontSize="20" FontWeight="Bold" />
+            </StackPanel>
+
+            <TextBlock x:Name="TFSplashScreenMsg" VerticalAlignment="Bottom"
+                       Text="{Binding Instance.Message, Source={StaticResource TFSplashScreenWrapper}}" />
+        </Grid>
+    </Border>
+</Window>

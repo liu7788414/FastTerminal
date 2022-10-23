@@ -1,0 +1,419 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.TradePanelBasket"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+             xmlns:commonutil="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+             xmlns:converter="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:igWindows="http://infragistics.com/Windows"
+             xmlns:igdp="http://infragistics.com/DataPresenter"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:TradeStation.Infrastructure.Services;assembly=TradeStation.Infrastructure"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="OperationItemRowStyle" TargetType="FrameworkElement">
+                <Setter Property="Margin" Value="0,5,0,0" />
+            </Style>
+
+            <Style x:Key="ShowIfFutureStyle"
+                   BasedOn="{StaticResource OperationItemRowStyle}"
+                   TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CategoryType}" Value="{x:Static commonutil:eBasketCategory.期货}">
+                        <Setter Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="DisableIfStockStyle"
+                   BasedOn="{StaticResource OperationItemRowStyle}"
+                   TargetType="StackPanel">
+                <Setter Property="IsEnabled" Value="True" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CategoryType}" Value="{x:Static commonutil:eBasketCategory.股票}">
+                        <Setter Property="IsEnabled" Value="False" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="OperationItemLabelStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="#444444" />
+                <Setter Property="Width" Value="88" />
+                <Setter Property="TextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,10,0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="OperationItemStyle" TargetType="FrameworkElement">
+                <Setter Property="Width" Value="130" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="270" />
+        </Grid.ColumnDefinitions>
+
+        <Border Margin="0,0,1,-5"
+                BorderBrush="#EEEEEE"
+                BorderThickness="0,0,1,0">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3" Color="#888888" />
+            </Border.Effect>
+        </Border>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <ig:XamGrid ActiveItem="{Binding SelectedEntrust}"
+                        AutoGenerateColumns="False"
+                        ItemsSource="{Binding Path=EntrustList}"
+                        RowHover="Row">
+                <ig:XamGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding DeleteEntrustCommand}" Header="删除" />
+                    </ContextMenu>
+                </ig:XamGrid.ContextMenu>
+                <ig:XamGrid.SelectionSettings>
+                    <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+                </ig:XamGrid.SelectionSettings>
+                <ig:XamGrid.EditingSettings>
+                    <ig:EditingSettings AllowEditing="Row" />
+                </ig:XamGrid.EditingSettings>
+                <ig:XamGrid.ConditionalFormattingSettings>
+                    <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+                </ig:XamGrid.ConditionalFormattingSettings>
+
+                <!--  #BEGIN SNIPPET#  -->
+                <ig:XamGrid.FilteringSettings>
+                    <ig:FilteringSettings AllowFiltering="FilterMenu" />
+                </ig:XamGrid.FilteringSettings>
+                <ig:XamGrid.SortingSettings>
+                    <ig:SortingSettings AllowMultipleColumnSorting="True"
+                                        AllowSorting="False"
+                                        ShowSortIndicator="True" />
+                </ig:XamGrid.SortingSettings>
+                <ig:XamGrid.Columns>
+                    <ig:TextColumn Key="CombiNo"
+                                   HeaderText="组合"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="InvestType"
+                                   HeaderText="投资类型"
+                                   IsFilterable="False"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="SecurityID"
+                                   HeaderText="代码"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="SecurityName"
+                                   HeaderText="名称"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="MarketType"
+                                   HeaderText="市场"
+                                   IsReadOnly="True" />
+                    <ig:TemplateColumn Key="EntrustDirection"
+                                       HeaderText="方向"
+                                       IsReadOnly="True">
+                        <ig:TemplateColumn.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding EntrustDirection, Converter={StaticResource EntrustDirectionDisplayConverter}}" Text="{Binding EntrustDirection}" />
+                            </DataTemplate>
+                        </ig:TemplateColumn.ItemTemplate>
+                    </ig:TemplateColumn>
+                    <ig:TemplateColumn Key="FuturesDirection"
+                                       HeaderText="开平仓"
+                                       IsReadOnly="True">
+                        <ig:TemplateColumn.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding FuturesDirection, Converter={StaticResource FuturesDirectionDisplayConverter}}" Text="{Binding FuturesDirection}" />
+                            </DataTemplate>
+                        </ig:TemplateColumn.ItemTemplate>
+                    </ig:TemplateColumn>
+                    <ig:TextColumn Key="EntrustPriceType"
+                                   HeaderText="价格类型"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="EntrustPrice"
+                                   HeaderText="委价"
+                                   IsFilterable="False"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="EntrustAmount"
+                                   HeaderText="委托数量"
+                                   IsFilterable="False"
+                                   IsReadOnly="True" />
+                    <ig:TextColumn Key="SecurityQuotation.LastPx"
+                                   FormatString="{}{0:F2}"
+                                   HeaderText="最新价"
+                                   IsFilterable="False"
+                                   IsReadOnly="True" />
+                </ig:XamGrid.Columns>
+            </ig:XamGrid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button Height="30"
+                            Margin="15,8,0,0"
+                            Command="{Binding ExportEntrustListCommand}"
+                            Content="导出委托列表" />
+                    <Button Grid.Column="1"
+                            Height="30"
+                            Margin="15,8,0,0"
+                            Command="{Binding ImportEntrustListCommand}"
+                            Content="导入委托列表" />
+                </StackPanel>
+                <Button Width="80"
+                        Height="30"
+                        Margin="0,8,15,0"
+                        HorizontalAlignment="Right"
+                        Command="{Binding NewEntrustCommand}"
+                        Content="下达篮子" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Center">
+                    <!--  证券类型  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="证券类型" />
+                        <ig:XamComboEditor Width="150"
+                                           Height="28"
+                                           ItemsSource="{Binding Source={StaticResource odpBasketCategoryType}}"
+                                           SelectedItem="{Binding Path=CategoryType,
+                                                                  Mode=TwoWay}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SecurityTypeChangedCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ig:XamComboEditor>
+                    </StackPanel>
+                    <!--  证券代码  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="证券代码" />
+                        <auto:Intellibox Width="150"
+                                         Height="28"
+                                         Margin="0"
+                                         DataProvider="{Binding SecuritySearchProvider}"
+                                         DisplayedValueBinding="{Binding SecurityID}"
+                                         ExplicitlyIncludeColumns="True"
+                                         HideColumnHeaders="True"
+                                         SelectedItem="{Binding DisplaySecurityInfo}"
+                                         SelectedValueBinding="{Binding SecurityID}">
+                            <auto:Intellibox.Columns>
+                                <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                                <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                                <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                            </auto:Intellibox.Columns>
+                        </auto:Intellibox>
+                    </StackPanel>
+                    <!--  证券名称  -->
+                    <StackPanel IsEnabled="False"
+                                Orientation="Horizontal"
+                                Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="证券名称" />
+                        <Grid Width="150" Height="28">
+                            <TextBlock VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Text="{Binding DisplaySecurityInfo.SecurityName,
+                                                      Converter={StaticResource StringNullOrEmptyReplacementConverter},
+                                                      ConverterParameter=--,
+                                                      FallbackValue=--}" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  交易所  -->
+                    <StackPanel IsEnabled="False"
+                                Orientation="Horizontal"
+                                Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="交易所" />
+                        <Grid Width="150" Height="28">
+                            <TextBlock VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Text="{Binding DisplaySecurityInfo.MarketType,
+                                                      Converter={StaticResource StringNullOrEmptyReplacementConverter},
+                                                      ConverterParameter=--,
+                                                      FallbackValue=--}" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  委托方向  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="委托方向" />
+                        <Grid Width="150" Height="28">
+                            <Grid.Style>
+                                <Style>
+                                    <Setter Property="FrameworkElement.Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DisplaySecurityInfo.SecurityType}" Value="债券回购">
+                                            <Setter Property="FrameworkElement.Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <RadioButton Foreground="#F34D49"
+                                             GroupName="EntrustDirectionGroup"
+                                             IsChecked="{Binding EntrustDirection,
+                                                                 Converter={StaticResource EnumBooleanConverter},
+                                                                 ConverterParameter=买入}">
+                                    买入
+                                </RadioButton>
+                                <RadioButton Margin="30,0,0,0"
+                                             Foreground="#23A168"
+                                             GroupName="EntrustDirectionGroup"
+                                             IsChecked="{Binding EntrustDirection,
+                                                                 Converter={StaticResource EnumBooleanConverter},
+                                                                 ConverterParameter=卖出}">
+                                    卖出
+                                </RadioButton>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Width="150" Height="28">
+                            <Grid.Style>
+                                <Style>
+                                    <Setter Property="FrameworkElement.Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DisplaySecurityInfo.SecurityType}" Value="债券回购">
+                                            <Setter Property="FrameworkElement.Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <RadioButton Foreground="#F34D49"
+                                             GroupName="EntrustDirectionGroup"
+                                             IsChecked="{Binding EntrustDirection,
+                                                                 Converter={StaticResource EnumBooleanConverter},
+                                                                 ConverterParameter=融资回购}">
+                                    融资回购
+                                </RadioButton>
+                                <RadioButton Margin="6,0,0,0"
+                                             Foreground="#23A168"
+                                             GroupName="EntrustDirectionGroup"
+                                             IsChecked="{Binding EntrustDirection,
+                                                                 Converter={StaticResource EnumBooleanConverter},
+                                                                 ConverterParameter=融券回购}">
+                                    融券回购
+                                </RadioButton>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <!--  开平仓  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource DisableIfStockStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="开平仓" />
+                        <Grid Width="150" Height="28">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <RadioButton Foreground="#F34D49"
+                                             GroupName="FuturesDirectionGroup"
+                                             IsChecked="{Binding FuturesDirection,
+                                                                 Converter={StaticResource EnumBooleanConverter},
+                                                                 ConverterParameter=开仓}">
+                                    开仓
+                                </RadioButton>
+                                <RadioButton Margin="30,0,0,0"
+                                             Foreground="#23A168"
+                                             GroupName="FuturesDirectionGroup"
+                                             IsChecked="{Binding FuturesDirection,
+                                                                 Converter={StaticResource EnumBooleanConverter},
+                                                                 ConverterParameter=平仓}">
+                                    平仓
+                                </RadioButton>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <!--  组合编号  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="组合编号" />
+                        <ig:XamComboEditor Width="150"
+                                           Height="28"
+                                           ItemsSource="{Binding Path=MenuBar.CombiNos}"
+                                           SelectedItem="{Binding Path=SelectedCombiNo,
+                                                                  Mode=TwoWay}" />
+                    </StackPanel>
+                    <!--  价格类型  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="价格类型" />
+                        <ig:XamComboEditor Width="150"
+                                           Height="28"
+                                           ItemsSource="{Binding Source={StaticResource odpEntrustPriceType}}"
+                                           SelectedItem="{Binding Path=EntrustPriceType,
+                                                                  Mode=TwoWay}" />
+                    </StackPanel>
+                    <!--  委托价格  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="委托价格" />
+                        <TextBox Width="150"
+                                 Height="28"
+                                 Margin="0"
+                                 Text="{Binding EntrustPrice,
+                                                Mode=TwoWay}" />
+                    </StackPanel>
+                    <!--  委托数量  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="委托数量" />
+                        <TextBox Width="150"
+                                 Height="28"
+                                 Margin="0"
+                                 Text="{Binding EntrustAmount,
+                                                Mode=TwoWay}" />
+                    </StackPanel>
+                    <!--  最小委托比例  -->
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource OperationItemRowStyle}">
+                        <TextBlock Style="{StaticResource OperationItemLabelStyle}" Text="最小委托比例" />
+                        <ComboBox Width="150"
+                                  Height="28"
+                                  Margin="0"
+                                  IsEditable="False"
+                                  Text="{Binding LimitEntrustRatio}">
+                            <ComboBoxItem Content="100%" />
+                            <ComboBoxItem Content="95%" />
+                            <ComboBoxItem Content="90%" />
+                            <ComboBoxItem Content="85%" />
+                            <ComboBoxItem Content="80%" />
+                            <ComboBoxItem Content="75%" />
+                            <ComboBoxItem Content="70%" />
+                            <ComboBoxItem Content="65%" />
+                            <ComboBoxItem Content="60%" />
+                            <ComboBoxItem Content="55%" />
+                            <ComboBoxItem Content="50%" />
+                            <ComboBoxItem Content="45%" />
+                            <ComboBoxItem Content="40%" />
+                            <ComboBoxItem Content="35%" />
+                            <ComboBoxItem Content="30%" />
+                            <ComboBoxItem Content="25%" />
+                            <ComboBoxItem Content="20%" />
+                            <ComboBoxItem Content="15%" />
+                            <ComboBoxItem Content="10%" />
+                            <ComboBoxItem Content="5%" />
+                        </ComboBox>
+                    </StackPanel>
+                    <!--  Action Buttons  -->
+                    <Grid Margin="0,35,0,0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Width="90"
+                                    Height="30"
+                                    Command="{Binding AddEntrustCommand}"
+                                    Content="添加" />
+                            <Button Width="90"
+                                    Height="30"
+                                    Margin="25,0,0,0"
+                                    Command="{Binding DeleteEntrustCommand}"
+                                    Content="删除" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

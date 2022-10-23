@@ -1,0 +1,228 @@
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.Trade.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Intellibox.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Composition.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.PubSubEvents.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\System.Windows.Interactivity.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Infrastructure.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\log4net.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ChnCharInfo.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Infrastructure.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Composition.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.MefExtensions.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Mvvm.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\de\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\en\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\es\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\it\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\SelectCombiNoPanel.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanel.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanel.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QuotPanel.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanel.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\SelectCombiNoPanel.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanel.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanel.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QuotPanel.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanel.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade_MarkupCompile.cache
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.g.resources
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.csproj.GenerateResource.Cache
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.Trade.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Intellibox.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Composition.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.PubSubEvents.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\System.Windows.Interactivity.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Infrastructure.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ext_t2sdkEx.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\log4net.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ChnCharInfo.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Infrastructure.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Composition.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.MefExtensions.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.Mvvm.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\de\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\en\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\es\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\it\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.Properties.Resources.resources
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.MenuAction.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.MenuAction.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.RealTimePrice.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TradeStation.Modules.RealTimePrice.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TFMkdtMultiCSApi.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Charts.XamDataChart.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.DataManager.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Charts.XamDataChart.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.DataManager.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\InfragisticsWPF4.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\de\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\es\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\fr\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\de\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\es\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\fr\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\de\InfragisticsWPF4.DataManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\es\InfragisticsWPF4.DataManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\fr\InfragisticsWPF4.DataManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\de\InfragisticsWPF4.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\es\InfragisticsWPF4.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\fr\InfragisticsWPF4.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\WPG.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\TFMkdtSubCSApi.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\MarketData.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\MoonPdfLib.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\MouseKeyboardActivityMonitor.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\MoonPdf.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\bin\Debug\ext_t2sdkEx.dll
+D:\QuickTradeStation\TradeStationGUI\build\log4net.config
+D:\QuickTradeStation\TradeStationGUI\build\packages.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Modules.Trade.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\AdvancedQueryPanelOptionHoldingPosition.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\AdvancedQueryPanelOptionTradeResult.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ExportListButtonNew.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\OptionMatrixPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ExportListButton.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryButtonNew.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryHistoricalTradeResultPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\AdvancedQueryPanelOption.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryButton.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\Intellibox.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelArbitrage.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelFundEtf.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelFund.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelOption.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelFuture.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\AdvancedQueryPanelOptionHoldingPosition.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\AdvancedQueryPanelOptionTradeResult.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelFund.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelForBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelFutureForBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ExportListButtonNew.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\OptionMatrixPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelOption.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EtfBaseInfoPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\OptionInstrumentInfoPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\MoneyPanelOption.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelForBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelFutureForBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelOption.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ExportListButton.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfStockListWindow.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryButtonNew.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfTradeResultDetailPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfEntrustDetailPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryHistoricalTradeResultPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\AdvancedQueryPanelOption.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfStockListPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ToolBarNew.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ToolBar.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryButton.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelFuture.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\InstrumentInfoPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelFuture.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\Intellibox.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelArbitrage.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelFundEtf.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelFund.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelOption.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanelFuture.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelForBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelFund.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelFutureForBasket.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelOption.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelFuture.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\MoneyPanelFuture.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\MoneyPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradePanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade_MarkupCompile.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade_MarkupCompile.lref
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelFund.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelForBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelFutureForBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelOption.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EtfBaseInfoPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\OptionInstrumentInfoPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\MoneyPanelOption.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelForBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelFutureForBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelOption.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfStockListWindow.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfTradeResultDetailPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfEntrustDetailPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\QryEtfStockListPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ToolBarNew.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\ToolBar.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\Resources.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanelFuture.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\InstrumentInfoPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanelFuture.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelForBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelFund.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelFutureForBasket.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelOption.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanelFuture.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\MoneyPanelFuture.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\TradeResultPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\EntrustPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\MoneyPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\Views\PositionPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.g.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.Properties.Resources.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.csproj.GenerateResource.Cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Modules.Trade\obj\Debug\TradeStation.Modules.Trade.pdb

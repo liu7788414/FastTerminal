@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="TFLogo" UriSource="tfzq.png" />
+    <BitmapImage x:Key="AosuLogo" UriSource="UFC.png" />
+    <BitmapImage x:Key="Refresh" UriSource="arrow_refresh.png" />
+    <BitmapImage x:Key="Refresh1" UriSource="action_refresh.png" />
+    <BitmapImage x:Key="Remove" UriSource="remove.jpg" />
+    <BitmapImage x:Key="Export" UriSource="export.png" />
+    <BitmapImage x:Key="Export_Static" UriSource="export_static.png" />
+    <BitmapImage x:Key="Filter" UriSource="Filter.png" />
+    <BitmapImage x:Key="Filter2" UriSource="filter2.png" />
+    <BitmapImage x:Key="ChartIcon" UriSource="chart_icon.png" />
+    <BitmapImage x:Key="ListRefresh" UriSource="list_refresh.png" />
+    <BitmapImage x:Key="ListExport" UriSource="list_export.png" />
+</ResourceDictionary>

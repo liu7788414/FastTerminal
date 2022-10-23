@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B572DC2-78A3-4EEE-AAC2-D2E433BB1613}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TradeStation.Infrastructure</RootNamespace>
+    <AssemblyName>TradeStation.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\..\ThirdPartyDll\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="ext_t2sdkEx, Version=1.0.5809.17806, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdPartyDll\hundsun\ext_t2sdkEx.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Grids.XamGrid.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataManager.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.DataManager.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DockManager.v15.1, Version=15.1.20151.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.DockManager.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v15.1, Version=15.1.20151.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Intellibox">
+      <HintPath>..\..\ThirdPartyDll\Intellibox.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\ThirdPartyDll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MarketData">
+      <HintPath>..\..\ThirdPartyDll\MarketData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Composition">
+      <HintPath>..\..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\..\packages\Prism.MEFExtensions.5.0.0\lib\NET45\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm">
+      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop">
+      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
+      <HintPath>..\..\packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces">
+      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TFMkdtMultiCSApi">
+      <HintPath>..\..\ThirdPartyDll\TFMkdtMultiCSApi.dll</HintPath>
+      <Aliases>global</Aliases>
+    </Reference>
+    <Reference Include="TFMkdtSubCSApi">
+      <HintPath>..\..\ThirdPartyDll\TFMkdtSubCSApi.dll</HintPath>
+      <Aliases>global</Aliases>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapters\IGItemsControlBasedRegionAdapter.cs" />
+    <Compile Include="Behaviors\AutoPopulateExportedViewsBehavior.cs" />
+    <Compile Include="Behaviors\IViewRegionRegistration.cs" />
+    <Compile Include="Behaviors\ViewExportAttribute.cs" />
+    <Compile Include="CommonUtils\CommonUtil.cs" />
+    <Compile Include="CommonUtils\Computer.cs" />
+    <Compile Include="CommonUtils\LogUtils.cs" />
+    <Compile Include="CommonUtils\RegionNames.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controls\NumberTextInput.cs" />
+    <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Converters\GenericEqualsConverter.cs" />
+    <Compile Include="Converters\GreaterValueConverter.cs" />
+    <Compile Include="Converters\DigitalCompareBrushConverter.cs" />
+    <Compile Include="Converters\IsGreaterThanConverter.cs" />
+    <Compile Include="Converters\DigitFormatStringConverter.cs" />
+    <Compile Include="Converters\EntrustDirectionDisplayConverter.cs" />
+    <Compile Include="Converters\PriceDigitalDisplayColorConverter.cs" />
+    <Compile Include="Converters\EntrustStateDisplayConverter.cs" />
+    <Compile Include="Converters\StockQuantityDisplayConverter.cs" />
+    <Compile Include="Converters\StringNullOrEmptyReplacementConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Engines\IMarketDataEngine.cs" />
+    <Compile Include="Engines\MarketDataMulticastEngine.cs" />
+    <Compile Include="Engines\MarketDataSubscribeEngine.cs" />
+    <Compile Include="Engines\ReInitializationEngine.cs" />
+    <Compile Include="Events\CloseSplashScreenEvent.cs" />
+    <Compile Include="Events\FinishedGetOptionInformationEvent.cs" />
+    <Compile Include="Events\HostCommands.cs" />
+    <Compile Include="Events\LogMessageNotifyEvent.cs" />
+    <Compile Include="Events\FastTradeStockEvent.cs" />
+    <Compile Include="Events\SecurityQuotationEvent.cs" />
+    <Compile Include="Events\TraderInfoEvent.cs" />
+    <Compile Include="Extensions\ExchangeTradePeriodExtension.cs" />
+    <Compile Include="Extensions\ExrightRatioExtension.cs" />
+    <Compile Include="Extensions\FutureTickDataExtension.cs" />
+    <Compile Include="Extensions\OptionDataExtension.cs" />
+    <Compile Include="Extensions\OptionInfoExtension.cs" />
+    <Compile Include="Extensions\SuspensionInfoExtension.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Extensions\KLineRecordsQueryResponseExtension.cs" />
+    <Compile Include="Extensions\StockTickDataExtension.cs" />
+    <Compile Include="Helpers\OptionFinanceCalculator.cs" />
+    <Compile Include="Helpers\IniLoadHelper.cs" />
+    <Compile Include="Helpers\PasswordBoxBindingHelper.cs" />
+    <Compile Include="Helpers\RealTimePriceDateTimeConvertHelper.cs" />
+    <Compile Include="Helpers\SaveAndLoadUILayoutHelper.cs" />
+    <Compile Include="Helpers\TimeKeeper.cs" />
+    <Compile Include="IDailyInformationGetable.cs" />
+    <Compile Include="IReInitializable.cs" />
+    <Compile Include="Models\Local\SuspensionInfoModel.cs" />
+    <Compile Include="Models\ArbitrageItem.cs" />
+    <Compile Include="Models\SuspensionInfo.cs" />
+    <Compile Include="Payloads\RefDataPayloads\BenchMarkRateResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\SuspensionInfoQueryResponse.cs" />
+    <Compile Include="Services\SaveLoadDataBufferService.cs" />
+    <Compile Include="Helpers\SaveLoadSecurityListHelper.cs" />
+    <Compile Include="InfrastructureModule.cs" />
+    <Compile Include="Managers\TFSplashScreenManager.cs" />
+    <Compile Include="Managers\TFSplashScreenWrapper.cs" />
+    <Compile Include="Metadata\SecurityInfoMetadata.cs" />
+    <Compile Include="Models\ExchangeTradePeriod.cs" />
+    <Compile Include="Models\ExrightRatio.cs" />
+    <Compile Include="Models\Local\ExchangeTradePeriodModel.cs" />
+    <Compile Include="Models\Local\ExrightRatioModel.cs" />
+    <Compile Include="Models\Local\TickDataModel.cs" />
+    <Compile Include="Models\QryInfo.cs" />
+    <Compile Include="Models\EntrustInfo.cs" />
+    <Compile Include="Models\InfoWithCombiNoAndSecurityInfo.cs" />
+    <Compile Include="Models\InfoWithSecurityInfo.cs" />
+    <Compile Include="Models\FutureInstrumentInfo.cs" />
+    <Compile Include="Models\Local\KLineRecordModel.cs" />
+    <Compile Include="Models\Local\FutureDataModel.cs" />
+    <Compile Include="Models\Local\OptionDataModel.cs" />
+    <Compile Include="Models\Local\OptionInfoModel.cs" />
+    <Compile Include="Models\Local\StockTickDataModel.cs" />
+    <Compile Include="Models\OptionInfo.cs" />
+    <Compile Include="Models\PositionInfoCollection.cs" />
+    <Compile Include="Models\RealTimeMarketData.cs" />
+    <Compile Include="Models\SecurityPanelLocation.cs" />
+    <Compile Include="Models\TradeResultInfo.cs" />
+    <Compile Include="Models\MoneyInfo.cs" />
+    <Compile Include="Models\PositionInfo.cs" />
+    <Compile Include="Models\UserSettings.cs" />
+    <Compile Include="Models\LogItem.cs" />
+    <Compile Include="Models\SecurityInfo.cs" />
+    <Compile Include="Payloads\RefDataPayloads\NextTradeDateResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\LastTradeDateResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\IsTradeDateResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\ExchangeTradePeriodsResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\ExrightRatioQueryResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\JsonResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\KLineRecordsQueryResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\OptionInformationTableQueryResponse.cs" />
+    <Compile Include="Payloads\RefDataPayloads\SecurityCodeTableQueryResponse.cs" />
+    <Compile Include="Payloads\TradePayloads\ServerResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Services\AppConfigService.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\DispatcherService.cs" />
+    <Compile Include="Services\HSStock.cs" />
+    <Compile Include="Services\IOSocket\AsyncTcpClient.cs" />
+    <Compile Include="Services\IOSocket\MulticastClient.cs" />
+    <Compile Include="Services\KLineProcessor.cs" />
+    <Compile Include="Services\MarketDataService.cs" />
+    <Compile Include="Services\RealTimeDataProcessor.cs" />
+    <Compile Include="Services\SecurityRefHttpService.cs" />
+    <Compile Include="Services\TradeService.cs" />
+    <Compile Include="ViewModels\ISequencableView.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\TFSplashScreen.xaml.cs">
+      <DependentUpon>TFSplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winDialog.xaml.cs">
+      <DependentUpon>winDialog.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\TFSplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="winDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,11 @@
+2016-09-01 13:13:56.543 LOG_INFO  MulticastApi version:0.2.1 ( MulticastApi.cpp ) : 48 
+2016-09-01 13:13:56.544 LOG_INFO  join multicast group:230.10.10.1:23001 ( e:\svncode\marketdataapi\branches\v0.2\marketdataapi\marketdataapi_c++\multicastapi\MulticastClient.h ) : 69 
+2016-09-01 13:13:56.553 LOG_INFO  join multicast group:230.10.10.2:23002 ( e:\svncode\marketdataapi\branches\v0.2\marketdataapi\marketdataapi_c++\multicastapi\MulticastClient.h ) : 69 
+2016-09-01 13:13:56.561 LOG_INFO  join multicast group:230.10.10.3:23003 ( e:\svncode\marketdataapi\branches\v0.2\marketdataapi\marketdataapi_c++\multicastapi\MulticastClient.h ) : 69 
+2016-09-01 13:13:56.569 LOG_INFO  join multicast group:230.10.10.4:23004 ( e:\svncode\marketdataapi\branches\v0.2\marketdataapi\marketdataapi_c++\multicastapi\MulticastClient.h ) : 69 
+2016-09-01 13:13:56.764 LOG_INFO  (multicast group:230.10.10.4:23004)Success to receive multicast msg ! ( MulticastClient.cpp ) : 161 
+2016-09-01 13:13:56.914 LOG_INFO  (multicast group:230.10.10.3:23003)Success to receive multicast msg ! ( MulticastClient.cpp ) : 112 
+2016-09-01 13:13:56.979 LOG_INFO  (multicast group:230.10.10.1:23001)Success to receive multicast msg ! ( MulticastClient.cpp ) : 14 
+2016-09-01 13:13:57.425 LOG_INFO  (multicast group:230.10.10.2:23002)Success to receive multicast msg ! ( MulticastClient.cpp ) : 63 
+2016-09-01 13:14:07.352 LOG_INFO  receive 10000 multicast msg ! ( MulticastClient.cpp ) : 21 
+2016-09-01 13:14:07.352 LOG_INFO  (multicast group:230.10.10.1:23001)Success to receive multicast msg ! ( MulticastClient.cpp ) : 14 

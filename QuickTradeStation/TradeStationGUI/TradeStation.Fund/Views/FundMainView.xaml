@@ -1,0 +1,233 @@
+﻿<igWindows:TabItemEx x:Class="TradeStation.Fund.Views.FundMainView"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:igDock="http://infragistics.com/DockManager"
+                     xmlns:igOB="http://infragistics.com/OutlookBar"
+                     xmlns:igWindows="http://infragistics.com/Windows"
+                     xmlns:infra="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:prism="http://www.codeplex.com/prism"
+                     Header="基金特殊业务"
+                     Style="{StaticResource ModuleTabItemStyle}"
+                     Visibility="{Binding UserSettings.IsFundVisible,
+                                          Converter={StaticResource VisibilityConverter}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <igOB:XamOutlookBar x:Name="xamOutlookBarFund"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            IsMinimized="True"
+                            NavigationAreaMaxGroups="-2">
+
+            <igOB:XamOutlookBar.Groups>
+                <igOB:OutlookBarGroup Header="基金">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="btFundPurchaseRedemption"
+                                Click="Button_Click"
+                                Content="基金分拆与合并" />
+                        <Button x:Name="btFundEntrust"
+                                Grid.Row="1"
+                                Click="Button_Click"
+                                Content="基金委托" />
+                        <Button x:Name="btFundTradeResult"
+                                Grid.Row="2"
+                                Click="Button_Click"
+                                Content="基金成交记录" />
+                        <!--<Button x:Name="btFundPosition"
+                                Grid.Row="3"
+                                Click="Button_Click"
+                                Content="基金持仓" />-->
+                        <Button x:Name="btFundEtfBaseInfo"
+                                Grid.Row="3"
+                                Click="Button_Click"
+                                Content="ETF基础信息" />
+                        <Button x:Name="btFundEtfStockList"
+                                Grid.Row="4"
+                                Click="Button_Click"
+                                Content="ETF成份股信息" />
+                        <Button x:Name="btFundEtfEntrustDetail"
+                                Grid.Row="5"
+                                Click="Button_Click"
+                                Content="ETF申赎委托明细查询" />
+                        <Button x:Name="btFundEtfTradeResultDetail"
+                                Grid.Row="6"
+                                Click="Button_Click"
+                                Content="ETF申赎成交明细查询" />
+                        <Button x:Name="btFundEtfPurchase"
+                                Grid.Row="7"
+                                Click="Button_Click"
+                                Content="ETF申赎" />
+                    </Grid>
+                </igOB:OutlookBarGroup>
+            </igOB:XamOutlookBar.Groups>
+        </igOB:XamOutlookBar>
+
+
+        <igDock:XamDockManager x:Name="dockManagerFund"
+                               Grid.Column="1"
+                               AllowMaximizeFloatingWindows="True"
+                               AllowMinimizeFloatingWindows="True"
+                               LayoutMode="FillContainer"
+                               PaneNavigatorButtonDisplayMode="Always">
+            <igDock:XamDockManager.Panes>
+                <igDock:SplitPane x:Name="spQuotePaneFund" SplitterOrientation="Horizontal">
+                    <igDock:TabGroupPane>
+                        <igDock:ContentPane x:Name="cpFundPurchaseRedemption"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="基金分拆与合并">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FundTradeRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFundEntrust"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="基金委托">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FundEntrustRegion}" />
+                        </igDock:ContentPane>
+                        <!--<igDock:ContentPane x:Name="cpFundPosition"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="基金持仓">
+                        -->
+                        <!--<ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PositionRegion}" />-->
+                        <!--
+                        </igDock:ContentPane>-->
+                        <igDock:ContentPane x:Name="cpFundTradeResult"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="基金成交记录">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FundTradeResultRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFundEtfBaseInfo"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="ETF基础信息">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.EtfBaseInfoPanelRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFundEtfStockList"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="ETF成份股信息">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.EtfStockListPanelRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFundEtfEntrustDetail"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="ETF申赎委托明细查询">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.EtfEntrustDetailPanelRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFundEtfTradeResultDetail"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="ETF申赎成交明细查询">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.EtfTradeResultDetailPanelRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFundEtfPurchase"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="ETF申赎">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FundEtfTradeRegion}" />
+                        </igDock:ContentPane>
+                    </igDock:TabGroupPane>
+                </igDock:SplitPane>
+            </igDock:XamDockManager.Panes>
+        </igDock:XamDockManager>
+
+    </Grid>
+</igWindows:TabItemEx>

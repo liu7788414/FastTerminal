@@ -1,0 +1,276 @@
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStationShell.exe.config
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStationShell.exe
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStationShell.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Composition.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.PubSubEvents.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Infrastructure.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.LogMessage.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.MenuAction.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\WPFToolkit.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\log4net.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ChnCharInfo.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Intellibox.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\System.Windows.Interactivity.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Infrastructure.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.LogMessage.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.MenuAction.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.Trade.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Composition.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.MefExtensions.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Mvvm.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\en\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\it\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.exe
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\LoginWindow.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Resources\Images\ImageResource.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Shell.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\BureauBlack.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\BureauBlue.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\ExpressionDark.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\ExpressionLight.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\ShinyBlue.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\ShinyRed.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Base\WhistlerBlue.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Custom\TradeStationGUIStyle.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\MetroDark\MetroDark.MSControls.Core.Implicit.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\MetroDark\MetroDark.MSControls.Toolkit.Implicit.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\MetroDark\Styles.Shared.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\MetroDark\Styles.WPF.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\MetroDark\Theme.Colors.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Metro\Metro.MSControls.Core.Implicit.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Metro\Metro.MSControls.Toolkit.Implicit.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Metro\Styles.Shared.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Metro\Styles.WPF.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Metro\Theme.Colors.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\App.baml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\LoginWindow.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\Shell.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\App.g.cs
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell_MarkupCompile.cache
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.g.resources
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.csproj.GenerateResource.Cache
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStationShell.exe.config
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStationShell.exe
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStationShell.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Grids.XamGrid.v13.1.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataManager.v13.1.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataPresenter.v13.1.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.v13.1.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Composition.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.PubSubEvents.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Infrastructure.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.LogMessage.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.MenuAction.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.Trade.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\WPFToolkit.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\ext_t2sdkEx.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\log4net.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\ChnCharInfo.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Intellibox.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\System.Windows.Interactivity.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Infrastructure.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.LogMessage.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.MenuAction.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.Trade.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Grids.XamGrid.v13.1.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataManager.v13.1.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataPresenter.v13.1.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.v13.1.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Composition.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.MefExtensions.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.Mvvm.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.Controls.Grids.XamGrid.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.Controls.Grids.XamGrid.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.Controls.Grids.XamGrid.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.DataManager.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.DataManager.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.DataManager.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.DataPresenter.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.DataPresenter.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.DataPresenter.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.v13.1.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\de\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\en\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\es\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\it\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+D:\QuickTradeStation - 副本\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.Properties.Resources.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.RealTimePrice.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TradeStation.Modules.RealTimePrice.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TFMkdtMultiCSApi.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Charts.XamDataChart.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamDateTimeInput.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamSlider.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Menus.XamMenu.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataManager.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataPresenter.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataVisualization.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DockManager.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.OutlookBar.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Themes.Office2013.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.v15.1.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Charts.XamDataChart.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamDateTimeInput.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Editors.XamSlider.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.Controls.Menus.XamMenu.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataManager.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataPresenter.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DataVisualization.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.DockManager.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.OutlookBar.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\InfragisticsWPF4.v15.1.xml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.Controls.Menus.XamMenu.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.Controls.Menus.XamMenu.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.Controls.Menus.XamMenu.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.DataManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.DataManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.DataManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.DataPresenter.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.DataPresenter.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.DataPresenter.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.DataVisualization.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.DataVisualization.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.DataVisualization.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.DockManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.DockManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.DockManager.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.OutlookBar.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.OutlookBar.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.OutlookBar.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\InfragisticsWPF4.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\InfragisticsWPF4.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\InfragisticsWPF4.v15.1.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\WPG.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\MarketData.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\TFMkdtSubCSApi.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\MoonPdfLib.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\MouseKeyboardActivityMonitor.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\MoonPdf.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\de\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\en\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\es\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\fr\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\it\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ja\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ko\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ru\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\zh-Hans\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\zh-Hant\Microsoft.Expression.Interactions.resources.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\bin\Debug\ext_t2sdkEx.dll
+D:\QuickTradeStation\TradeStationGUI\build\log4net.config
+D:\QuickTradeStation\TradeStationGUI\build\packages.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStationShell.exe.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStationShell.exe
+D:\QuickTradeStation\TradeStationGUI\build\TradeStationShell.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\LoginWindow.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Resources\Images\ImageResource.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Shell.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.DataVisualization.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.MSControls.Core.Implicit.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.WPF.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamComboEditor.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamDataChart.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamDockManager.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamGrid.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamMenu.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamOutlookBar.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Office2013.xamPropertyGrid.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Styles.Shared.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Styles.WPF.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013New\Theme.Colors.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.DataVisualization.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.MSControls.Core.Implicit.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamComboEditor.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamDataChart.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamDockManager.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamGrid.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamMenu.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamOutlookBar.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.xamPropertyGrid.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Styles.Shared.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Styles.WPF.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Theme.Colors.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\TF\TF.Styles.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\TF\TradeStationGUIStyle.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\Office2013\Office2013.WPF.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\App.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\LoginWindow.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Shell.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\App.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell_MarkupCompile.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell_MarkupCompile.lref
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\Themes\TF\TF.Colors.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.g.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.Properties.Resources.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.csproj.GenerateResource.Cache
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.exe
+D:\QuickTradeStation\TradeStationGUI\TradeStationShell\obj\Debug\TradeStationShell.pdb

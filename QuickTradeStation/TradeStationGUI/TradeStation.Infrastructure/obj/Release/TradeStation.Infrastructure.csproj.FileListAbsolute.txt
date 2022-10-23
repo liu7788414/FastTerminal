@@ -1,0 +1,2 @@
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Infrastructure\obj\Release\TradeStation.Infrastructure.Properties.Resources.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Infrastructure\obj\Release\TradeStation.Infrastructure.csproj.GenerateResource.Cache

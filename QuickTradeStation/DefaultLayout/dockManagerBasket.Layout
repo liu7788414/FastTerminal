@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xamDockManager version="15.1.20151.2251">
+  <contentPanes>
+    <contentPane name="cpBasketStockPosition" location="DockedLeft" lastFloatingSize="1878,297" lastFloatingWindowRect="1003,548,1894,335" lastFloatingLocation="1003,548" lastActivatedTime="2016-08-01T01:23:45.5606185Z" />
+    <contentPane name="cpBasketStockTradeResult" location="DockedLeft" lastActivatedTime="2016-08-01T01:23:30.7867735Z" />
+    <contentPane name="cpBasketStockEntrust" location="DockedLeft" lastFloatingSize="1878,462" lastFloatingWindowRect="1037,247,1894,500" lastFloatingLocation="1037,247" lastActivatedTime="2016-08-01T01:23:29.9007228Z" />
+    <contentPane name="cpBasketFutureEntrust" location="DockedLeft" lastFloatingSize="1878,297" lastFloatingWindowRect="880,732,1894,335" lastFloatingLocation="880,732" lastActivatedTime="2016-08-01T01:22:54.5837028Z" />
+    <contentPane name="cpBasketFuturePosition" location="DockedLeft" lastFloatingSize="1878,215" lastFloatingWindowRect="855,647,1894,253" lastFloatingLocation="855,647" lastActivatedTime="2016-08-01T01:10:15.9443111Z" />
+    <contentPane name="cpBasketTrade" location="DockedLeft" lastFloatingSize="1878,889" lastFloatingWindowRect="940,491,1894,927" lastFloatingLocation="940,491" lastActivatedTime="2016-07-29T08:55:32.8154986Z" />
+    <contentPane name="cpBasketFutureTradeResult" location="DockedLeft" lastFloatingSize="1878,150" lastFloatingWindowRect="944,903,1894,188" lastFloatingLocation="944,903" lastActivatedTime="2016-07-28T08:40:28.6528582Z" />
+  </contentPanes>
+  <panes>
+    <splitPane name="spQuotePaneBasket" splitterOrientation="Horizontal" location="DockedLeft">
+      <splitPane name="Zb93886c6b76a4de1ac17bd72baccb4ed" splitterOrientation="Vertical" relativeSize="100,157.769417591314">
+        <contentPane name="cpBasketTrade" relativeSize="102.539269609747,100" />
+        <contentPane name="cpBasketStockEntrust" relativeSize="91.0573152355037,100" />
+      </splitPane>
+      <splitPane name="Z90fa8e5a3ec14f8280a8de441d796933" splitterOrientation="Vertical" relativeSize="100,78.0086476098967">
+        <contentPane name="cpBasketStockPosition" relativeSize="96.691568836713,100" />
+      </splitPane>
+      <splitPane name="Z40540b49f3944ffa91ad7db2d41dc6c5" splitterOrientation="Vertical" relativeSize="100,83.8625990871968">
+        <contentPane name="cpBasketFutureEntrust" relativeSize="91.675560298826,100" />
+        <contentPane name="cpBasketFuturePosition" relativeSize="103.308431163288,100" />
+      </splitPane>
+      <splitPane name="Z5768743cb6d24674b9ec359b85ed5186" splitterOrientation="Vertical" relativeSize="100,80.3593357115927">
+        <tabGroup name="Z1e296e8d90a940c6af2bcc5e3acab163" selectedIndex="0" relativeSize="81.9637139807897,100">
+          <contentPane name="cpBasketStockTradeResult" />
+        </tabGroup>
+        <contentPane name="cpBasketFutureTradeResult" relativeSize="118.03628601921,100" />
+      </splitPane>
+    </splitPane>
+    <splitPane name="Z20955b16a698488592cd72d0f445b719" splitterOrientation="Vertical" location="Floating" floatingLocation="940,491" floatingSize="1878,889">
+      <contentPane name="cpBasketTrade" relativeSize="100,92.5520262869661" />
+    </splitPane>
+    <splitPane name="Zffefb5a519db406195d4917b9bbcc1ff" splitterOrientation="Vertical" location="Floating" floatingLocation="855,647" floatingSize="1878,215">
+      <contentPane name="cpBasketFuturePosition" />
+    </splitPane>
+    <splitPane name="Z03fb6078b0df4d0cb5a4422269469dcc" splitterOrientation="Vertical" location="Floating" floatingLocation="944,903" floatingSize="1878,150">
+      <contentPane name="cpBasketFutureTradeResult" />
+    </splitPane>
+    <splitPane name="Z43472dec696e44a2bc1d8376e44665f3" splitterOrientation="Vertical" location="Floating" floatingLocation="1003,548" floatingSize="1878,297">
+      <contentPane name="cpBasketStockPosition" relativeSize="96.691568836713,100" />
+    </splitPane>
+    <splitPane name="Zc42838dbc2f940aa8aa794eaaea44677" splitterOrientation="Vertical" location="Floating" floatingLocation="880,732" floatingSize="1878,297">
+      <contentPane name="cpBasketFutureEntrust" relativeSize="91.675560298826,100" />
+    </splitPane>
+    <splitPane name="Z64cab8bcee8942ef8678047100f1f2ab" splitterOrientation="Vertical" location="Floating" floatingLocation="1037,247" floatingSize="1878,462">
+      <contentPane name="cpBasketStockEntrust" relativeSize="85.2721451440768,100" />
+    </splitPane>
+  </panes>
+</xamDockManager>

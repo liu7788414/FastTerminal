@@ -1,0 +1,1640 @@
+﻿<igDock:ContentPane x:Class="TradeStation.Modules.RealTimePrice.Views.RealTimePriceDiagramPanel"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+                    xmlns:ig="http://schemas.infragistics.com/xaml"
+                    xmlns:igDock="http://infragistics.com/DockManager"
+                    xmlns:igEditors="http://infragistics.com/Editors"
+                    xmlns:igWindows="http://infragistics.com/Windows"
+                    xmlns:igdp="http://infragistics.com/DataPresenter"
+                    xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+                    xmlns:infraconverter="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+                    xmlns:local="clr-namespace:TradeStation.Modules.RealTimePrice.ViewModels"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:prism="http://www.codeplex.com/prism"
+                    Width="Auto"
+                    Height="Auto"
+                    AllowDocking="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowDockingBottom="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowDockingFloating="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowDockingInTabGroup="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowDockingLeft="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowDockingRight="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowDockingTop="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowInDocumentHost="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    AllowPinning="{Binding MenubarViewModel.UserSettings.LockContentPane}"
+                    Header="{Binding SecurityInfo.SecurityName}"
+                    OptionsMenuOpening="ContentPane_OptionsMenuOpening"
+                    mc:Ignorable="d">
+    <igDock:ContentPane.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\\Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:RealTimePriceViewModelBaseProxy x:Key="ViewModelProxy" />
+
+            <igPrim:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <DataTemplate x:Key="RealTimeXAxisLabelTemplate">
+                <Border Width="50"
+                        Height="20"
+                        BorderThickness="0">
+                    <TextBlock VerticalAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource StockTimeConverter}" ConverterParameter="HH:mm">
+                                <Binding Path="Item" />
+                                <Binding Path="ViewModel.SecurityInfo.ExID" Source="{StaticResource ViewModelProxy}" />
+                                <Binding Path="ViewModel.SecurityInfo.SecurityID" Source="{StaticResource ViewModelProxy}" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="VolumeYAxisLabelTemplate">
+                <Border BorderThickness="0">
+                    <TextBlock Text="{Binding Item, Converter={StaticResource StockDataVolumeConverter}}" />
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="KLineYAxisLabelTemplate">
+                <Border BorderThickness="0">
+                    <TextBlock HorizontalAlignment="Right" Foreground="Black" FontFamily="微软雅黑">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                <Binding Path="Item" />
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type igDock:ContentPane}}" Path="DataContext.SecurityInfo.PriceDigits" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+            </DataTemplate>
+
+            <Style x:Key="ShowStockStackPanelStyle" TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="股票">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="基金">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="债券">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="债券回购">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ShowNonStockStackPanelStyle" TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="期货">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="期权">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ShowFuturePanelStyle" TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="期货">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="HideFuturePanelStyle" TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Visible" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="期货">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="HideFutureStackPanelStyle" TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Visible" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="股票">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style TargetType="ig:XamDataChart">
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style TargetType="RadioButton">
+                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <ImageBrush x:Key="ToggleButtonImage" ImageSource="{StaticResource ChartIcon}"></ImageBrush>
+            <Style x:Key="ExpandToggleButtonStyle" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                <Setter Property="Background" Value="{StaticResource ToggleButtonImage}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="Blue" />
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </igDock:ContentPane.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsExpandedChart}" Value="True">
+                            <Setter Property="MinHeight" Value="470" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="ChartPartGrid" Grid.Column="0" MinWidth="380">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsExpandedChart}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid Margin="15,0,10,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0"
+                                Margin="50,0,0,0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                            <RadioButton x:Name="rbRealTimePrice" GroupName="DiagramType" IsChecked="{Binding IsRealTimePrice, IsAsync=True}">
+                                <Label Content="分时" />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding DiagramTypeChangedCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </RadioButton>
+                            <RadioButton x:Name="rbKLine" GroupName="DiagramType" IsChecked="{Binding IsRealTimePrice, IsAsync=True, Converter={StaticResource InverseBooleanConverter}}">
+                                <Label Content="K线" />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding DiagramTypeChangedCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=rbRealTimePrice, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=rbRealTimePrice, Path=IsChecked}" Value="False">
+                                            <Setter Property="IsEnabled" Value="True" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+
+                            <Label Content="周期：" />
+                            <ig:XamComboEditor IsEditable="False"
+                                               Width="80"
+                                               ItemsSource="{Binding Source={StaticResource odpDisplayedKLinePeriodType}}"
+                                               SelectedItem="{Binding KLinePeriodType}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding PeriodChangedCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ig:XamComboEditor>
+
+                            <StackPanel Orientation="Horizontal" Style="{StaticResource ShowStockStackPanelStyle}">
+                                <Label Content="除权：" />
+                                <ig:XamComboEditor IsEditable="False"
+                                               Width="80"
+                                               ItemsSource="{Binding Source={StaticResource odpDisplayedExRightType}}"
+                                               SelectedItem="{Binding KLineMarketData.ExRightType}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding ExRightChangedCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ig:XamComboEditor>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- 分时图 -->
+                    <Grid Grid.Row="1" Margin="0,5,0,0">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=rbRealTimePrice, Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=rbRealTimePrice, Path=IsChecked}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <ig:XamDataChart x:Name="RealTimeChart" Grid.Row="0"
+                                         HorizontalZoomable="False"
+                                         VerticalZoomable="False"
+                                         DefaultInteraction="None">
+                            <ig:SyncManager.SyncSettings>
+                                <ig:SyncSettings SyncChannel="RealTimeGroup"
+                                                 SynchronizeHorizontally="True"
+                                                 SynchronizeVertically="True" />
+                            </ig:SyncManager.SyncSettings>
+                            <ig:XamDataChart.Axes>
+                                <ig:CategoryDateTimeXAxis x:Name="RealTimeXAxis"
+                                                          DateTimeMemberPath="TimeFromOpen"
+                                                          Interval="{Binding RealTimeChartStrokeInterval}"
+                                                          ItemsSource="{Binding RealTimeMarketData.RealTimeMarketDataPointSets}"
+                                                          Label="{StaticResource RealTimeXAxisLabelTemplate}"
+                                                          MinimumValue="0:00"
+                                                          MaximumValue="{Binding RealTimeChartTotalTime}">
+                                    <ig:CategoryDateTimeXAxis.LabelSettings>
+                                        <ig:AxisLabelSettings Visibility="Collapsed" />
+                                    </ig:CategoryDateTimeXAxis.LabelSettings>
+                                </ig:CategoryDateTimeXAxis>
+                                <ig:NumericYAxis x:Name="RealTimeYAxis"
+                                                 Interval="{Binding RealTimeMarketData.PriceInterval}"
+                                                 MaximumValue="{Binding RealTimeMarketData.VisibleHighPrice}"
+                                                 MinimumValue="{Binding RealTimeMarketData.VisibleLowPrice}">
+                                    <ig:NumericYAxis.LabelSettings>
+                                        <ig:AxisLabelSettings HorizontalAlignment="Right"
+                                                              VerticalAlignment="Center"
+                                                              Extent="50" />
+                                    </ig:NumericYAxis.LabelSettings>
+                                    <ig:NumericYAxis.Style>
+                                        <Style TargetType="ig:NumericYAxis" BasedOn="{StaticResource {x:Type ig:NumericYAxis}}">
+                                            <Setter Property="Label" Value="{}{0:0.00}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SecurityInfo.PriceDigits}" Value="3">
+                                                    <Setter Property="Label" Value="{}{0:0.000}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ig:NumericYAxis.Style>
+                                </ig:NumericYAxis>
+                            </ig:XamDataChart.Axes>
+                            <ig:XamDataChart.Series>
+                                <ig:CrosshairLayer UseInterpolation="False" TargetSeries="{Binding ElementName=RealTimeLineSeries}" />
+                                <ig:ItemToolTipLayer Canvas.ZIndex="10003" UseInterpolation="False" />
+                                <ig:LineSeries x:Name="RealTimeLineSeries"
+                                               Brush="#33A4D4"
+                                               ItemsSource="{Binding RealTimeMarketData.RealTimeMarketDataPointSets}"
+                                               MarkerType="None"
+                                               ValueMemberPath="Close"
+                                               XAxis="{Binding ElementName=RealTimeXAxis}"
+                                               YAxis="{Binding ElementName=RealTimeYAxis}">
+                                    <ig:LineSeries.ToolTip>
+                                        <StackPanel MinWidth="160" Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="当前价: " />
+                                                <TextBlock Margin="0,0,4,0"
+                                                           Text="{Binding Item.Close}"
+                                                           HorizontalAlignment="Right"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="涨跌：" />
+                                                <TextBlock Margin="0,0,4,0"
+                                                           HorizontalAlignment="Right"
+                                                           Text="{Binding Item.PriceChange,
+                                                                          StringFormat='\{0:0.00\}'}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="涨跌幅：" />
+                                                <TextBlock Margin="0,0,4,0"
+                                                           HorizontalAlignment="Right"
+                                                           Text="{Binding Item.PriceChangeRate,
+                                                                          StringFormat='\{0:P2\}'}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </ig:LineSeries.ToolTip>
+                                </ig:LineSeries>
+                                <ig:LineSeries x:Name="RealTimeAveragePriceLineSeries"
+                                               Brush="Black"
+                                               ItemsSource="{Binding RealTimeMarketData.RealTimeMarketDataPointSets}"
+                                               MarkerType="None"
+                                               ValueMemberPath="RealTimeAverage"
+                                               XAxis="{Binding ElementName=RealTimeXAxis}"
+                                               YAxis="{Binding ElementName=RealTimeYAxis}">
+                                </ig:LineSeries>
+                            </ig:XamDataChart.Series>
+                        </ig:XamDataChart>
+                        <ig:XamDataChart x:Name="RealTimeVolumeChart" Grid.Row="1"
+                                         HorizontalZoomable="False"
+                                         VerticalZoomable="False"
+                                         DefaultInteraction="None">
+                            <ig:SyncManager.SyncSettings>
+                                <ig:SyncSettings SyncChannel="RealTimeGroup"
+                                                 SynchronizeHorizontally="True"
+                                                 SynchronizeVertically="True" />
+                            </ig:SyncManager.SyncSettings>
+                            <ig:XamDataChart.Axes>
+                                <ig:CategoryDateTimeXAxis x:Name="RealTimeVolumeXAxis"
+                                                          DateTimeMemberPath="TimeFromOpen"
+                                                          Interval="{Binding RealTimeChartStrokeInterval}"
+                                                          ItemsSource="{Binding RealTimeMarketData.RealTimeMarketDataPointSets}"
+                                                          Label="{StaticResource RealTimeXAxisLabelTemplate}"
+                                                          MinimumValue="0:00"
+                                                          MaximumValue="{Binding RealTimeChartTotalTime}" />
+                                <ig:NumericYAxis x:Name="RealTimeVolumeYAxis" Label="{Binding Item}">
+                                    <ig:NumericYAxis.LabelSettings>
+                                        <ig:AxisLabelSettings HorizontalAlignment="Right"
+                                                              VerticalAlignment="Center"
+                                                              Extent="50" />
+                                    </ig:NumericYAxis.LabelSettings>
+                                </ig:NumericYAxis>
+                            </ig:XamDataChart.Axes>
+                            <ig:XamDataChart.Series>
+                                <ig:CrosshairLayer HorizontalLineVisibility="Collapsed" UseInterpolation="False" />
+                                <ig:ItemToolTipLayer Canvas.ZIndex="10003" UseInterpolation="False" />
+                                <ig:ColumnSeries Brush="Orange"
+                                                 ItemsSource="{Binding RealTimeMarketData.RealTimeMarketDataPointSets}"
+                                                 Outline="Orange"
+                                                 ValueMemberPath="Volume"
+                                                 XAxis="{Binding ElementName=RealTimeVolumeXAxis}"
+                                                 YAxis="{Binding ElementName=RealTimeVolumeYAxis}">
+                                    <ig:ColumnSeries.ToolTip>
+                                        <StackPanel MinWidth="160" Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="时间: " />
+                                                <TextBlock HorizontalAlignment="Left" Text="{Binding Item.ExchangeTime, StringFormat='\{0:yyyy/MM/dd HH:mm\}'}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="交易量: " />
+                                                <TextBlock HorizontalAlignment="Left" Text="{Binding Item.Volume}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </ig:ColumnSeries.ToolTip>
+                                </ig:ColumnSeries>
+                            </ig:XamDataChart.Series>
+                        </ig:XamDataChart>
+                    </Grid>
+                    <!-- K线图 -->
+                    <Grid Grid.Row="1" Margin="0,5,0,0">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=rbRealTimePrice, Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=rbRealTimePrice, Path=IsChecked}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7.5*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <ig:XamDataChart x:Name="KLineDataChart" Grid.Row="0"
+                                         ig:SyncManager.SyncSettings="KLineGroup"
+                                         HorizontalZoomable="True"
+                                         HorizontalZoombarVisibility="Collapsed"
+                                         VerticalZoomable="False"
+                                         DefaultInteraction="None">
+                            <ig:XamDataChart.Axes>
+                                <ig:CategoryXAxis x:Name="KLineXAxis"
+                                                ItemsSource="{Binding KLineMarketData.RealTimeMarketDataPointSets}"
+                                                Label="{}{Date:hh:mm}">
+                                    <ig:CategoryXAxis.LabelSettings>
+                                        <ig:AxisLabelSettings Visibility="Collapsed" />
+                                    </ig:CategoryXAxis.LabelSettings>
+                                </ig:CategoryXAxis>
+                                <ig:NumericYAxis x:Name="KLineYAxis" Label="{StaticResource KLineYAxisLabelTemplate}">
+                                    <ig:NumericYAxis.LabelSettings>
+                                        <ig:AxisLabelSettings HorizontalAlignment="Right"
+                                                              VerticalAlignment="Center"
+                                                              Extent="50" />
+                                    </ig:NumericYAxis.LabelSettings>
+                                </ig:NumericYAxis>
+                            </ig:XamDataChart.Axes>
+                            <ig:XamDataChart.Series>
+                                <ig:CrosshairLayer Canvas.ZIndex="10001"
+                                                HorizontalLineVisibility="Collapsed"
+                                                UseInterpolation="False" />
+                                <ig:ItemToolTipLayer Canvas.ZIndex="10003" UseInterpolation="False" />
+                                <ig:FinancialPriceSeries Brush="Red"
+                                                         DisplayType="Candlestick"
+                                                         ItemsSource="{Binding KLineMarketData.RealTimeMarketDataPointSets}"
+                                                         OpenMemberPath="DisplayedOpen"
+                                                         CloseMemberPath="DisplayedClose"
+                                                         HighMemberPath="DisplayedHigh"
+                                                         LowMemberPath="DisplayedLow"
+                                                         NegativeBrush="DarkGreen"
+                                                         VolumeMemberPath="Volume"
+                                                         XAxis="{Binding ElementName=KLineXAxis}"
+                                                         YAxis="{Binding ElementName=KLineYAxis}">
+                                    <ig:FinancialPriceSeries.ToolTip>
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel MinWidth="160" Orientation="Vertical" Style="{StaticResource ShowStockStackPanelStyle}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="最高: " />
+                                                    <TextBlock Margin="0,0,2,0"
+                                                               HorizontalAlignment="Right">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                                                <Binding Path="Item.DisplayedHigh" />
+                                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type igDock:ContentPane}}" Path="DataContext.SecurityInfo.PriceDigits" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="最低: " />
+                                                    <TextBlock Margin="0,0,2,0"
+                                                               HorizontalAlignment="Right">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                                                <Binding Path="Item.DisplayedLow" />
+                                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type igDock:ContentPane}}" Path="DataContext.SecurityInfo.PriceDigits" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="开盘: " />
+                                                    <TextBlock Margin="0,0,4,0"
+                                                               HorizontalAlignment="Right">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                                                <Binding Path="Item.DisplayedOpen" />
+                                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type igDock:ContentPane}}" Path="DataContext.SecurityInfo.PriceDigits" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="收盘: " />
+                                                    <TextBlock Margin="0,0,4,0"
+                                                               HorizontalAlignment="Right">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                                                <Binding Path="Item.DisplayedClose" />
+                                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type igDock:ContentPane}}" Path="DataContext.SecurityInfo.PriceDigits" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <!-- To display the price of futures. -->
+                                            <!-- Cause some futures' price cannot be seen when use multi-binding, futures just display its price directly. -->
+                                            <!-- TODO: Find a solution to solve this problem. -->
+                                            <StackPanel MinWidth="160" Orientation="Vertical" Style="{StaticResource HideFutureStackPanelStyle}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="最高: " />
+                                                    <TextBlock Margin="0,0,2,0"
+                                                               Text="{Binding Item.DisplayedHigh}"
+                                                               HorizontalAlignment="Right" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="最低: " />
+                                                    <TextBlock Margin="0,0,2,0"
+                                                               Text="{Binding Item.DisplayedLow}"
+                                                               HorizontalAlignment="Right" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="开盘: " />
+                                                    <TextBlock Margin="0,0,4,0"
+                                                               Text="{Binding Item.DisplayedOpen}"
+                                                               HorizontalAlignment="Right" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="收盘: " />
+                                                    <TextBlock Margin="0,0,4,0"
+                                                               Text="{Binding Item.DisplayedClose}"
+                                                               HorizontalAlignment="Right" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </ig:FinancialPriceSeries.ToolTip>
+                                </ig:FinancialPriceSeries>
+                            </ig:XamDataChart.Series>
+                        </ig:XamDataChart>
+                        <ig:XamZoombar x:Name="xmZoombar" Grid.Row="1" Margin="50,0,0,0"
+                                       Range="{Binding ElementName=KLineDataChart, Path=HorizontalZoombar.Range, Mode=TwoWay}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ZoomChanged">
+                                    <i:InvokeCommandAction Command="{Binding ZoomChangedCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ig:XamZoombar>
+                        <ig:XamDataChart x:Name="TradeVolumeDataChart" Grid.Row="2"
+                                        ig:SyncManager.SyncSettings="KLineGroup"
+                                        HorizontalZoomable="True"
+                                        HorizontalZoombarVisibility="Collapsed"
+                                        VerticalZoomable="False"
+                                        DefaultInteraction="None">
+                            <ig:XamDataChart.Axes>
+                                <ig:CategoryXAxis x:Name="TradeVolumeXAxis"
+                                                ItemsSource="{Binding KLineMarketData.RealTimeMarketDataPointSets}"
+                                                Label="{}{Date:hh:mm}">
+                                    <ig:CategoryXAxis.LabelSettings>
+                                        <ig:AxisLabelSettings Extent="13" Visibility="Collapsed" />
+                                    </ig:CategoryXAxis.LabelSettings>
+                                </ig:CategoryXAxis>
+                                <ig:NumericYAxis x:Name="TradeVolumeYAxis" Label="{Binding Item, Converter={StaticResource StockDataVolumeConverter}}">
+                                    <ig:NumericYAxis.LabelSettings>
+                                        <ig:AxisLabelSettings HorizontalAlignment="Right"
+                                                              VerticalAlignment="Center"
+                                                              Extent="50" />
+                                    </ig:NumericYAxis.LabelSettings>
+                                </ig:NumericYAxis>
+                            </ig:XamDataChart.Axes>
+                            <ig:XamDataChart.Series>
+                                <ig:CrosshairLayer Canvas.ZIndex="10001"
+                                                HorizontalLineVisibility="Collapsed"
+                                                UseInterpolation="False" />
+                                <ig:ItemToolTipLayer Canvas.ZIndex="10003" UseInterpolation="False" />
+                                <ig:ColumnSeries Brush="Orange"
+                                                ItemsSource="{Binding KLineMarketData.RealTimeMarketDataPointSets}"
+                                                Outline="Orange"
+                                                ValueMemberPath="Volume"
+                                                XAxis="{Binding ElementName=TradeVolumeXAxis}"
+                                                YAxis="{Binding ElementName=TradeVolumeYAxis}">
+                                    <ig:ColumnSeries.ToolTip>
+                                        <StackPanel MinWidth="160" Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="时间: " />
+                                                <TextBlock HorizontalAlignment="Left" Text="{Binding Item.ExchangeTime, StringFormat='\{0:yyyy/MM/dd HH:mm\}'}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="成交量: " />
+                                                <TextBlock HorizontalAlignment="Left" Text="{Binding Item.Volume}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </ig:ColumnSeries.ToolTip>
+                                </ig:ColumnSeries>
+                            </ig:XamDataChart.Series>
+                        </ig:XamDataChart>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid MinWidth="220"
+                  Margin="5,0,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Grid.Column" Value="1" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsExpandedChart}" Value="False">
+                                <Setter Property="Grid.Column" Value="0" />
+                                <Setter Property="Grid.ColumnSpan" Value="2" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <ToggleButton Grid.RowSpan="3" Height="25" Width="25"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Top"
+                              IsChecked="{Binding IsExpandedChart}">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Setter Property="ToolTip" Value="点击显示图表" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SecurityInfo.SecurityType}" Value="期权">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsExpandedChart}" Value="True">
+                                    <Setter Property="ToolTip" Value="点击关闭图表" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                    <Image Source="{StaticResource ChartIcon}" Height="20" Width="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ExpandedChartButtonClickCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+                <!--  证券信息  -->
+                <Viewbox Grid.Row="0" HorizontalAlignment="Left">
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontSize="20"
+                                           FontWeight="Bold"
+                                           Foreground="Black"
+                                           Text="{Binding SecurityInfo.SecurityName}" />
+                                <TextBlock FontSize="15"
+                                           Foreground="Black"
+                                           FontWeight="Bold"
+                                           Margin="0,-5,0,0"
+                                           Text="{Binding SecurityInfo.SecurityID}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20"
+                                           FontWeight="Bold"
+                                           Margin="10,0,0,0"
+                                           TextAlignment="Right">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.LastPx" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.LastPx" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <StackPanel Margin="10,0,0,0">
+                                    <TextBlock Foreground="{Binding SecurityInfo.Quotation.Diff, Converter={StaticResource PriceDigitalDisplayColorConverter}}" FontSize="14">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource DigitFormatStringConverter}">
+                                                <Binding Path="SecurityInfo.Quotation.Diff" />
+                                                <Binding Path="SecurityInfo.PriceDigits" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Foreground="{Binding SecurityInfo.Quotation.Diff, Converter={StaticResource PriceDigitalDisplayColorConverter}}" Text="{Binding SecurityInfo.Quotation.DiffPercent, StringFormat={}{0:P2}}" FontSize="14" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Viewbox>
+                <!--  深度行情  -->
+                <Border Grid.Row="1">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Margin" Value="0,5,0,0" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igDock:ContentPane}}, Path=DataContext.SecurityInfo.SecurityType}" Value="期货">
+                                    <Setter Property="Margin" Value="0,5,0,0"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Vertical">
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Style="{StaticResource HideFuturePanelStyle}">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖十">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx10}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx10"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx10}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx10" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol10" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖九">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx9}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx9"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx9}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx9" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol9" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖八">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx8}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx8"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx8}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx8" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol8" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖七">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx7}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx7"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx7}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx7" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol7" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖六">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx6}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx6"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx6}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx6" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol6" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖五">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx5}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx5"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx5}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx5" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol5" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="6" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖四">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx4}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx4"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx4}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx4" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol4" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="7" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖三">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx3}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx3"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx3}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx3" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol3" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="8" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖二">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx2}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx2"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx2}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx2" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol2" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="9" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SellTextBlock}" Text="卖一">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx1}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueApx1"
+                                           Style="{StaticResource SellPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.AskPx1}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskPx1" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SellVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.AskVol1" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <GridSplitter Grid.Row="1"
+                                      Height="1"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      Background="Black" />
+                        <StackPanel Grid.Row="2" Orientation="Vertical">
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买一">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx1}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx1"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx1}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx1" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol1" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买二">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx2}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx2"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx2}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx2" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol2" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买三">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx3}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx3"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx3}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx3" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol3" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买四">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx4}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx4"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx4}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx4" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol4" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买五">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx5}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx5"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx5}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx5" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol5" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买六">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx6}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx6"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx6}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx6" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol6" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="6" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买七">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx7}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx7"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx7}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx7" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol7" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="7" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买八">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx8}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx8"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx8}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx8" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol8" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="8" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买九">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx9}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx9"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx9}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx9" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol9" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="9" Orientation="Horizontal" Style="{StaticResource HideFuturePanelStyle}">
+                                <TextBlock Style="{StaticResource BuyTextBlock}" Text="买十">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastBuyCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx10}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                                <TextBlock x:Name="tbValueBpx10"
+                                           Style="{StaticResource BuyPriceTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource DigitalCompareBrushConverter}">
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Text" />
+                                            <Binding Path="SecurityInfo.Quotation.PreClosePx" />
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding FastSellCommand}" CommandParameter="{Binding SecurityInfo.Quotation.BidPx10}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource QuotationPriceDigitFormatStringConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidPx10" />
+                                            <Binding Path="SecurityInfo.PriceDigits" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource BuyVolumeTextBlock}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource StockQuantityDisplayConverter}">
+                                            <Binding Path="SecurityInfo.Quotation.BidVol10" />
+                                            <Binding Path="SecurityInfo.SecurityType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <!--  快速下单  -->
+                <Border Grid.Row="2" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                            <Label Width="75" Content="组合编号:" />
+                            <ig:XamComboEditor Width="148" Margin="0,0,0,0"
+                                               ItemsSource="{Binding MenubarViewModel.CombiNos}"
+                                               SelectedItem="{Binding SelectedCombineNumber}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding CombineNoSelectionChangedCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ig:XamComboEditor>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                            <Label Width="75" Content="委托数量:" />
+                            <ig:XamNumericInput x:Name="EntrustAmountInput" Width="148" Height="24"
+                                                Margin="0,0,0,0"
+                                                ClipMode="Raw" DataMode="Raw" DisplayMode="Raw"
+                                                InvalidValueBehavior="RevertValue"
+                                                ValueType="{x:Type sys:Int32}"
+                                                PromptChar=""
+                                                Mask="nnnnnnnnnn"
+                                                SpinIncrement="{Binding MinEntrustChangeAmount}"
+                                                SpinButtonDisplayMode="Always"
+                                                Value="{Binding EntrustAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ig:XamNumericInput.ValueConstraint>
+                                    <ig:ValueConstraint MinInclusive="0"></ig:ValueConstraint>
+                                </ig:XamNumericInput.ValueConstraint>
+                            </ig:XamNumericInput>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="73,0,0,0" Style="{StaticResource ShowFuturePanelStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="1" Width="48" Height="20" Margin="1,1,1,1" Click="QuickEntrustAmountButton_Click">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding QuickEntrustAmountCommand}" CommandParameter="1" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <Button Content="5" Width="48" Height="20" Margin="1,1,1,1" Click="QuickEntrustAmountButton_Click">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding QuickEntrustAmountCommand}" CommandParameter="5" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <Button Content="10" Width="48" Height="20" Margin="1,1,1,1" Click="QuickEntrustAmountButton_Click">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding QuickEntrustAmountCommand}" CommandParameter="10" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="50" Width="48" Height="20" Margin="1,1,1,1" Click="QuickEntrustAmountButton_Click">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding QuickEntrustAmountCommand}" CommandParameter="50" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <Button Content="100" Width="48" Height="20" Margin="1,1,1,1" Click="QuickEntrustAmountButton_Click">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding QuickEntrustAmountCommand}" CommandParameter="100" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <Button Content="CLR" Width="48" Height="20" Margin="1,1,1,1" Click="QuickEntrustAmountButton_Click">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding QuickEntrustAmountCommand}" CommandParameter="0" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource ShowStockStackPanelStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="75" Content="持仓情况:" />
+                                <TextBlock FontWeight="Bold" VerticalAlignment="Center"
+                                           Text="{Binding HoldingPosition.EnableAmount, Mode=OneWay}"
+                                           ToolTip="可用数量"/>
+                                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Text=" / " />
+                                <TextBlock FontWeight="Bold" VerticalAlignment="Center"
+                                           Text="{Binding HoldingPosition.CurrentAmount, Mode=OneWay}"
+                                           ToolTip="当前持仓" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource ShowNonStockStackPanelStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="75" Content="持仓情况:" />
+                                <TextBlock FontWeight="Bold" VerticalAlignment="Center"
+                                           ToolTip="多头持仓"
+                                           Text="{Binding HoldingLongPosition.EnableAmount, Mode=OneWay}" />
+                                <TextBlock FontWeight="Bold" VerticalAlignment="Center" Text=" | " />
+                                <TextBlock FontWeight="Bold" VerticalAlignment="Center"
+                                           ToolTip="空头持仓"
+                                           Text="{Binding HoldingShortPosition.EnableAmount, Mode=OneWay}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="IsVisibleResolvedChanged">
+            <i:InvokeCommandAction Command="{Binding IsVisibleResolvedChangedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</igDock:ContentPane>

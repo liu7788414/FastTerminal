@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3DF3F4D-CA0F-4E7F-831B-91E466F9DA0C}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TradeStation.Modules.Trade</RootNamespace>
+    <AssemblyName>TradeStation.Modules.Trade</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonControlsLibrary, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdPartyDll\AvalonControlsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Charts.XamDataChart.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Charts.XamDataChart.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Editors.XamComboEditor.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamDateTimeInput.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Editors.XamDateTimeInput.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamMaskedInput.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Editors.XamMaskedInput.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Grids.XamGrid.v15.1, Version=15.1.20151.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Grids.XamGrid.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataManager.v15.1, Version=15.1.20151.2251, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.DataManager.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v15.1, Version=15.1.20151.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Infragistics\2015.1\WPF\CLR4.0\Bin\InfragisticsWPF4.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Intellibox">
+      <HintPath>..\..\ThirdPartyDll\Intellibox.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdPartyDll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.MEFExtensions.5.0.0\lib\NET45\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TFMkdtMultiCSApi">
+      <HintPath>..\..\ThirdPartyDll\TFMkdtMultiCSApi.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\UnderlyingTypeFormatStringConverter.cs" />
+    <Compile Include="Converters\ImpVDigitFormatStringConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TradeModule.cs" />
+    <Compile Include="ViewModels\OptionMatrixPanelViewModel.cs" />
+    <Compile Include="ViewModels\OptionInstrumentPanelViewModel.cs" />
+    <Compile Include="ViewModels\InstrumentPanelViewModel.cs" />
+    <Compile Include="ViewModels\TradePanelArbitrageViewModel.cs" />
+    <Compile Include="ViewModels\TradeResultPanelViewModel.cs" />
+    <Compile Include="ViewModels\MoneyPanelViewModel.cs" />
+    <Compile Include="ViewModels\PositionPanelViewModel.cs" />
+    <Compile Include="ViewModels\EntrustPanelViewModel.cs" />
+    <Compile Include="ViewModels\TradePanelViewModel.cs" />
+    <Compile Include="ViewModels\TradeViewModelBase.cs" />
+    <Compile Include="Views\AdvancedQueryPanelOptionHoldingPosition.xaml.cs">
+      <DependentUpon>AdvancedQueryPanelOptionHoldingPosition.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdvancedQueryPanelOptionTradeResult.xaml.cs">
+      <DependentUpon>AdvancedQueryPanelOptionTradeResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntrustPanelFund.xaml.cs">
+      <DependentUpon>EntrustPanelFund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntrustPanelForBasket.xaml.cs">
+      <DependentUpon>EntrustPanelForBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntrustPanelFutureForBasket.xaml.cs">
+      <DependentUpon>EntrustPanelFutureForBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExportListButtonNew.xaml.cs">
+      <DependentUpon>ExportListButtonNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OptionMatrixPanel.xaml.cs">
+      <DependentUpon>OptionMatrixPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntrustPanelOption.xaml.cs">
+      <DependentUpon>EntrustPanelOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntrustPanelFuture.xaml.cs">
+      <DependentUpon>EntrustPanelFuture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EtfBaseInfoPanel.xaml.cs">
+      <DependentUpon>EtfBaseInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OptionInstrumentInfoPanel.xaml.cs">
+      <DependentUpon>OptionInstrumentInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InstrumentInfoPanel.xaml.cs">
+      <DependentUpon>InstrumentInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoneyPanelOption.xaml.cs">
+      <DependentUpon>MoneyPanelOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionPanelForBasket.xaml.cs">
+      <DependentUpon>PositionPanelForBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionPanelFutureForBasket.xaml.cs">
+      <DependentUpon>PositionPanelFutureForBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionPanelOption.xaml.cs">
+      <DependentUpon>PositionPanelOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionPanelFuture.xaml.cs">
+      <DependentUpon>PositionPanelFuture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExportListButton.xaml.cs">
+      <DependentUpon>ExportListButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryEtfStockListWindow.xaml.cs">
+      <DependentUpon>QryEtfStockListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryButtonNew.xaml.cs">
+      <DependentUpon>QryButtonNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryEtfTradeResultDetailPanel.xaml.cs">
+      <DependentUpon>QryEtfTradeResultDetailPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryEtfEntrustDetailPanel.xaml.cs">
+      <DependentUpon>QryEtfEntrustDetailPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryHistoricalTradeResultPanel.xaml.cs">
+      <DependentUpon>QryHistoricalTradeResultPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdvancedQueryPanelOption.xaml.cs">
+      <DependentUpon>AdvancedQueryPanelOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryEtfStockListPanel.xaml.cs">
+      <DependentUpon>QryEtfStockListPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolBarNew.xaml.cs">
+      <DependentUpon>ToolBarNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolBar.xaml.cs">
+      <DependentUpon>ToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryButton.xaml.cs">
+      <DependentUpon>QryButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Intellibox.xaml.cs">
+      <DependentUpon>Intellibox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QryPanel.xaml.cs">
+      <DependentUpon>QryPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanelArbitrage.xaml.cs">
+      <DependentUpon>TradePanelArbitrage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanelBasket.xaml.cs">
+      <DependentUpon>TradePanelBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanelFundEtf.xaml.cs">
+      <DependentUpon>TradePanelFundEtf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanelFund.xaml.cs">
+      <DependentUpon>TradePanelFund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanelOption.xaml.cs">
+      <DependentUpon>TradePanelOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanelFuture.xaml.cs">
+      <DependentUpon>TradePanelFuture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradeResultPanelForBasket.xaml.cs">
+      <DependentUpon>TradeResultPanelForBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradeResultPanelFund.xaml.cs">
+      <DependentUpon>TradeResultPanelFund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradeResultPanelFutureForBasket.xaml.cs">
+      <DependentUpon>TradeResultPanelFutureForBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradeResultPanelOption.xaml.cs">
+      <DependentUpon>TradeResultPanelOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradeResultPanelFuture.xaml.cs">
+      <DependentUpon>TradeResultPanelFuture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoneyPanelFuture.xaml.cs">
+      <DependentUpon>MoneyPanelFuture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradeResultPanel.xaml.cs">
+      <DependentUpon>TradeResultPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntrustPanel.xaml.cs">
+      <DependentUpon>EntrustPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoneyPanel.xaml.cs">
+      <DependentUpon>MoneyPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionPanel.xaml.cs">
+      <DependentUpon>PositionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradePanel.xaml.cs">
+      <DependentUpon>TradePanel.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TradeStation.Infrastructure\TradeStation.Infrastructure.csproj">
+      <Project>{8b572dc2-78a3-4eee-aac2-d2e433bb1613}</Project>
+      <Name>TradeStation.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TradeStation.Modules.MenuAction\TradeStation.Modules.MenuAction.csproj">
+      <Project>{6bc4bfb1-f30d-4ac3-af65-83276d78c020}</Project>
+      <Name>TradeStation.Modules.MenuAction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TradeStation.Modules.RealTimePrice\TradeStation.Modules.RealTimePrice.csproj">
+      <Project>{95008d9e-54fc-4e56-b3e7-32bf4360053e}</Project>
+      <Name>TradeStation.Modules.RealTimePrice</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\AdvancedQueryPanelOptionHoldingPosition.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AdvancedQueryPanelOptionTradeResult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EntrustPanelFund.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EntrustPanelForBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EntrustPanelFutureForBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExportListButtonNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OptionMatrixPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EntrustPanelOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EtfBaseInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OptionInstrumentInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MoneyPanelOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PositionPanelForBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PositionPanelFutureForBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PositionPanelOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExportListButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryEtfStockListWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryButtonNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryEtfTradeResultDetailPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryEtfEntrustDetailPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryHistoricalTradeResultPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AdvancedQueryPanelOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryEtfStockListPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ToolBarNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ToolBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Resources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EntrustPanelFuture.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\InstrumentInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PositionPanelFuture.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Intellibox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\QryPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanelArbitrage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanelBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanelFundEtf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanelFund.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanelOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanelFuture.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradeResultPanelForBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradeResultPanelFund.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradeResultPanelFutureForBasket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradeResultPanelOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradeResultPanelFuture.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MoneyPanelFuture.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradeResultPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EntrustPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MoneyPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PositionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TradePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

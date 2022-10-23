@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xamDockManager version="15.1.20151.2251">
+  <contentPanes>
+    <contentPane name="cpOptionEntrust" location="DockedLeft" lastFloatingSize="1120,451" lastFloatingWindowRect="648,741,1136,489" lastFloatingLocation="648,741" lastActivatedTime="2016-09-01T02:47:57.1560787Z" />
+    <contentPane name="cpOptionInstrumentInfo" location="DockedLeft" lastActivatedTime="2016-09-01T02:47:42.4682386Z" />
+    <contentPane name="cpOptionMarginInfo" location="DockedLeft" lastFloatingSize="1878,171" lastFloatingWindowRect="849,566,1886,198" lastFloatingLocation="849,566" lastActivatedTime="2016-09-01T02:46:36.8604861Z" />
+    <contentPane name="cpStockQuote" location="DockedLeft" lastActivatedTime="2016-08-31T06:37:50.9911566Z" />
+    <contentPane name="cpOptionTrade" location="DockedLeft" lastFloatingSize="1120,451" lastFloatingWindowRect="727,785,1136,489" lastFloatingLocation="727,785" lastActivatedTime="2016-08-31T02:41:52.2659052Z" />
+    <contentPane name="cpOptionTradeResult" location="DockedLeft" lastFloatingSize="1878,229" lastFloatingWindowRect="954,898,1894,267" lastFloatingLocation="954,898" lastActivatedTime="2016-08-31T02:36:19.5038723Z" />
+    <contentPane name="cpOptionPosition" location="DockedLeft" lastFloatingSize="1120,451" lastFloatingWindowRect="873,766,1136,489" lastFloatingLocation="873,766" lastActivatedTime="2016-08-31T02:35:16.9092921Z" />
+  </contentPanes>
+  <panes>
+    <splitPane name="spQuotePaneOption" splitterOrientation="Horizontal" location="DockedLeft">
+      <tabGroup name="tGroupOptionRealTimePriceRegion" selectedIndex="0" relativeSize="100,88.831747866486">
+        <contentPane name="cpStockQuote" />
+      </tabGroup>
+      <tabGroup name="Ze5f325fb6a204cff90d5c7d9f1acfbcc" selectedIndex="0" relativeSize="100,79.4917552519683">
+        <contentPane name="cpOptionInstrumentInfo" />
+      </tabGroup>
+      <splitPane name="Zec46314e464f479d85cbc8ca337dee46" splitterOrientation="Vertical" relativeSize="100,68.4204728450912">
+        <splitPane name="Z15a046f3b88a4617a54928176554a8ef" splitterOrientation="Vertical" relativeSize="97.3255156638999,100">
+          <tabGroup name="Z816cbb8714d04a438fad6661273b1737" selectedIndex="0" relativeSize="84.5581655888978,100">
+            <contentPane name="cpOptionMarginInfo" relativeSize="101.455518173873,100" />
+          </tabGroup>
+        </splitPane>
+      </splitPane>
+      <splitPane name="Z18216aef38734b678f44fa96dc791d54" splitterOrientation="Vertical" relativeSize="100,163.256024036457">
+        <tabGroup name="Za57d3aa74ba04096bd7557194ae4cbdf" selectedIndex="2">
+          <contentPane name="cpOptionTrade" relativeSize="19.232243541951,100" />
+          <contentPane name="cpOptionPosition" relativeSize="99.9322809425978,100" />
+          <contentPane name="cpOptionEntrust" />
+          <contentPane name="cpOptionTradeResult" relativeSize="110.650896624851,100" />
+        </tabGroup>
+      </splitPane>
+    </splitPane>
+    <splitPane name="Z10fa296c540442dabe650f2319b970fb" splitterOrientation="Vertical" location="Floating" floatingLocation="954,898" floatingSize="1878,229">
+      <contentPane name="cpOptionTradeResult" relativeSize="154.705882352941,100" />
+    </splitPane>
+    <splitPane name="Z44a8fadb4db04dfd9ff9d5c57df144c0" splitterOrientation="Vertical" location="Floating" floatingLocation="849,566" floatingSize="1878,171">
+      <tabGroup name="Za594c59215824709888e44f7e96ae30f" selectedIndex="-1">
+        <contentPane name="cpOptionMarginInfo" relativeSize="101.455518173873,100" />
+      </tabGroup>
+    </splitPane>
+    <splitPane name="Z598ed81a4aa744ae96e4d4119af1186c" splitterOrientation="Vertical" location="Floating" floatingLocation="727,785" floatingSize="1120,451">
+      <tabGroup name="Z8b0519a78c674468b3ed0dda2d824922" selectedIndex="-1" relativeSize="164.545914223288,100">
+        <contentPane name="cpOptionPosition" relativeSize="99.9322809425978,100" />
+        <contentPane name="cpOptionTrade" relativeSize="19.232243541951,100" />
+        <contentPane name="cpOptionEntrust" />
+      </tabGroup>
+    </splitPane>
+  </panes>
+</xamDockManager>

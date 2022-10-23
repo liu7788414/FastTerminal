@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xamDockManager version="15.1.20151.2251">
+  <contentPanes>
+    <contentPane name="cpStockPosition" location="DockedLeft" lastFloatingSize="253,321" lastFloatingWindowRect="1294,643,261,348" lastFloatingLocation="1294,643" lastActivatedTime="2016-09-01T05:14:15.5837273Z" />
+    <contentPane name="cpStockQuote" location="DockedTop" lastFloatingSize="997,570" lastFloatingWindowRect="770,139,1013,608" lastFloatingLocation="770,139" lastActivatedTime="2016-09-01T04:30:53.5048969Z" />
+    <contentPane name="cpStockEntrust" location="DockedTop" lastFloatingSize="253,321" lastFloatingWindowRect="713,335,269,359" lastFloatingLocation="713,335" lastActivatedTime="2016-09-01T04:20:21.0667235Z" />
+    <contentPane name="cpStockTradeResult" location="DockedTop" lastFloatingSize="253,321" lastFloatingWindowRect="711,337,269,359" lastFloatingLocation="711,337" lastActivatedTime="2016-09-01T04:19:51.5210336Z" />
+    <contentPane name="cpStockTrade" location="DockedTop" lastFloatingSize="252,284" lastFloatingWindowRect="893,310,268,322" lastFloatingLocation="893,310" lastActivatedTime="2016-09-01T02:50:15.2919796Z" />
+    <contentPane name="cpLog" location="DockedLeft" lastFloatingSize="453,243" lastFloatingWindowRect="1652,667,461,270" lastFloatingLocation="1652,667" lastActivatedTime="2016-08-31T06:49:48.6282031Z" />
+    <contentPane name="cpStockAccountMoney" location="DockedLeft" lastFloatingSize="253,321" lastFloatingWindowRect="1415,495,261,348" lastFloatingLocation="1415,495" lastActivatedTime="2016-08-31T06:32:18.2891271Z" />
+  </contentPanes>
+  <panes>
+    <splitPane name="Ze7001c6e82774fcfb7b8de5cf6665e47" splitterOrientation="Vertical" location="DockedTop" extent="584.5">
+      <splitPane name="Z5c66cef581944473aaa91ca4375ca39e" splitterOrientation="Horizontal">
+        <tabGroup name="Z4b3bd5ca66b14a23b351215fbd7f31a5" selectedIndex="0" relativeSize="100,135.055676228545">
+          <contentPane name="cpStockQuote" />
+          <contentPane name="cpStockTradeResult" relativeSize="100,38.3712399119589" />
+        </tabGroup>
+        <tabGroup name="Z1afe784eab364e24ac2c5854851060de" selectedIndex="0" relativeSize="100,126.573083859496">
+          <contentPane name="cpStockEntrust" relativeSize="127.509655681168,100" />
+        </tabGroup>
+      </splitPane>
+      <contentPane name="cpStockTrade" relativeSize="24.7932084452181,100" />
+    </splitPane>
+    <splitPane name="spQuotePaneStock" splitterOrientation="Horizontal" location="DockedLeft">
+      <splitPane name="Z1ca42770ff7042b6983934ed3ef8b743" splitterOrientation="Vertical" relativeSize="100,111.316774777758">
+        <splitPane name="Za2b3cce70c3746b88f090ee22c48aed1" splitterOrientation="Horizontal" relativeSize="172.251867662754,100">
+          <tabGroup name="tGroupRealTimePriceRegion" selectedIndex="-1" relativeSize="100,111.513777627537" />
+          <splitPane name="Zcdc426b858cc40e78467ba3a99f57a74" splitterOrientation="Vertical" relativeSize="100,88.4862223724637">
+            <tabGroup name="Z568da5def26b413481a52f11f9e47713" selectedIndex="0" relativeSize="96.1132127718084,100">
+              <contentPane name="cpStockPosition" relativeSize="96.3839937273777,100" />
+              <contentPane name="cpStockAccountMoney" />
+              <contentPane name="cpLog" relativeSize="82.2079314040729,100" />
+            </tabGroup>
+          </splitPane>
+        </splitPane>
+      </splitPane>
+    </splitPane>
+    <splitPane name="Z515e4f7a07f647c5b399fec1229886cd" splitterOrientation="Vertical" location="FloatingOnly" floatingLocation="1131,712" floatingSize="253,321">
+      <contentPane name="cpStockTradeResult" relativeSize="143.449261466121,100" />
+    </splitPane>
+    <splitPane name="Z65efc07db2dd4ceab5a5b6af4e2e7af6" splitterOrientation="Vertical" location="FloatingOnly" floatingLocation="848,356" floatingSize="521,457">
+      <contentPane name="cpStockPosition" relativeSize="84.6512393415799,100" />
+    </splitPane>
+    <splitPane name="Z07b549e97df64175a9463ce82079d81f" splitterOrientation="Vertical" location="FloatingOnly" floatingLocation="192,192" floatingSize="964,326">
+      <contentPane name="cpStockQuote" />
+    </splitPane>
+    <splitPane name="Zf98961a3055f49d9a1b91fc161e5f255" splitterOrientation="Vertical" location="FloatingOnly" floatingLocation="717,444" floatingSize="186,254">
+      <contentPane name="cpStockTrade" relativeSize="36.2576725421595,100" />
+    </splitPane>
+    <splitPane name="Z3fa4e2cdb1f94fd7a5ad23b1475667ed" splitterOrientation="Vertical" location="FloatingOnly" floatingLocation="1086,290" floatingSize="493,253">
+      <contentPane name="cpStockAccountMoney" relativeSize="138.66898792688,100" />
+    </splitPane>
+    <splitPane name="Z4269f85de5b244958ba6e6b0402e9cf7" splitterOrientation="Vertical" location="Floating" floatingLocation="1652,667" floatingSize="453,243">
+      <contentPane name="cpLog" relativeSize="82.2079314040729,100" />
+    </splitPane>
+    <splitPane name="Z3bcc72f05f9442e28491075cfccdb3b1" splitterOrientation="Vertical" location="Floating" floatingLocation="1415,495" floatingSize="253,321">
+      <contentPane name="cpStockAccountMoney" />
+    </splitPane>
+    <splitPane name="Za4129c8aa6d54247acbfecb3187295f9" splitterOrientation="Vertical" location="Floating" floatingLocation="1294,643" floatingSize="253,321">
+      <tabGroup name="Za3a47f25b4a94ea68b47e007e24362f7" selectedIndex="-1" relativeSize="93.3986835657278,100">
+        <contentPane name="cpStockPosition" relativeSize="96.3839937273777,100" />
+      </tabGroup>
+    </splitPane>
+    <splitPane name="Z82add5e7363143169b7a3aa94a66435f" splitterOrientation="Vertical" location="Floating" floatingLocation="893,310" floatingSize="252,284">
+      <contentPane name="cpStockTrade" relativeSize="24.7932084452181,100" />
+    </splitPane>
+    <splitPane name="Z18b356898ef84504af99f0fef813523c" splitterOrientation="Vertical" location="Floating" floatingLocation="713,335" floatingSize="253,321">
+      <tabGroup name="Za4deac4169604016a5d14e267985aba4" selectedIndex="-1" relativeSize="115.351251325133,100">
+        <contentPane name="cpStockEntrust" relativeSize="127.509655681168,100" />
+      </tabGroup>
+    </splitPane>
+    <splitPane name="Zcbded24fcfa947fc89f2fdb7b655a1c3" splitterOrientation="Vertical" location="Floating" floatingLocation="711,337" floatingSize="253,321">
+      <contentPane name="cpStockTradeResult" />
+    </splitPane>
+    <splitPane name="Zd89e34601dd440b88f67b3fc3428c15c" splitterOrientation="Vertical" location="Floating" floatingLocation="770,139" floatingSize="997,570">
+      <contentPane name="cpStockQuote" />
+    </splitPane>
+  </panes>
+</xamDockManager>

@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.TradePanelFund"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             Width="240"
+             Height="270">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Content="组合编号:" />
+            <ig:XamComboEditor Grid.Row="0"
+                               Grid.Column="1"
+                               ItemsSource="{Binding Path=MenuBar.CombiNos}"
+                               SelectedItem="{Binding Path=SelectedCombiNo,
+                                                      Mode=TwoWay}" />
+            <Label Grid.Row="1" Content="基金代码:" />
+            <auto:Intellibox Grid.Row="1"
+                             Grid.Column="1"
+                             DataProvider="{Binding SecuritySearchProvider}"
+                             DisplayedValueBinding="{Binding SecurityID}"
+                             ExplicitlyIncludeColumns="True"
+                             FontSize="16"
+                             HideColumnHeaders="True"
+                             SelectedItem="{Binding DisplaySecurityInfo}"
+                             SelectedValueBinding="{Binding SecurityID}">
+                <auto:Intellibox.Columns>
+                    <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                    <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                    <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                </auto:Intellibox.Columns>
+            </auto:Intellibox>
+
+            <Label Grid.Row="2" Content="基金名称:" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     IsEnabled="False"
+                     Text="{Binding DisplaySecurityInfo.SecurityName}" />
+            <Label Grid.Row="3" Content="交易所:" />
+            <ig:XamComboEditor Grid.Row="3"
+                               Grid.Column="1"
+                               IsEnabled="False"
+                               ItemsSource="{Binding Path=MenuBar.StockMarkets}"
+                               SelectedItem="{Binding Path=DisplaySecurityInfo.MarketType,
+                                                      Mode=TwoWay}" />
+
+            <Label Grid.Row="4" Content="委托方向:" />
+            <ig:XamComboEditor Grid.Row="4"
+                               Grid.Column="1"
+                               ItemsSource="{Binding Path=MenuBar.FundEntrustDirection}"
+                               SelectedItem="{Binding Path=EntrustDirection,
+                                                      Mode=TwoWay}"
+                               ToolTip="实物申赎和现金申赎仅对深交所RTGS有效。" />
+
+            <Label Grid.Row="5" Content="委托数量:" />
+            <TextBox Grid.Row="5"
+                     Grid.Column="1"
+                     Text="{Binding EntrustAmount,
+                                    Mode=TwoWay}"
+                     ToolTip="申赎数量单位为篮子数。如最小申购单位是100万份，要申赎200万，该字段填2。该字段对ETF申赎、LOF基金赎回、基金分拆合并业务必传，LOF申购无效。" />
+
+
+            <Label Grid.Row="6" Content="申赎方式:" />
+            <ig:XamComboEditor Grid.Row="6"
+                               Grid.Column="1"
+                               ItemsSource="{Binding Source={StaticResource odpPurchaseWay}}"
+                               SelectedItem="{Binding Path=PurchaseWay,
+                                                      Mode=TwoWay}" />
+            <Button Grid.Row="7"
+                    Command="{Binding NewEntrustCommand}"
+                    Content="确定" />
+            <Button Grid.Row="7"
+                    Grid.Column="1"
+                    Command="{Binding TestCommand}"
+                    Content="取消" />
+        </Grid>
+    </Border>
+
+</UserControl>

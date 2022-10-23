@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.QryButtonNew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             ToolTip="刷新"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--  冷却计时按钮样式  -->
+            <!--  通过修改颜色值参数，以更改按钮颜色样式，更多修改，还请自行DIY  -->
+            <SolidColorBrush x:Key="ButtonForeground" Color="#FFF9FBFD" />
+            <ImageBrush x:Key="RectangleFill" ImageSource="{DynamicResource ListRefresh}" />
+            <ImageBrush x:Key="MouseOverFill" ImageSource="{DynamicResource Refresh1}" />
+
+            <!--  总样式  -->
+
+            <Style x:Key="TimerBtnStyle" TargetType="{x:Type Button}">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Rectangle x:Name="rectangle"
+                                               Width="22"
+                                               Height="22"
+                                               Margin="0"
+                                               Fill="{StaticResource RectangleFill}"
+                                               StrokeThickness="0" />
+                                    <Ellipse x:Name="ellipseMask" Fill="#F4F4F4" Height="20" Width="20" Visibility="Collapsed" />
+                                    <TextBlock x:Name="textContent"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Visibility="Collapsed"
+                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Grid>
+                                <TextBlock Text="刷新" Foreground="#444444" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard FillBehavior="Stop">
+                                            <StringAnimationUsingKeyFrames Storyboard.TargetName="textContent" Storyboard.TargetProperty="Text">
+                                                <DiscreteStringKeyFrame KeyTime="0:0:1" Value="10" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:2" Value="9" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:3" Value="8" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:4" Value="7" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:5" Value="6" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:6" Value="5" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:7" Value="4" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:8" Value="3" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:9" Value="2" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:10" Value="1" />
+                                                <DiscreteStringKeyFrame KeyTime="0:0:11" Value="0" />
+                                            </StringAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(Button.IsEnabled)">
+                                                <DiscreteBooleanKeyFrame KeyTime="0" Value="False" />
+                                                <DiscreteBooleanKeyFrame KeyTime="0:0:11" Value="True" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <Trigger Property="IsFocused" Value="True" />
+                                <Trigger Property="IsDefaulted" Value="True" />
+                                <Trigger Property="IsMouseOver" Value="True">
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="textContent" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="ellipseMask" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="ellipseMask" Property="Opacity" Value="0.7" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Grid>
+        <Button Command="{Binding RefreshCommand}" Style="{StaticResource TimerBtnStyle}" />
+    </Grid>
+</UserControl>

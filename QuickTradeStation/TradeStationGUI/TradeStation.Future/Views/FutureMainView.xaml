@@ -1,0 +1,168 @@
+﻿<igWindows:TabItemEx x:Class="TradeStation.Future.Views.FutureMainView"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:igDock="http://infragistics.com/DockManager"
+                     xmlns:igOB="http://infragistics.com/OutlookBar"
+                     xmlns:igWindows="http://infragistics.com/Windows"
+                     xmlns:infra="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:prism="http://www.codeplex.com/prism"
+                     Header="期货"
+                     Style="{StaticResource ModuleTabItemStyle}"
+                     Visibility="{Binding UserSettings.IsFutureVisible, Converter={StaticResource VisibilityConverter}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <igOB:XamOutlookBar x:Name="xamOutlookBarFuture"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            IsMinimized="True"
+                            NavigationAreaMaxGroups="-2">
+            <igOB:XamOutlookBar.Groups>
+                <igOB:OutlookBarGroup Header="期货">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="btFutureTrade"
+                                Click="Button_Click"
+                                Content="期货交易" />
+                        <Button x:Name="btFutureEntrust"
+                                Grid.Row="1"
+                                Click="Button_Click"
+                                Content="期货委托" />
+                        <Button x:Name="btFutureTradeResult"
+                                Grid.Row="2"
+                                Click="Button_Click"
+                                Content="期货成交" />
+                        <Button x:Name="btFuturePosition"
+                                Grid.Row="3"
+                                Click="Button_Click"
+                                Content="期货持仓" />
+                        <Button x:Name="btFutureMarginInfo"
+                                Grid.Row="4"
+                                Click="Button_Click"
+                                Content="期货保证金" />
+                        <Button x:Name="btInstrumentInfo"
+                                Grid.Row="5"
+                                Click="Button_Click"
+                                Content="合约信息" />
+                    </Grid>
+                </igOB:OutlookBarGroup>
+            </igOB:XamOutlookBar.Groups>
+        </igOB:XamOutlookBar>
+
+
+        <igDock:XamDockManager x:Name="dockManagerFuture"
+                               Grid.Column="1"
+                               AllowMaximizeFloatingWindows="True"
+                               AllowMinimizeFloatingWindows="True"
+                               LayoutMode="FillContainer">
+            <igDock:XamDockManager.Panes>
+                <igDock:SplitPane x:Name="spQuotePaneFuture" SplitterOrientation="Horizontal">
+                    <igDock:TabGroupPane x:Name="tGroupFutureRealTimePriceRegion" prism:RegionManager.RegionName="{x:Static infra:RegionNames.FutureRealTimePricePanelRegion}" />
+                    <igDock:TabGroupPane>
+                        <igDock:ContentPane x:Name="cpFutureTrade"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="期货交易">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FutureTradeRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpInstrumentInfo"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="合约信息">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.InstrumentInfoPanelRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFutureEntrust"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="期货委托">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FutureEntrustRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFuturePosition"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="期货持仓">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FuturePositionRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFutureTradeResult"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="期货成交">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FutureTradeResultRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpFutureMarginInfo"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="期货保证金">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.MoneyRegionFuture}" />
+                        </igDock:ContentPane>
+                    </igDock:TabGroupPane>
+                </igDock:SplitPane>
+            </igDock:XamDockManager.Panes>
+        </igDock:XamDockManager>
+
+    </Grid>
+</igWindows:TabItemEx>

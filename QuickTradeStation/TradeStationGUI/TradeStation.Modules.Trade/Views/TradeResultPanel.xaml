@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.TradeResultPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:igdp="http://infragistics.com/DataPresenter"
+             xmlns:local="clr-namespace:TradeStation.Modules.Trade.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="400"
+             d:DesignWidth="600"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="16" />
+        </Grid.RowDefinitions>
+        <ig:XamGrid Grid.Row="0"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding Path=Trader.TradeResultInfoCollection.StockTradeResultInfoList}">
+            <ig:XamGrid.SelectionSettings>
+                <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+            </ig:XamGrid.SelectionSettings>
+            <ig:XamGrid.EditingSettings>
+                <ig:EditingSettings AllowEditing="None" />
+            </ig:XamGrid.EditingSettings>
+            <ig:XamGrid.ConditionalFormattingSettings>
+                <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+            </ig:XamGrid.ConditionalFormattingSettings>
+
+            <!--  #BEGIN SNIPPET#  -->
+            <ig:XamGrid.FilteringSettings>
+                <ig:FilteringSettings AllowFiltering="FilterMenu" />
+            </ig:XamGrid.FilteringSettings>
+
+            <ig:XamGrid.ColumnMovingSettings>
+                <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+            </ig:XamGrid.ColumnMovingSettings>
+            <ig:XamGrid.PagerSettings>
+                <ig:PagerSettings AllowPaging="Bottom"
+                                  DisplayPagerWhenOnlyOnePage="False"
+                                  PageSize="100"
+                                  PagerRowHeight="25" />
+            </ig:XamGrid.PagerSettings>
+            <ig:XamGrid.Columns>
+                <ig:TextColumn Key="MarketType"
+                               HeaderText="市场"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityID"
+                               HeaderText="代码"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityName"
+                               HeaderText="名称"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="CombiNo"
+                               HeaderText="组合"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="DealNo"
+                               HeaderText="成交编号"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="DealTime"
+                               HeaderText="成交时间"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="EntrustNo"
+                               HeaderText="委托号"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TemplateColumn Key="EntrustDirection"
+                                   HeaderText="方向"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding EntrustDirection, Converter={StaticResource EntrustDirectionDisplayConverter}}" Text="{Binding EntrustDirection}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+                <ig:TextColumn Key="DealPrice"
+                               HeaderText="成交价格"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="DealAmount"
+                               HeaderText="成交数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+            </ig:XamGrid.Columns>
+        </ig:XamGrid>
+        <local:ToolBar Grid.Row="1" HorizontalAlignment="Right" />
+    </Grid>
+</UserControl>

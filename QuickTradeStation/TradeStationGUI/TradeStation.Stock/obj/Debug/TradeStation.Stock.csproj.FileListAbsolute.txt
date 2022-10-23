@@ -1,0 +1,16 @@
+D:\QuickTradeStation\TradeStationGUI\build\log4net.config
+D:\QuickTradeStation\TradeStationGUI\build\packages.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Stock.dll
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Stock.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\TradeStation.Stock.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\Resources.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\Views\StockMainView.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\Views\StockQuotPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\TradeStation.Stock_MarkupCompile.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\TradeStation.Stock_MarkupCompile.lref
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\Views\StockMainView.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\Views\StockQuotPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\TradeStation.Stock.g.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\TradeStation.Stock.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Stock\obj\Debug\TradeStation.Stock.pdb

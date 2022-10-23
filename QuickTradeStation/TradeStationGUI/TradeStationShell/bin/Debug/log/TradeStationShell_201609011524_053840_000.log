@@ -1,0 +1,4 @@
+2016-09-01 15:24:27.458 LOG_ALARM -----------------  log4z thread started!   ---------------------------- 
+2016-09-01 15:24:27.458 LOG_ALARM logger id=0 path=./log/ name=TradeStationShell level=0 display=1 
+2016-09-01 15:24:27.458 LOG_ALARM logger id=1 path=./log/Multicastlog/ name=MulticastAPI level=0 display=1 
+2016-09-01 15:24:27.458 LOG_ALARM logger id=2 path=./log/Subscribelog/ name=SubscribeAPI level=0 display=1 

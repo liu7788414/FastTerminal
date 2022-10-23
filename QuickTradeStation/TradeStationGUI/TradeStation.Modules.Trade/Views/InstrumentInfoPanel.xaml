@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.InstrumentInfoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:igdp="http://infragistics.com/DataPresenter"
+             xmlns:local="clr-namespace:TradeStation.Modules.Trade.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="400"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="16" />
+        </Grid.RowDefinitions>
+        <ig:XamGrid Grid.Row="0"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding Path=Trader.InstrumentInfoCollection.InstrumentInfoList}"
+                    RowHover="Row">
+            <ig:XamGrid.SelectionSettings>
+                <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+            </ig:XamGrid.SelectionSettings>
+            <ig:XamGrid.EditingSettings>
+                <ig:EditingSettings AllowEditing="None" />
+            </ig:XamGrid.EditingSettings>
+            <ig:XamGrid.ConditionalFormattingSettings>
+                <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+            </ig:XamGrid.ConditionalFormattingSettings>
+
+            <!--  #BEGIN SNIPPET#  -->
+            <ig:XamGrid.FilteringSettings>
+                <ig:FilteringSettings AllowFiltering="FilterMenu" />
+            </ig:XamGrid.FilteringSettings>
+
+            <ig:XamGrid.ColumnMovingSettings>
+                <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+            </ig:XamGrid.ColumnMovingSettings>
+            <ig:XamGrid.PagerSettings>
+                <ig:PagerSettings AllowPaging="Bottom"
+                                  DisplayPagerWhenOnlyOnePage="False"
+                                  PageSize="100"
+                                  PagerRowHeight="25" />
+            </ig:XamGrid.PagerSettings>
+            <ig:XamGrid.Columns>
+                <ig:TextColumn Key="SecurityID"
+                               HeaderText="合约代码"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityName"
+                               HeaderText="合约名称"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="MarketType"
+                               HeaderText="市场"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="FutureKindName"
+                               HeaderText="期货品种名"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SettlementMonth"
+                               HeaderText="合约月份"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="Multiple"
+                               HeaderText="合约乘数"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="LastTradeDate"
+                               HeaderText="最后交易日"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="LastTradeTime"
+                               HeaderText="最后交易时间"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SettlementDate"
+                               HeaderText="结算日期"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SettlementPrice"
+                               HeaderText="结算价"
+                               IsReadOnly="True" />
+
+                <ig:TextColumn Key="PreSettlementPrice"
+                               HeaderText="前结算价"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="MarketPosition"
+                               HeaderText="市场持仓量"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="PreMarketPosition"
+                               HeaderText="前市场持仓量"
+                               IsReadOnly="True" />
+
+                <ig:TextColumn Key="MarketPricePermit"
+                               HeaderText="允许市价报单"
+                               IsReadOnly="True" />
+
+                <ig:TextColumn Key="UplimitedPrice"
+                               HeaderText="涨停价"
+                               IsReadOnly="True" />
+
+                <ig:TextColumn Key="DownlimitedPrice"
+                               HeaderText="跌停价"
+                               IsReadOnly="True" />
+            </ig:XamGrid.Columns>
+        </ig:XamGrid>
+        <local:ToolBar Grid.Row="1" HorizontalAlignment="Right" />
+    </Grid>
+</UserControl>

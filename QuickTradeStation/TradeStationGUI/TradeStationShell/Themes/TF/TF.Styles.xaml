@@ -1,0 +1,1195 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+                    xmlns:converters="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+                    xmlns:ig="http://schemas.infragistics.com/xaml"
+                    xmlns:igControls="http://schemas.infragistics.com/xaml/wpf"
+                    xmlns:igDock="http://infragistics.com/DockManager"
+                    xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+                    xmlns:igWindows="http://infragistics.com/Windows"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Office2013New/Theme.Colors.xaml" />
+        <ResourceDictionary Source="../Office2013New/Styles.Shared.xaml" />
+        <ResourceDictionary Source="../Office2013New/Styles.WPF.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.WPF.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.MSControls.Core.Implicit.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.xamDataChart.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.DataVisualization.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.xamDockManager.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.xamMenu.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.xamComboEditor.xaml" />
+        <ResourceDictionary Source="../Office2013New/Office2013.xamGrid.xaml" />
+        <ResourceDictionary Source="./TF.Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Newly added -->
+    <Style x:Key="TFButton" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Setter Property="Foreground" Value="{StaticResource TFButtonForegroundBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Padding" Value="7,0,7,2" />
+        <Setter Property="MinHeight" Value="24" />
+        <Setter Property="MinWidth" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Bd" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonHoverBackgroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Bd" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonHoverBorderBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Bd" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPressedBackgroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Bd" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPressedBorderBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="DisabledVisualElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentControl">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="FocusedVisualElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="Bd" Fill="{StaticResource ButtonBackgroundBrush}" Stroke="{StaticResource ButtonBorderBrush}" StrokeThickness="1" />
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledBackgroundBrush}" Stroke="{StaticResource DisabledBorderBrush}" StrokeThickness="1" Visibility="Collapsed" />
+                        <ContentControl x:Name="ContentControl" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <ContentPresenter x:Name="contentPresenter" />
+                        </ContentControl>
+                        <Rectangle x:Name="FocusedVisualElement" Stroke="{StaticResource ButtonHoverBorderBrush}" Visibility="Collapsed" StrokeThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TFTextBox" TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+        <Setter Property="FontSize" Value="{StaticResource SmallTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorderBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="TFRadioButton" TargetType="RadioButton" BasedOn="{StaticResource RadioButtonStyle}">
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="6,0,0,0" />
+        <Setter Property="MinHeight" Value="12" />
+        <Setter Property="MinWidth" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="hover" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="pressed" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="normal" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledBackgroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="normal" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledBorderBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="checkedStatus" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledBackgroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="checkedStatus" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledBorderBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Duration="0" To="0.7" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Opacity" />
+                                        <!--<DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter" />-->
+                                        <!--<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="disabled" />-->
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="checkedText" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="checkedStatus" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Indeterminate" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="focused" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="Valid" />
+                                <VisualState x:Name="InvalidUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="invalidUnfocused" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="InvalidFocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="invalidFocused" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Rectangle Fill="{StaticResource TransparentBrush}" Margin="-6,0" />-->
+                        <Rectangle x:Name="normal" Opacity="1" Stroke="{StaticResource RadioButtonBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonBackgroundBrush}" Width="14" Height="14" />
+                        <Rectangle x:Name="checkedStatus" Opacity="0" Stroke="{StaticResource RadioButtonSelectedBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonSelectedBackgroundBrush}" Width="14" Height="14" />
+                        <Rectangle x:Name="hover" Stroke="{StaticResource RadioButtonHoverBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonHoverBackgroundBrush}" Opacity="0" Width="14" Height="14" />
+                        <Rectangle x:Name="focused" Opacity="0" Stroke="{StaticResource RadioButtonFocusBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonFocusBackgroundBrush}" Width="14" Height="14" />
+                        <Rectangle x:Name="pressed" Opacity="0" Stroke="{StaticResource RadioButtonPressedBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonPressedBackgroundBrush}" Width="14" Height="14" />
+                        <Rectangle x:Name="invalidUnfocused" Opacity="0" Stroke="{StaticResource RadioButtonInvalidUnfocusedBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonInvalidUnfocusedBackgroundBrush}" Width="14" Height="14" />
+                        <Rectangle x:Name="invalidFocused" Opacity="0" Stroke="{StaticResource RadioButtonInvalidFocusedBorderBrush}" StrokeThickness="1" Fill="{StaticResource RadioButtonInvalidFocusedBackgroundBrush}" Width="14" Height="14" />
+                        <TextBlock x:Name="checkedText" Text="&#xf00c;" Style="{StaticResource FontAwesome}" FontSize="10" Foreground="{StaticResource RadioButtonCheckedIconBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" />
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <!--<Ellipse x:Name="disabled" Opacity="0" StrokeThickness="1" Fill="{StaticResource DisabledBackgroundBrush}" Width="12" Height="12" />-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Miss scroll bar style -->
+
+    <Style x:Key="TFComboBoxToggleButtonStyle" TargetType="ToggleButton" BasedOn="{StaticResource ComboBoxToggleButtonStyle}">
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="Foreground" Value="{StaticResource ComboEditorToggleButtonForegroundBrush}" />
+        <Setter Property="MinWidth" Value="14" />
+        <Setter Property="MinHeight" Value="22" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="normalBg" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="hover" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="normalBg" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="pressed" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="normalBg" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="disabled" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="pressed" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Indeterminate" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused" />
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="27" />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="Bd" Fill="#00FFFFFF" Grid.ColumnSpan="2" />
+                        <Grid Grid.Column="1">
+                            <Rectangle x:Name="normalBg" Fill="{StaticResource ComboEditorToggleButtonBackgroundBrush}" Stroke="{StaticResource ComboEditorToggleButtonBorderBrush}" StrokeThickness="1" IsHitTestVisible="False" Height="20" Width="20" Opacity="1" />
+                            <Rectangle x:Name="hover" Fill="{StaticResource ComboEditorToggleButtonHoverBackgroundBrush}" Stroke="{StaticResource ComboEditorToggleButtonHoverBorderBrush}" StrokeThickness="1" IsHitTestVisible="False" Opacity="0" />
+                            <Rectangle x:Name="pressed" Fill="{StaticResource ComboEditorToggleButtonPressedBackgroundBrush}" IsHitTestVisible="False" Opacity="0" />
+                            <Rectangle x:Name="disabled" Fill="{StaticResource ComboEditorToggleButtonDisabledBackgroundBrush}" Stroke="{StaticResource ComboEditorToggleButtonDisabledBorderBrush}" StrokeThickness="1" IsHitTestVisible="False" Height="20" Width="20" Opacity="0" />
+                            <TextBlock Text="&#xf078;" Foreground="{StaticResource ComboEditorToggleButtonIconBrush}" FontSize="10" Style="{StaticResource FontAwesome}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TFXamComboEditor" TargetType="ig:XamComboEditor" BasedOn="{StaticResource XamComboEditorStyle}">
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="Padding" Value="4,2,20,2" />
+        <Setter Property="MinHeight" Value="22" />
+        <Setter Property="MinDropDownHeight" Value="20"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource ComboEditorForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource ComboEditorBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ComboEditorBorderBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ig:XamComboEditor">
+                    <Grid igPrim:XamlHelper.SnapsToDevicePixels="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0" Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF92C0E0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.55" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DisabledVisualElementBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="FocusVisualElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ModeStates">
+                                <VisualState x:Name="Selectable">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="contentControl">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Editable">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBoxPresenter" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectContentPanel" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MultiSelectContentPanel">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Thickness>10,10,16,0</Thickness>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="TextBoxPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Thickness>
+                                                        3,1,28,1
+                                                    </Thickness>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="WaterMarkStates">
+                                <VisualState x:Name="WaterMarkHidden" />
+                                <VisualState x:Name="WaterMarkVisible">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WaterMark" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DropDownStates">
+                                <VisualState x:Name="Closed" />
+                                <VisualState x:Name="Open">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="IsOpen">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <System:Boolean>True</System:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PositionStates">
+                                <VisualState x:Name="Below"/>
+                                <VisualState x:Name="Above">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Resizer" Storyboard.TargetProperty="Position">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <igPrim:ResizerPosition>Above</igPrim:ResizerPosition>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Resizer" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <System:Int32>0</System:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ContentPresenterBorder">
+                            <Grid x:Name="gridLayout" ShowGridLines="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition MinWidth="27" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="Border" Grid.ColumnSpan="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                <Popup x:Name="Popup" Grid.ColumnSpan="2" VerticalAlignment="Bottom" IsOpen="False">
+                                    <Grid Background="{TemplateBinding BorderBrush}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Border x:Name="RootPopupElement" Grid.Row="1" Height="Auto" MinHeight="{TemplateBinding MinDropDownHeight}" MaxHeight="{TemplateBinding MaxDropDownHeight}" MaxWidth="{TemplateBinding MaxDropDownWidth}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="{StaticResource ComboEditorPopupBackgroundBrush}" BorderBrush="{StaticResource ComboEditorPopupBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <igPrim:ItemsPanel x:Name="ItemsPanel" Margin="1,0" VerticalAlignment="Top"/>
+                                                <ScrollBar x:Name="VerticalScrollBar" Width="15" Grid.Column="1" Grid.Row="0" Style="{StaticResource ScrollBarStyle}" Margin="0,1,1,1" />
+                                                <ScrollBar x:Name="HorizontalScrollBar" Height="15" Grid.Column="0" Grid.Row="1" Style="{StaticResource ScrollBarStyle}" />
+                                            </Grid>
+                                        </Border>
+                                        <igPrim:PopupResizer x:Name="Resizer" Popup="{Binding ElementName=Popup}" Visibility="{Binding Path=AllowDropDownResizing, Converter={StaticResource boolToVisibility}, RelativeSource={RelativeSource TemplatedParent}}" Grid.Row="2" Grid.ColumnSpan="2" ResizeElement="{Binding ElementName=RootPopupElement}" Style="{StaticResource PopupResizerStyle}">
+                                            <igPrim:PopupResizer.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform/>
+                                                </TransformGroup>
+                                            </igPrim:PopupResizer.RenderTransform>
+                                        </igPrim:PopupResizer>
+                                    </Grid>
+                                </Popup>
+                                <Rectangle x:Name="DisabledVisualElement" Grid.ColumnSpan="2" Fill="{StaticResource DisabledBackgroundBrush}" Stroke="{StaticResource DisabledBorderBrush}" IsHitTestVisible="false" Opacity="0" />
+                                <ToggleButton x:Name="ToggleButton" Margin="0,1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" IsTabStop="False" Style="{StaticResource TFComboBoxToggleButtonStyle}" VerticalAlignment="Stretch"/>
+                                <TextBlock x:Name="WaterMark" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" IsHitTestVisible="False" Padding="{TemplateBinding Padding}" Margin="3,0,0,0" Foreground="{StaticResource ComboEditorWaterMarkBrush}" Text="{TemplateBinding EmptyText}" Visibility="Collapsed" />
+                                <igPrim:SpecializedTextBox x:Name="TextBoxPresenter" Grid.ColumnSpan="2" Background="{TemplateBinding Background}" BorderThickness="0" Style="{StaticResource TextBoxStyle}" Foreground="{TemplateBinding Foreground}" IsTabStop="{TemplateBinding IsTabStop}" VerticalContentAlignment="Center" Visibility="Collapsed" />
+                                <ContentControl x:Name="contentControl" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.ColumnSpan="2" >
+                                    <Grid>
+                                        <StackPanel x:Name="MultiSelectContentPanel" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Orientation="Horizontal" Margin="8,0,0,0" />
+                                    </Grid>
+                                </ContentControl>
+                            </Grid>
+                        </Border>
+                        <Rectangle x:Name="DisabledVisualElementBorder" Stroke="{StaticResource DisabledBorderBrush}" IsHitTestVisible="false" Opacity="0" />
+                        <Border x:Name="FocusVisualElement" BorderBrush="{StaticResource ComboEditorFocusedBorderBrush}" BorderThickness="1" IsHitTestVisible="false" Visibility="Collapsed" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TFHeaderCellControl" TargetType="igPrim:HeaderCellControl" BasedOn="{StaticResource HeaderCellControlStyle}">
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="Foreground" Value="{StaticResource XamGridHeaderCellControlForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource XamGridHeaderCellControlBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="34" />
+    </Style>
+
+    <Style x:Key="TFConditionalFormattingCellControl" TargetType="ig:ConditionalFormattingCellControl" BasedOn="{StaticResource ConditionalFormattingCellControlStyle}">
+        <Setter Property="Foreground" Value="{StaticResource XamGridCellControlForegroundBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="Background" Value="{StaticResource XamGridCellControlBackgroundBrush}" />
+        <Setter Property="AltBackground" Value="{StaticResource XamGridCellControlAltBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource XamGridCellControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BarBrush" Value="{StaticResource ConditionalFormattingCellPositiveBarBrush}" />
+        <Setter Property="NegativeBarBrush" Value="{StaticResource ConditionalFormattingCellNegativeBarBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="6,2" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ig:ConditionalFormattingCellControl">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="hoverElem" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Alternate">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AltElem" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectedStates">
+                                <VisualState x:Name="NotSelected" />
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="cellSelected">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="InActive" />
+                                <VisualState x:Name="Active">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ActiveSelected">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ConditionalFormatIcon">
+                                <VisualState x:Name="ShowConditionalFormattingIcon">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FormattingIcon" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HideConditionalFormattingIcon" />
+                                <VisualState x:Name="HideIcon" />
+                                <VisualState x:Name="ShowIcon" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ConditionalFormatDataDisplay">
+                                <VisualState x:Name="ShowData" />
+                                <VisualState x:Name="HideData">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CellDisplay" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ConditionalFormatDataBar">
+                                <VisualState x:Name="HideDataBar" />
+                                <VisualState x:Name="ShowDataBar">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DataBar" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="EditingStates">
+                                <VisualState x:Name="NotEditing" />
+                                <VisualState x:Name="Editing" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FixedStates">
+                                <VisualState x:Name="UnFixed" />
+                                <VisualState x:Name="Fixed" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" x:Name="Root" />
+                        <Border Grid.ColumnSpan="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding AltBackground}" Visibility="Collapsed" x:Name="AltElem" />
+                        <Border x:Name="cellSelected" BorderBrush="{StaticResource XamGridSelectedCellControlBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{StaticResource XamGridSelectedCellControlBackgroundBrush}" Visibility="Collapsed" Margin="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" />
+                        <Border x:Name="ActiveSelected" BorderBrush="{StaticResource CellItemSelectedBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Visibility="Collapsed" Grid.ColumnSpan="2" />
+                        <Border x:Name="hoverElem" BorderBrush="{StaticResource CellItemHoverBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{StaticResource XamGridSelectedCellControlBackgroundBrush}" Visibility="Collapsed" Grid.ColumnSpan="2" />
+                        <igPrim:DataBarControl Grid.ColumnSpan="2" Margin="1" DataBarDirection="{TemplateBinding BarDirection}" PositiveValueBarBrush="{TemplateBinding BarBrush}" NegativeValueBarBrush="{TemplateBinding NegativeBarBrush}" BarPercentage="{TemplateBinding BarPercentage}" DataBarPositiveNegative="{TemplateBinding BarPositiveOrNegative}" Visibility="Collapsed" x:Name="DataBar" />
+                        <ContentControl x:Name="FormattingIcon" Visibility="Collapsed" ContentTemplate="{TemplateBinding Icon}" VerticalAlignment="Center" />
+                        <ContentControl x:Name="contentControl" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Column="1" Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter x:Name="CellDisplay" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" />
+                        </ContentControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TFXamGrid" TargetType="ig:XamGrid" BasedOn="{StaticResource XamGridStyle}">
+        <Setter Property="Background" Value="{StaticResource XamGridBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource XamGridBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FixedRowSeparatorStyle" Value="{StaticResource FixedRowSeparatorStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ig:XamGrid">
+                    <Border x:Name="Root" BorderThickness="0,0,0,1" BorderBrush="{TemplateBinding BorderBrush}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ReadOnlyStates">
+                                <VisualState x:Name="Active">
+                                </VisualState>
+                                <VisualState x:Name="ReadOnly">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ReadOnlyBorder" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Resources>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
+                            <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}" />
+                            <DataTemplate x:Key="DefaultDeferredScrollingTemplate">
+                                <Grid Margin="0,20,0,0">
+                                    <Border Background="{StaticResource DefaultDeferredScrollingTemplateBackgroundBrush}" BorderBrush="{StaticResource DefaultDeferredScrollingTemplateBorderBrush}" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="{Binding FirstColumnValue, Converter={StaticResource CultureConverter}}" Margin="5" />
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Key="DefaultGroupByDeferredScrollingTemplate">
+                                <Grid Margin="0,20,0,0">
+                                    <Border Background="{StaticResource DefaultDeferredScrollingTemplateBackgroundBrush}" BorderBrush="{StaticResource DefaultDeferredScrollingTemplateBorderBrush}" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="{Binding Row.Data, Converter={StaticResource CultureConverter}}" Margin="5" />
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                            <!--  Filtering Icons  -->
+                            <DataTemplate x:Key="TodayOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="DateAfterOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="DateBeforeOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="TomorrowOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="YesterdayOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="YearToDateOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="NextMonthOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="ThisMonthOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="LastMonthOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="NextWeekOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="ThisWeekOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="LastWeekOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="NextQuarterOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="ThisQuarterOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="LastQuarterOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="NextYearOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="ThisYearOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="LastYearOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="Quarter1Operand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="Quarter2Operand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="Quarter3Operand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="Quarter4Operand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="JanuaryOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="FebruaryOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="MarchOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="AprilOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="MayOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="JuneOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="JulyOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="AugustOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="SeptemberOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="OctoberOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="NovemberOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="DecemberOperand">
+                                <Path Data="M8,5 L10.999999,5 L11.999999,5 L11.999999,6 L11.999999,7 L11.999999,7.9999995 L11.999999,9 L11.999999,10 L10.999999,10 L8,10 L8,9 L10.999999,9 L10.999999,7.9999995 L8.999999,7.9999995 L8.999999,7 L10.999999,7 L10.999999,6 L8,6 z M2.9999993,4.9999995 L6.999999,4.9999995 L7,7 L7,7.9999995 L6,7.9999995 L4,7.9999995 L4,9 L7,9 L7,10 L4,10 L3,10 L3,9 L3,7.9999995 L3,7 L4,7 L6,7 L6,5.9999995 L2.9999993,5.9999995 z M1.0000006,2.9999983 L1.0000006,12 L14.000001,12 L14.000001,2.9999983 z M9.0000019,1.0000007 L9.0000019,2.0000005 L10.000002,2.0000005 L10.000002,1.0000007 z M7.0000019,1.0000007 L7.0000019,2.0000005 L8.0000019,2.0000005 L8.0000019,1.0000007 z M5.0000019,1.0000007 L5.0000019,2.0000005 L6.0000019,2.0000005 L6.0000019,1.0000007 z M0,0 L15,0 L15,13 L0,13 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" Width="12" Height="13" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="EqualsOperand">
+                                <Path Width="8" Height="5" Data="M 0,3 C0,3 0,5 0,5 0,5 8,5 8,5 8,5 8,3 8,3 8,3 0,3 0,3 zM 0,0 C0,0 0,2 0,2 0,2 8,2 8,2 8,2 8,0 8,0 8,0 0,0 0,0 z" Fill="{StaticResource FilterOperatorGlyphBrush}" VerticalAlignment="Center" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="NotEqualsOperand">
+                                <Path Width="8" Height="11" Data="M 0,3 C0,3 0,5 0,5 0,5 3,5 3,5 3,5 2,6 2,6 2,6 0,6 0,6 0,6 0,8 0,8 0,8 1.7,8 1.7,8 1.7,8 0,11 0,11 0,11 2,11 2,11 2,11 3.7,8 3.7,8 3.7,8 8,8 8,8 8,8 8,6 8,6 8,6 4,6 4,6 4,6 5.275,5 5.275,5 5.275,5 8,5 8,5 8,5 8,3 8,3 8,3 6.365,3 6.365,3 6.365,3 8,0 8,0 8,0 6,0 6,0 6,0 4.365,3 4.365,3 4.365,3 0,3 0,3 z" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="StartsWithOperand">
+                                <StackPanel x:Name="BeginsWith" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock FontSize="10" Text="A" TextDecorations="Underline" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                    <TextBlock FontSize="10" Text="a" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                </StackPanel>
+                            </DataTemplate>
+                            <DataTemplate x:Key="EndsWithOperand">
+                                <StackPanel x:Name="EndsWith" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock FontSize="10" Text="a" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                    <TextBlock FontSize="10" Text="A" TextDecorations="Underline" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                </StackPanel>
+                            </DataTemplate>
+                            <DataTemplate x:Key="DoesNotStartWithOperand">
+                                <Grid x:Name="DoesnotBeginWith">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <TextBlock FontSize="10" Text="A" TextDecorations="Underline" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                        <TextBlock FontSize="10" Text="a" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                    </StackPanel>
+                                    <Grid>
+                                        <Path Width="8" Height="11" HorizontalAlignment="Center" Margin="-4,0,0,0" Data="M 0,11 C0,11 2,11 2,11 2,11 8,0 8,0 8,0 6,0 6,0 6,0 0,11 0,11 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" />
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Key="DoesNotEndWithOperand">
+                                <Grid x:Name="DoesnotendWith">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <TextBlock FontSize="10" Text="a" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                        <TextBlock FontSize="10" Text="A" TextDecorations="Underline" Foreground="{StaticResource FilterOperatorGlyphBrush}" />
+                                    </StackPanel>
+                                    <Grid>
+                                        <Path Width="8" Height="11" HorizontalAlignment="Center" Margin="0,0,-4,0" Data="M 0,11 C0,11 2,11 2,11 2,11 8,0 8,0 8,0 6,0 6,0 6,0 0,11 0,11 z" Fill="{StaticResource FilterOperatorGlyphBrush}" Stretch="Fill" />
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Key="ContainsOperand">
+                                <Border Margin="0,1,0,0" Width="11" Height="11" Background="{StaticResource LightForegroundBrush}" BorderBrush="{StaticResource FilterOperatorGlyphBrush}" BorderThickness="1">
+                                    <Rectangle Margin="3" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                                </Border>
+                            </DataTemplate>
+                            <DataTemplate x:Key="DoesNotContainOperand">
+                                <Grid x:Name="DoesNotContains" Margin="0,1,0,0">
+                                    <Border Width="11" Height="11" Background="{StaticResource LightForegroundBrush}" BorderBrush="{StaticResource FilterOperatorGlyphBrush}" BorderThickness="1">
+                                        <Grid>
+                                            <Rectangle Margin="3" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                                            <Line X1="0" X2="9" Y1="9" Y2="0" Stroke="{StaticResource FilterOperatorGlyphBrush}" StrokeThickness="1" RenderOptions.EdgeMode="Aliased"  />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Key="GreaterThanOperand">
+                                <Path Width="8" Height="8" HorizontalAlignment="Center" Data="M 1,0 C1,0 0,1 0,1 0,1 5,4 5,4 5,4 0,7 0,7 0,7 1,8 1,8 1,8 8,4 8,4 8,4 1,0 1,0 z" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="GreaterThanOrEqualOperand">
+                                <StackPanel x:Name="GreaterThanOrEqual">
+                                    <Path Width="8" Height="8" HorizontalAlignment="Center" Data="M 1,0 C1,0 0,1 0,1 0,1 5,4 5,4 5,4 0,7 0,7 0,7 1,8 1,8 1,8 8,4 8,4 8,4 1,0 1,0 z" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                                    <Rectangle Width="8" Height="1" Margin="0,1,0,0" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                                </StackPanel>
+                            </DataTemplate>
+                            <DataTemplate x:Key="LessThanOperand">
+                                <Path Width="8" Height="8" HorizontalAlignment="Center" Data="M 7,0 C7,0 8,1 8,1 8,1 3,4 3,4 3,4 8,7 8,7 8,7 7,8 7,8 7,8 0,4 0,4 0,4 7,0 7,0 z" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="LessThanOrEqualOperand">
+                                <StackPanel x:Name="LessThanOrEqual">
+                                    <Path Width="8" Height="8" HorizontalAlignment="Center" Data="M 7,0 C7,0 8,1 8,1 8,1 3,4 3,4 3,4 8,7 8,7 8,7 7,8 7,8 7,8 0,4 0,4 0,4 7,0 7,0 z" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                                    <Rectangle Width="8" Height="1" Margin="0,1,0,0" Fill="{StaticResource FilterOperatorGlyphBrush}" />
+                                </StackPanel>
+                            </DataTemplate>
+                            <DataTemplate x:Key="DefaultFilterIcon">
+                                <Grid>
+                                    <Path Width="14" Height="10" Data="M 0,0 C0,0 11,0 11,0 11,0 7,4 7,4 7,4 7,8 7,8 7,8 4,8 4,8 4,8 4,4 4,4 4,4 0,0 0,0 z" Fill="{StaticResource HeaderCellGlyphBackgroundBrush}" Stretch="Fill" />
+                                    <Path Width="3.5" Height="7" HorizontalAlignment="Center" Margin="11,7,0,0" VerticalAlignment="Center" Data="M 0,0 C0,0 0,7 0,7 0,7 3.5,3.5 3.5,3.5 3.5,3.5 0,0 0,0 z" Fill="{StaticResource HeaderCellGlyphBackgroundBrush}" Stretch="Fill" />
+                                </Grid>
+                            </DataTemplate>
+                        </Border.Resources>
+                        <Grid>
+                            <Grid Background="{TemplateBinding Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <igPrim:RowsPanel x:Name="RowsPanel" />
+                                <ScrollBar x:Name="VerticalScrollBar" Width="17" Grid.Row="0" Grid.Column="1" Style="{StaticResource ScrollBarStyle}" />
+                                <ScrollBar x:Name="HorizontalScrollBar" Height="16" Grid.Row="2" Style="{StaticResource ScrollBarStyle}" />
+                            </Grid>
+                            <Border x:Name="ReadOnlyBorder" Background="#FFF0F0F0" Visibility="Collapsed" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FuctionTabControlStyle" TargetType="{x:Type igWindows:XamTabControl}" BasedOn="{StaticResource {x:Type igWindows:XamTabControl}}">
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style x:Key="FunctionTabItemStyle" TargetType="{x:Type igWindows:TabItemEx}" BasedOn="{StaticResource {x:Type igWindows:TabItemEx}}">
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="MinHeight" Value="35" />
+        <Setter Property="MinWidth" Value="135" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type igWindows:TabItemEx}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Border x:Name="Bd" Padding="{TemplateBinding Padding}" BorderBrush="Transparent" Background="{TemplateBinding Background}" BorderThickness="0,0,0,2" CornerRadius="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter x:Name="Content" TextElement.Foreground="{StaticResource XamTabControlForegroundBrush}" ContentSource="Header" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="true" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                <Button x:Name="CloseButton" Grid.Column="1" Command="igWindows:TabItemExCommands.Close" CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" Visibility="{TemplateBinding ComputedCloseButtonVisibility}" Style="{DynamicResource {x:Static igWindows:XamTabControl.CloseButtonStyleKey}}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Content" Property="TextElement.Foreground" Value="{StaticResource XamTabControlHoverForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Panel.ZIndex" Value="1" />
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource XamTabControlSelectedBackgroundBrush}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource XamTabControlSelectedForegroundBrush}" />
+                            <Setter TargetName="Content" Property="Margin" Value="0,0,0,-2" />
+                            <Setter TargetName="Content" Property="TextElement.Foreground" Value="{StaticResource XamTabControlSelectedForegroundBrush}" />
+                            <Setter TargetName="CloseButton" Property="Foreground" Value="{DynamicResource CloseButtonTabActiveForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Top">
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter Property="Margin" Value="0,5,0,0" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter TargetName="Bd" Property="BorderThickness" Value="1,0,1,1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter Property="Margin" Value="0,-1,0,5" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter TargetName="Bd" Property="BorderThickness" Value="1,1,0,1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter Property="Margin" Value="5,0,0,0" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter TargetName="Bd" Property="BorderThickness" Value="0,1,1,1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter Property="Margin" Value="0,0,5,0" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Top" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Margin" Value="0,5,0,-1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2,6,3"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0,5,1"/>
+                            <!--<Setter TargetName="Content" Property="Margin" Value="0,0,0,1" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Bottom" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Content" Property="Margin" Value="6,2,6,2"/>
+                            <Setter Property="Margin" Value="0,-1,0,5" />
+                            <!--<Setter Property="Margin" Value="0,-3,0,0" />-->
+                            <!--<Setter TargetName="Content" Property="Margin" Value="0,0,0,3" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Left" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Content" Property="Margin" Value="6,2,6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0,6,0"/>
+                            <Setter Property="Margin" Value="5,0,-1,0" />
+                            <!--<Setter TargetName="Content" Property="Margin" Value="0,0,1,0" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Right" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Content" Property="Margin" Value="7,2,6,2"/>
+                            <Setter Property="Margin" Value="-1,0,5,0" />
+                            <!--<Setter TargetName="Content" Property="Margin" Value="1,0,0,0" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Top" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackTopCenterFillKey}}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackOuterBorderFillKey}}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Bottom" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackBottomCenterFillKey}}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackOuterBorderFillKey}}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Left" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackLeftCenterFillKey}}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackOuterBorderFillKey}}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Right" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackRightCenterFillKey}}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemHottrackOuterBorderFillKey}}" />
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemDisabledCenterFillKey}}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemDisabledOuterBorderFillKey}}" />
+                            <Setter Property="Foreground" Value="#888888" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ModuleTabItemStyle" TargetType="{x:Type igWindows:TabItemEx}" BasedOn="{StaticResource {x:Type igWindows:TabItemEx}}">
+        <Setter Property="BorderBrush" Value="#2E2E2E" />
+        <Setter Property="Background" Value="#949494" />
+        <Setter Property="Foreground" Value="#444444" />
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource NormalTextFontSize}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Padding" Value="6 2" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type igWindows:TabItemEx}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Border x:Name="Bd" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1,1,1,0" CornerRadius="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter x:Name="Content" TextElement.Foreground="{TemplateBinding Foreground}" ContentSource="Header" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="true" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                <Button x:Name="CloseButton" Grid.Column="1" Command="igWindows:TabItemExCommands.Close" CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" Visibility="{TemplateBinding ComputedCloseButtonVisibility}" Style="{DynamicResource {x:Static igWindows:XamTabControl.CloseButtonStyleKey}}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Bd" Property="Background" Value="#949494" />
+                            <Setter TargetName="Content" Property="TextElement.Foreground" Value="#FF9B00" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Panel.ZIndex" Value="1" />
+                            <Setter TargetName="Bd" Property="Background" Value="#FF9B00" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#FF9B00" />
+                            <Setter TargetName="Content" Property="TextElement.Foreground" Value="#444444" />
+                            <Setter TargetName="CloseButton" Property="Foreground" Value="{DynamicResource CloseButtonTabActiveForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Top">
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter Property="Margin" Value="0,5,0,0" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter TargetName="Bd" Property="BorderThickness" Value="1,0,1,1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter Property="Margin" Value="0,-1,0,5" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter TargetName="Bd" Property="BorderThickness" Value="1,1,0,1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter Property="Margin" Value="5,0,0,0" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter TargetName="Bd" Property="BorderThickness" Value="0,1,1,1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0"/>
+                            <Setter Property="Margin" Value="0,0,5,0" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Top" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Margin" Value="0,5,0,-1" />
+                            <Setter TargetName="Content" Property="Margin" Value="6,2,6,3"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0,5,1"/>
+                            <!--<Setter TargetName="Content" Property="Margin" Value="0,0,0,1" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Bottom" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Content" Property="Margin" Value="6,2,6,2"/>
+                            <Setter Property="Margin" Value="0,-1,0,5" />
+                            <!--<Setter Property="Margin" Value="0,-3,0,0" />-->
+                            <!--<Setter TargetName="Content" Property="Margin" Value="0,0,0,3" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Left" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Content" Property="Margin" Value="6,2,6,2"/>
+                            <Setter TargetName="CloseButton" Property="Margin" Value="5,0,6,0"/>
+                            <Setter Property="Margin" Value="5,0,-1,0" />
+                            <!--<Setter TargetName="Content" Property="Margin" Value="0,0,1,0" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Right" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Content" Property="Margin" Value="7,2,6,2"/>
+                            <Setter Property="Margin" Value="-1,0,5,0" />
+                            <!--<Setter TargetName="Content" Property="Margin" Value="1,0,0,0" />-->
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Top" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="#949494" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#2E2E2E" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Bottom" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="#949494" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#2E2E2E" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Left" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="#949494" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#2E2E2E" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="false" />
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="TabStripPlacement" Value="Right" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="#949494" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#2E2E2E" />
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemDisabledCenterFillKey}}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static igWindows:PrimitivesBrushKeys.TabItemDisabledOuterBorderFillKey}}" />
+                            <Setter Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Property="Foreground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- Newly added -->
+</ResourceDictionary>

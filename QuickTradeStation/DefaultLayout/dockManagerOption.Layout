@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xamDockManager version="15.1.20151.2251">
+  <contentPanes>
+    <contentPane name="cpOptionMatrixPanel" location="DockedLeft" lastFloatingSize="1878,232" lastFloatingWindowRect="867,261,1894,270" lastFloatingLocation="867,261" lastActivatedTime="2016-11-30T06:22:35.5769149Z" />
+    <contentPane name="cpCombinedFutureTrade" location="DockedLeft" lastFloatingSize="1878,232" lastFloatingWindowRect="867,261,1894,270" lastFloatingLocation="867,261" lastActivatedTime="2016-11-30T06:22:10.9225047Z" />
+    <contentPane name="cpStockQuote" location="DockedLeft" lastActivatedTime="2016-11-07T02:49:19.8023658Z" />
+    <contentPane name="cpOptionEntrust" location="DockedLeft" lastActivatedTime="2016-09-08T06:24:10.6682457Z" />
+    <contentPane name="cpOptionTrade" location="DockedLeft" lastFloatingSize="1878,359" lastFloatingWindowRect="929,410,1894,397" lastFloatingLocation="929,410" lastActivatedTime="2016-09-08T03:27:20.9994179Z" />
+    <contentPane name="cpOptionInstrumentInfo" location="DockedLeft" lastFloatingSize="1878,229" lastFloatingWindowRect="1434,616,1894,267" lastFloatingLocation="1434,616" lastActivatedTime="2016-08-12T02:24:52.3386143Z" />
+    <contentPane name="cpOptionTradeResult" location="DockedLeft" lastFloatingSize="1878,229" lastFloatingWindowRect="954,898,1894,267" lastFloatingLocation="954,898" lastActivatedTime="2016-07-28T06:43:11.4263971Z" />
+    <contentPane name="cpOptionPosition" location="DockedLeft" lastFloatingSize="1878,171" lastFloatingWindowRect="790,665,1894,209" lastFloatingLocation="790,665" lastActivatedTime="2016-07-28T06:43:08.5072301Z" />
+    <contentPane name="cpOptionMarginInfo" location="DockedLeft" lastFloatingSize="1878,229" lastFloatingWindowRect="1369,565,1894,267" lastFloatingLocation="1369,565" lastActivatedTime="2016-07-28T06:42:12.2330114Z" />
+  </contentPanes>
+  <panes>
+    <splitPane name="spQuotePaneOption" splitterOrientation="Horizontal" location="DockedLeft">
+      <splitPane name="Z1736652bf2454f1a8144c20687f7e746" splitterOrientation="Vertical" relativeSize="100,131.125991543117">
+        <tabGroup name="tGroupOptionRealTimePriceRegion" selectedIndex="0" relativeSize="86.8729989327641,100">
+          <contentPane name="cpStockQuote" />
+        </tabGroup>
+        <tabGroup name="Z61565d6f318d47708f74912eedbc7634" selectedIndex="0" relativeSize="113.127001067236,100">
+          <contentPane name="cpOptionMatrixPanel" />
+          <contentPane name="cpCombinedFutureTrade" />
+        </tabGroup>
+      </splitPane>
+      <splitPane name="Zec46314e464f479d85cbc8ca337dee46" splitterOrientation="Vertical" relativeSize="100,123.551063712555">
+        <contentPane name="cpOptionTrade" relativeSize="33.8820383768481,100" />
+        <tabGroup name="Z130ee1e953c94c1197cade1015ecf300" selectedIndex="0" relativeSize="122.299465240641,100">
+          <contentPane name="cpOptionPosition" relativeSize="79.5090715048025,100" />
+        </tabGroup>
+        <tabGroup name="Zc58de4bd152b4b76893684151ede5250" selectedIndex="0">
+          <contentPane name="cpOptionInstrumentInfo" />
+          <contentPane name="cpOptionMarginInfo" relativeSize="89.112614029569,100" />
+        </tabGroup>
+      </splitPane>
+      <splitPane name="Z18216aef38734b678f44fa96dc791d54" splitterOrientation="Vertical" relativeSize="100,45.3229447443305">
+        <tabGroup name="Z3a89794a567141558d2e4188f2e04dea" selectedIndex="0" relativeSize="165.720713842704,100">
+          <contentPane name="cpOptionEntrust" />
+        </tabGroup>
+        <contentPane name="cpOptionTradeResult" relativeSize="109.476097005435,100" />
+      </splitPane>
+    </splitPane>
+    <splitPane name="Zcde76f4c516c48f4b2cfefea851e3ba9" splitterOrientation="Vertical" location="Floating" floatingLocation="929,410" floatingSize="1878,359">
+      <contentPane name="cpOptionTrade" />
+    </splitPane>
+    <splitPane name="Zf769b610a0d6459ab788292020dcd50f" splitterOrientation="Vertical" location="Floating" floatingLocation="1369,565" floatingSize="1878,229">
+      <contentPane name="cpOptionMarginInfo" />
+    </splitPane>
+    <splitPane name="Z362f55a595134a219e150389f8d79f28" splitterOrientation="Vertical" location="Floating" floatingLocation="790,665" floatingSize="1878,171">
+      <contentPane name="cpOptionPosition" relativeSize="79.5090715048025,100" />
+    </splitPane>
+    <splitPane name="Z10fa296c540442dabe650f2319b970fb" splitterOrientation="Vertical" location="Floating" floatingLocation="954,898" floatingSize="1878,229">
+      <contentPane name="cpOptionTradeResult" relativeSize="154.705882352941,100" />
+    </splitPane>
+    <splitPane name="Z151dbbab3b964dfe937b67d76d3f8b94" splitterOrientation="Vertical" location="Floating" floatingLocation="1434,616" floatingSize="1878,229">
+      <tabGroup name="Z96c331d78a3f43bf93398e848f79d9c9" selectedIndex="-1">
+        <contentPane name="cpOptionInstrumentInfo" />
+      </tabGroup>
+    </splitPane>
+    <splitPane name="Zb39bab10b09548cfb53d774ac84fbe71" splitterOrientation="Vertical" location="Floating" floatingLocation="867,261" floatingSize="1878,232">
+      <tabGroup name="Z7a6f6bfa3fbc4e558fbb715e5f4537f1" selectedIndex="-1">
+        <contentPane name="cpOptionMatrixPanel" />
+        <contentPane name="cpCombinedFutureTrade" />
+      </tabGroup>
+    </splitPane>
+  </panes>
+</xamDockManager>

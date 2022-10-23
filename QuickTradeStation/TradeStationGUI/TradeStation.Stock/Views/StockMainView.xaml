@@ -1,0 +1,177 @@
+﻿<igWindows:TabItemEx x:Class="TradeStation.Stock.Views.StockMainView"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:converters="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+                     xmlns:igDock="http://infragistics.com/DockManager"
+                     xmlns:igOB="http://infragistics.com/OutlookBar"
+                     xmlns:igWindows="http://infragistics.com/Windows"
+                     xmlns:infra="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:prism="http://www.codeplex.com/prism"
+                     xmlns:views="clr-namespace:TradeStation.Stock.Views"
+                     Header="股票"
+                     Style="{StaticResource ModuleTabItemStyle}"
+                     Visibility="{Binding UserSettings.IsStockVisible, Converter={StaticResource VisibilityConverter}}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <igOB:XamOutlookBar x:Name="xamOutlookBarStock"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            IsMinimized="True"
+                            NavigationAreaMaxGroups="-2">
+
+            <igOB:XamOutlookBar.Groups>
+                <igOB:OutlookBarGroup Header="股票">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="btStockTrade"
+                                Click="Button_Click"
+                                Content="股票交易" />
+                        <Button x:Name="btStockEntrust"
+                                Grid.Row="1"
+                                Click="Button_Click"
+                                Content="股票委托" />
+                        <Button x:Name="btStockTradeResult"
+                                Grid.Row="2"
+                                Click="Button_Click"
+                                Content="股票成交记录" />
+                        <Button x:Name="btStockPosition"
+                                Grid.Row="3"
+                                Click="Button_Click"
+                                Content="股票持仓" />
+                        <Button x:Name="btStockAccountMoney"
+                                Grid.Row="4"
+                                Click="Button_Click"
+                                Content="股票资金" />
+                        <Button x:Name="btLog"
+                                Grid.Row="5"
+                                Click="Button_Click"
+                                Content="日志" />
+                    </Grid>
+                </igOB:OutlookBarGroup>
+            </igOB:XamOutlookBar.Groups>
+        </igOB:XamOutlookBar>
+
+
+        <igDock:XamDockManager x:Name="dockManagerStock"
+                               Grid.Column="1"
+                               AllowMaximizeFloatingWindows="True"
+                               AllowMinimizeFloatingWindows="True"
+                               LayoutMode="FillContainer"
+                               PaneNavigatorButtonDisplayMode="Always"
+                               ToolWindowLoaded="dockManagerStock_ToolWindowLoaded">
+            <igDock:XamDockManager.Panes>
+                <igDock:SplitPane x:Name="spQuotePaneStock" SplitterOrientation="Horizontal">
+                    <igDock:TabGroupPane x:Name="tGroupRealTimePriceRegion" prism:RegionManager.RegionName="{x:Static infra:RegionNames.StockRealTimePricePanelRegion}" />
+                    <igDock:TabGroupPane>
+                        <igDock:ContentPane x:Name="cpStockTrade"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="股票交易">
+                            <igDock:ContentPane.ContextMenu>
+                                <ContextMenu />
+                            </igDock:ContentPane.ContextMenu>
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TradeRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpStockEntrust"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="股票委托">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.EntrustRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpStockPosition"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="股票持仓">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PositionRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpStockTradeResult"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="股票成交记录">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TradeResultRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpStockAccountMoney"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="股票账户资金">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.MoneyRegion}" />
+                        </igDock:ContentPane>
+                        <igDock:ContentPane x:Name="cpLog"
+                                            AllowDocking="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingBottom="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingFloating="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingInTabGroup="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingLeft="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingRight="{Binding UserSettings.LockContentPane}"
+                                            AllowDockingTop="{Binding UserSettings.LockContentPane}"
+                                            AllowFloatingOnly="{Binding UserSettings.LockContentPane}"
+                                            AllowInDocumentHost="{Binding UserSettings.LockContentPane}"
+                                            AllowPinning="{Binding UserSettings.LockContentPane}"
+                                            CloseButtonVisibility="Visible"
+                                            Header="日志">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.LogMessageRegion}" />
+                        </igDock:ContentPane>
+                    </igDock:TabGroupPane>
+                </igDock:SplitPane>
+            </igDock:XamDockManager.Panes>
+        </igDock:XamDockManager>
+
+    </Grid>
+</igWindows:TabItemEx>

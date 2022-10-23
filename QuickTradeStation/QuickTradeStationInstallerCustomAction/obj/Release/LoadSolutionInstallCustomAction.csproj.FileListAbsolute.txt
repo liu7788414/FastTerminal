@@ -1,0 +1,5 @@
+C:\PPM\SP3D\2011R1\PipingLoadSolution\Release\LoadSolutionInstallCustomAction.dll
+C:\PPM\SP3D\2011R1\PipingLoadSolution\Release\LoadSolutionInstallCustomAction.pdb
+C:\PPM\SP3D\2011R1\PipingLoadSolution\LoadSolutionInstallCustomAction\obj\Release\ResolveAssemblyReference.cache
+C:\PPM\SP3D\2011R1\PipingLoadSolution\LoadSolutionInstallCustomAction\obj\Release\LoadSolutionInstallCustomAction.dll
+C:\PPM\SP3D\2011R1\PipingLoadSolution\LoadSolutionInstallCustomAction\obj\Release\LoadSolutionInstallCustomAction.pdb

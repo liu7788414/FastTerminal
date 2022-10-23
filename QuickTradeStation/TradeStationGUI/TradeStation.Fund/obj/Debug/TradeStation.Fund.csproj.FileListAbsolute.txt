@@ -1,0 +1,11 @@
+D:\QuickTradeStation\TradeStationGUI\build\log4net.config
+D:\QuickTradeStation\TradeStationGUI\build\packages.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Fund.dll
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Fund.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\TradeStation.Fund.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\Views\FundMainView.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\Views\FundMainView.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\TradeStation.Fund_MarkupCompile.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\TradeStation.Fund.g.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\TradeStation.Fund.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Fund\obj\Debug\TradeStation.Fund.pdb

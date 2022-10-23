@@ -1,0 +1,11 @@
+D:\QuickTradeStation\TradeStationGUI\build\log4net.config
+D:\QuickTradeStation\TradeStationGUI\build\packages.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.BasketTrading.dll
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.BasketTrading.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\TradeStation.BasketTrading.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\Views\BasketTradingMainView.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\Views\BasketTradingMainView.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\TradeStation.BasketTrading_MarkupCompile.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\TradeStation.BasketTrading.g.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\TradeStation.BasketTrading.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.BasketTrading\obj\Debug\TradeStation.BasketTrading.pdb

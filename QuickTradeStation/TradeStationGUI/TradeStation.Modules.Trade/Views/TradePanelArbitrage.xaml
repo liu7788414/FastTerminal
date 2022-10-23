@@ -1,0 +1,1072 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.TradePanelArbitrage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+             xmlns:commonutil="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+             xmlns:converter="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:igdp="http://infragistics.com/DataPresenter"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:TradeStation.Infrastructure.Services;assembly=TradeStation.Infrastructure"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converter:EntrustDirectionDisplayConverter x:Key="EntrustDirectionDisplayConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1624" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="270" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox x:Name="gbLeg1List"
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              BorderBrush="{Binding EntrustDirectionLeg1,
+                                                    Converter={StaticResource EntrustDirectionDisplayConverter}}">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox1}"
+                                               Text="第一腿列表" />
+                                    <TextBlock Text="   " />
+                                    <TextBlock Grid.Column="1"
+                                               FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox1}"
+                                               Text="{Binding SelectedItem,
+                                                              ElementName=xamComboEditor1}" />
+                                    <TextBlock Text="   " />
+                                    <TextBlock Grid.Column="1"
+                                               FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox1}"
+                                               Text="{Binding SelectedItem,
+                                                              ElementName=xamComboEditor1CombiNo}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="37" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <ig:XamGrid x:Name="xamGridLeg1"
+                                            Grid.Row="0"
+                                            Height="230"
+                                            ActiveItem="{Binding Path=SelectedArbitrageItemLeg1}"
+                                            AutoGenerateColumns="False"
+                                            ItemsSource="{Binding Path=ArbitrageItemListLeg1}"
+                                            RowHover="Row">
+                                    <ig:XamGrid.SelectionSettings>
+                                        <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+                                    </ig:XamGrid.SelectionSettings>
+                                    <ig:XamGrid.EditingSettings>
+                                        <ig:EditingSettings AllowEditing="None" />
+                                    </ig:XamGrid.EditingSettings>
+                                    <ig:XamGrid.ConditionalFormattingSettings>
+                                        <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+                                    </ig:XamGrid.ConditionalFormattingSettings>
+
+                                    <ig:XamGrid.FilteringSettings>
+                                        <ig:FilteringSettings AllowFiltering="FilterMenu" />
+                                    </ig:XamGrid.FilteringSettings>
+
+                                    <ig:XamGrid.ColumnMovingSettings>
+                                        <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+                                    </ig:XamGrid.ColumnMovingSettings>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="CellDoubleClicked">
+                                            <i:InvokeCommandAction Command="{Binding ClosePositionCommand}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ig:XamGrid.Columns>
+                                        <ig:TemplateColumn Key="IsChecked"
+                                                           HeaderText="选择"
+                                                           IsFilterable="False"
+                                                           IsReadOnly="False">
+                                            <ig:TemplateColumn.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding IsChecked}" />
+                                                </DataTemplate>
+                                            </ig:TemplateColumn.ItemTemplate>
+                                        </ig:TemplateColumn>
+                                        <ig:TemplateColumn Key="SecurityInfo.SecurityStatus"
+                                                           HeaderText="状态"
+                                                           IsReadOnly="True">
+                                            <ig:TemplateColumn.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Foreground="{Binding SecurityInfo.SecurityStatus, Converter={StaticResource SecurityStatusDisplayConverter}}" Text="{Binding SecurityInfo.SecurityStatus}" />
+                                                </DataTemplate>
+                                            </ig:TemplateColumn.ItemTemplate>
+                                        </ig:TemplateColumn>
+                                        <ig:TextColumn Key="SecurityInfo.MarketType"
+                                                       HeaderText="市场"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="SecurityInfo.SecurityID"
+                                                       HeaderText="代码"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="SecurityInfo.SecurityName"
+                                                       HeaderText="名称"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="SecurityInfo.SecurityType"
+                                                       HeaderText="品种"
+                                                       IsReadOnly="True" />
+                                        <ig:TemplateColumn Key="Amount"
+                                                           HeaderText="数量"
+                                                           IsFilterable="False"
+                                                           IsReadOnly="False">
+                                            <ig:TemplateColumn.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox IsEditable="True" Text="{Binding Amount}">
+                                                        <ComboBoxItem Content="1" />
+                                                        <ComboBoxItem Content="2" />
+                                                        <ComboBoxItem Content="5" />
+                                                        <ComboBoxItem Content="10" />
+                                                        <ComboBoxItem Content="20" />
+                                                        <ComboBoxItem Content="50" />
+                                                        <ComboBoxItem Content="100" />
+                                                        <ComboBoxItem Content="200" />
+                                                        <ComboBoxItem Content="500" />
+                                                        <ComboBoxItem Content="1000" />
+                                                        <ComboBoxItem Content="2000" />
+                                                        <ComboBoxItem Content="5000" />
+                                                        <ComboBoxItem Content="10000" />
+                                                    </ComboBox>
+                                                </DataTemplate>
+                                            </ig:TemplateColumn.ItemTemplate>
+                                        </ig:TemplateColumn>
+                                        <ig:TextColumn Key="EnabledAmount"
+                                                       HeaderText="可用数量"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="LastPrice"
+                                                       FormatString="{}{0:N2}"
+                                                       HeaderText="最新价"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+
+                                    </ig:XamGrid.Columns>
+                                </ig:XamGrid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="证券代码:" />
+                                <auto:Intellibox Grid.Row="0"
+                                                 Grid.Column="1"
+                                                 VerticalAlignment="Center"
+                                                 DataProvider="{Binding SecuritySearchProviderLeg1}"
+                                                 DisplayedValueBinding="{Binding SecurityID}"
+                                                 ExplicitlyIncludeColumns="True"
+                                                 HideColumnHeaders="True"
+                                                 SelectedItem="{Binding SelectedSecurityInfoLeg1}"
+                                                 SelectedValueBinding="{Binding SecurityID}">
+                                    <auto:Intellibox.Columns>
+                                        <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                                        <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                                        <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                                    </auto:Intellibox.Columns>
+                                </auto:Intellibox>
+                                <Button Grid.Row="0"
+                                        Grid.Column="2"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding AddSecurityLeg1Command}"
+                                        Content="添加" />
+                                <Button Grid.Row="0"
+                                        Grid.Column="3"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding DeleteSecurityLeg1Command}"
+                                        Content="删除" />
+                                <Button Grid.Row="0"
+                                        Grid.Column="4"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding AddEtfStocksLeg1Command}"
+                                        Content="成份股" />
+                                <Button Grid.Row="0"
+                                        Grid.Column="5"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding ClearSecurityLeg1Command}"
+                                        Content="清空" />
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="6"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="总市值:" />
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="7"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding TotalValueLeg1,
+                                                          StringFormat={}{0:N}}" />
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                    <GridSplitter Grid.Row="0"
+                                  Grid.Column="1"
+                                  Width="3"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch" />
+                    <GroupBox Grid.Row="0"
+                              Grid.Column="2"
+                              BorderBrush="{Binding EntrustDirectionLeg2,
+                                                    Converter={StaticResource EntrustDirectionDisplayConverter}}">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox2}"
+                                               Text="第二腿列表" />
+                                    <TextBlock Text="   " />
+                                    <TextBlock Grid.Column="1"
+                                               FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox2}"
+                                               Text="{Binding SelectedItem,
+                                                              ElementName=xamComboEditor}" />
+                                    <TextBlock Text="   " />
+                                    <TextBlock Grid.Column="1"
+                                               FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox2}"
+                                               Text="{Binding SelectedItem,
+                                                              ElementName=xamComboEditor2CombiNo}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="37" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <ig:XamGrid x:Name="xamGridLeg2"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Height="230"
+                                            ActiveItem="{Binding Path=SelectedArbitrageItemLeg2}"
+                                            AutoGenerateColumns="False"
+                                            ItemsSource="{Binding Path=ArbitrageItemListLeg2}"
+                                            RowHover="Row">
+                                    <ig:XamGrid.SelectionSettings>
+                                        <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+                                    </ig:XamGrid.SelectionSettings>
+                                    <ig:XamGrid.EditingSettings>
+                                        <ig:EditingSettings AllowEditing="None" />
+                                    </ig:XamGrid.EditingSettings>
+                                    <ig:XamGrid.ConditionalFormattingSettings>
+                                        <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+                                    </ig:XamGrid.ConditionalFormattingSettings>
+                                    <ig:XamGrid.FilteringSettings>
+                                        <ig:FilteringSettings AllowFiltering="FilterMenu" />
+                                    </ig:XamGrid.FilteringSettings>
+
+                                    <ig:XamGrid.ColumnMovingSettings>
+                                        <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+                                    </ig:XamGrid.ColumnMovingSettings>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="CellDoubleClicked">
+                                            <i:InvokeCommandAction Command="{Binding ClosePositionCommand}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ig:XamGrid.Columns>
+                                        <ig:TemplateColumn Key="IsChecked"
+                                                           HeaderText="选择"
+                                                           IsFilterable="False"
+                                                           IsReadOnly="False">
+                                            <ig:TemplateColumn.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding IsChecked}" />
+                                                </DataTemplate>
+                                            </ig:TemplateColumn.ItemTemplate>
+                                        </ig:TemplateColumn>
+                                        <ig:TemplateColumn Key="SecurityInfo.SecurityStatus"
+                                                           HeaderText="状态"
+                                                           IsReadOnly="True">
+                                            <ig:TemplateColumn.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Foreground="{Binding SecurityInfo.SecurityStatus, Converter={StaticResource SecurityStatusDisplayConverter}}" Text="{Binding SecurityInfo.SecurityStatus}" />
+                                                </DataTemplate>
+                                            </ig:TemplateColumn.ItemTemplate>
+                                        </ig:TemplateColumn>
+                                        <ig:TextColumn Key="SecurityInfo.MarketType"
+                                                       HeaderText="市场"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="SecurityInfo.SecurityID"
+                                                       HeaderText="代码"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="SecurityInfo.SecurityName"
+                                                       HeaderText="名称"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="SecurityInfo.SecurityType"
+                                                       HeaderText="品种"
+                                                       IsReadOnly="True" />
+                                        <ig:TemplateColumn Key="Amount"
+                                                           HeaderText="数量"
+                                                           IsFilterable="False"
+                                                           IsReadOnly="False">
+                                            <ig:TemplateColumn.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox IsEditable="True" Text="{Binding Amount}">
+                                                        <ComboBoxItem Content="1" />
+                                                        <ComboBoxItem Content="2" />
+                                                        <ComboBoxItem Content="5" />
+                                                        <ComboBoxItem Content="10" />
+                                                        <ComboBoxItem Content="20" />
+                                                        <ComboBoxItem Content="50" />
+                                                        <ComboBoxItem Content="100" />
+                                                        <ComboBoxItem Content="200" />
+                                                        <ComboBoxItem Content="500" />
+                                                        <ComboBoxItem Content="1000" />
+                                                        <ComboBoxItem Content="2000" />
+                                                        <ComboBoxItem Content="5000" />
+                                                        <ComboBoxItem Content="10000" />
+                                                    </ComboBox>
+                                                </DataTemplate>
+                                            </ig:TemplateColumn.ItemTemplate>
+                                        </ig:TemplateColumn>
+                                        <ig:TextColumn Key="EnabledAmount"
+                                                       HeaderText="可用数量"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+                                        <ig:TextColumn Key="LastPrice"
+                                                       FormatString="{}{0:N2}"
+                                                       HeaderText="最新价"
+                                                       IsFilterable="False"
+                                                       IsReadOnly="True" />
+
+                                    </ig:XamGrid.Columns>
+                                </ig:XamGrid>
+
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="证券代码:" />
+                                <auto:Intellibox Grid.Row="0"
+                                                 Grid.Column="1"
+                                                 VerticalAlignment="Center"
+                                                 DataProvider="{Binding SecuritySearchProviderLeg2}"
+                                                 DisplayedValueBinding="{Binding SecurityID}"
+                                                 ExplicitlyIncludeColumns="True"
+                                                 HideColumnHeaders="True"
+                                                 SelectedItem="{Binding SelectedSecurityInfoLeg2}"
+                                                 SelectedValueBinding="{Binding SecurityID}">
+                                    <auto:Intellibox.Columns>
+                                        <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                                        <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                                        <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                                    </auto:Intellibox.Columns>
+                                </auto:Intellibox>
+                                <Button Grid.Row="0"
+                                        Grid.Column="2"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding AddSecurityLeg2Command}"
+                                        Content="添加" />
+                                <Button Grid.Row="0"
+                                        Grid.Column="3"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding DeleteSecurityLeg2Command}"
+                                        Content="删除" />
+                                <Button Grid.Row="0"
+                                        Grid.Column="4"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding AddEtfStocksLeg2Command}"
+                                        Content="成份股" />
+                                <Button Grid.Row="0"
+                                        Grid.Column="5"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding ClearSecurityLeg2Command}"
+                                        Content="清空" />
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="6"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="总市值:" />
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="7"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding TotalValueLeg2,
+                                                          StringFormat={}{0:N}}" />
+                            </Grid>
+
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+                <GridSplitter Grid.Row="1"
+                              Grid.Column="0"
+                              Height="3"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch" />
+                <GroupBox x:Name="groupBox"
+                          Grid.Row="2"
+                          Grid.Column="0">
+                    <GroupBox.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="15"
+                                       FontWeight="Bold"
+                                       Text="监控状态" />
+                        </DataTemplate>
+                    </GroupBox.HeaderTemplate>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="37" />
+                        </Grid.RowDefinitions>
+
+                        <ig:XamGrid x:Name="xamGridSupervisor"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    ActiveItem="{Binding Path=SelectedArbitrage}"
+                                    AutoGenerateColumns="False"
+                                    ItemsSource="{Binding Path=ArbitrageList}"
+                                    RowHover="Row">
+                            <ig:XamGrid.SelectionSettings>
+                                <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+                            </ig:XamGrid.SelectionSettings>
+                            <ig:XamGrid.EditingSettings>
+                                <ig:EditingSettings AllowEditing="None" />
+                            </ig:XamGrid.EditingSettings>
+                            <ig:XamGrid.ConditionalFormattingSettings>
+                                <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+                            </ig:XamGrid.ConditionalFormattingSettings>
+
+                            <ig:XamGrid.FilteringSettings>
+                                <ig:FilteringSettings AllowFiltering="FilterMenu" />
+                            </ig:XamGrid.FilteringSettings>
+
+                            <ig:XamGrid.ColumnMovingSettings>
+                                <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+                            </ig:XamGrid.ColumnMovingSettings>
+                            <ig:XamGrid.PagerSettings>
+                                <ig:PagerSettings AllowPaging="Bottom"
+                                                  DisplayPagerWhenOnlyOnePage="False"
+                                                  PageSize="100"
+                                                  PagerRowHeight="20" />
+                            </ig:XamGrid.PagerSettings>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="CellDoubleClicked">
+                                    <i:InvokeCommandAction Command="{Binding ClosePositionCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <ig:XamGrid.Columns>
+                                <ig:TemplateColumn Key="IsChecked"
+                                                   HeaderText="选择"
+                                                   IsFilterable="False"
+                                                   IsReadOnly="False">
+                                    <ig:TemplateColumn.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsChecked}" />
+                                        </DataTemplate>
+                                    </ig:TemplateColumn.ItemTemplate>
+                                </ig:TemplateColumn>
+                                <ig:TemplateColumn Key="ArbitrageStatus"
+                                                   HeaderText="监控状态"
+                                                   IsFilterable="True"
+                                                   IsReadOnly="True">
+                                    <ig:TemplateColumn.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{Binding ArbitrageStatus, Converter={StaticResource ArbitrageStatusDisplayConverter}}" Text="{Binding ArbitrageStatus}" />
+                                        </DataTemplate>
+                                    </ig:TemplateColumn.ItemTemplate>
+                                </ig:TemplateColumn>
+                                <ig:TextColumn Key="NameLeg1"
+                                               HeaderText="第一腿参照品种"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="SelectedCombiNoLeg1"
+                                               HeaderText="第一腿组合编号"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="NameLeg2"
+                                               HeaderText="第二腿参照品种"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="SelectedCombiNoLeg2"
+                                               HeaderText="第二腿组合编号"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TemplateColumn Key="ExecutionTimes"
+                                                   HeaderText="计划执行次数"
+                                                   IsFilterable="False"
+                                                   IsReadOnly="False">
+                                    <ig:TemplateColumn.ItemTemplate>
+                                        <DataTemplate>
+                                            <ComboBox IsEditable="False" Text="{Binding ExecutionTimes}">
+                                                <ComboBoxItem Content="1" />
+                                                <ComboBoxItem Content="2" />
+                                                <ComboBoxItem Content="3" />
+                                                <ComboBoxItem Content="4" />
+                                                <ComboBoxItem Content="5" />
+                                                <ComboBoxItem Content="6" />
+                                                <ComboBoxItem Content="7" />
+                                                <ComboBoxItem Content="8" />
+                                                <ComboBoxItem Content="9" />
+                                                <ComboBoxItem Content="10" />
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </ig:TemplateColumn.ItemTemplate>
+                                </ig:TemplateColumn>
+                                <ig:TextColumn Key="CurrentTime"
+                                               HeaderText="已执行次数"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="PriceDifferenceType"
+                                               HeaderText="价差类型"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="BasketTradeMethod"
+                                               HeaderText="报单方式"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="CompareSymbol"
+                                               HeaderText="监控价差符号"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="PriceDifference"
+                                               HeaderText="监控价差"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="DisplaySecurityInfoLeg1.Quotation.LastPx"
+                                               HeaderText="第一腿参照品种当前价"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="DisplaySecurityInfoLeg2.Quotation.LastPx"
+                                               HeaderText="第二腿参照品种当前价"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+                                <ig:TextColumn Key="CurrentPriceDifference"
+                                               FormatString="{}{0:N2}"
+                                               HeaderText="当前价差"
+                                               IsFilterable="False"
+                                               IsReadOnly="True" />
+
+                            </ig:XamGrid.Columns>
+                        </ig:XamGrid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Name="cbTraded"
+                                          Grid.Column="0"
+                                          Checked="CheckBox_Checked"
+                                          Content="显示已执行"
+                                          Foreground="Green"
+                                          IsChecked="False"
+                                          Unchecked="cbNotTraded_Unchecked" />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding StopArbitrageCommand}"
+                                        Content="停止" />
+                                <Button Grid.Column="1"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding ContinueArbitrageCommand}"
+                                        Content="继续" />
+                                <Button Grid.Column="2"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding DeleteArbitrageCommand}"
+                                        Content="删除" />
+                                <Button Grid.Column="3"
+                                        Width="80"
+                                        Height="30"
+                                        Command="{Binding ImmediateEntrustCommand}"
+                                        Content="立即执行" />
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+                </GroupBox>
+            </Grid>
+            <GridSplitter Grid.Row="0"
+                          Grid.Column="1"
+                          Width="3"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch" />
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="420" />
+                    <RowDefinition Height="37" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0">
+                    <GroupBox.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="15"
+                                       FontWeight="Bold"
+                                       Text="套利设置" />
+                        </DataTemplate>
+                    </GroupBox.HeaderTemplate>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*" />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <!--<TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="价差类型:" />
+                            <ig:XamComboEditor Grid.Row="0"
+                                               Grid.Column="1"
+                                               Margin="1"
+                                               ItemsSource="{Binding Source={StaticResource odpPriceDifferenceType}}"
+                                               SelectedItem="{Binding Path=PriceDifferenceType,
+                                                                      Mode=TwoWay}" />-->
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="报单方式:" />
+                            <ig:XamComboEditor Grid.Row="0"
+                                               Grid.Column="1"
+                                               Margin="1"
+                                               ItemsSource="{Binding Source={StaticResource odpArbitrageTradeMethod}}"
+                                               SelectedItem="{Binding Path=BasketTradeMethod,
+                                                                      Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="触发条件:" />
+                            <ig:XamComboEditor Grid.Row="1"
+                                               Grid.Column="1"
+                                               Margin="1"
+                                               ItemsSource="{Binding Source={StaticResource odpCompareSymbol}}"
+                                               SelectedItem="{Binding Path=CompareSymbol,
+                                                                      Mode=TwoWay}" />
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="监控价差:" />
+                            <TextBox Grid.Row="2"
+                                     Grid.Column="1"
+                                     Margin="1"
+                                     Text="{Binding PriceDifference,
+                                                    Mode=TwoWay}" />
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="实时价差:" />
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="1"
+                                       Margin="1"
+                                       Text="{Binding CurrentPriceDifference,
+                                                      Mode=TwoWay,
+                                                      StringFormat={}{0:N4}}" />
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="0"
+                                       Text="开平仓:" />
+                            <ig:XamComboEditor Grid.Row="4"
+                                               Grid.Column="1"
+                                               Margin="1"
+                                               ItemsSource="{Binding Source={StaticResource odpFuturesDirection}}"
+                                               SelectedItem="{Binding Path=FuturesDirection,
+                                                                      Mode=TwoWay}" />
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="0"
+                                       Text="执行次数:" />
+                            <ComboBox Grid.Row="5"
+                                      Grid.Column="1"
+                                      IsEditable="False"
+                                      Text="{Binding ExecutionTimes}">
+                                <ComboBoxItem Content="1" />
+                                <ComboBoxItem Content="2" />
+                                <ComboBoxItem Content="3" />
+                                <ComboBoxItem Content="4" />
+                                <ComboBoxItem Content="5" />
+                                <ComboBoxItem Content="6" />
+                                <ComboBoxItem Content="7" />
+                                <ComboBoxItem Content="8" />
+                                <ComboBoxItem Content="9" />
+                                <ComboBoxItem Content="10" />
+                            </ComboBox>
+                        </Grid>
+
+
+                        <GroupBox x:Name="groupBox1"
+                                  Grid.Row="1"
+                                  Grid.Column="0"
+                                  BorderBrush="{Binding EntrustDirectionLeg1,
+                                                        Converter={StaticResource EntrustDirectionDisplayConverter}}">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="12"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox1}"
+                                               Text="第一腿" />
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="0"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Text="参照品种:" />
+                                    <auto:Intellibox Grid.Row="0"
+                                                     Grid.Column="2"
+                                                     Margin="1"
+                                                     DataProvider="{Binding SecuritySearchProviderLeg1}"
+                                                     DisplayedValueBinding="{Binding SecurityID}"
+                                                     ExplicitlyIncludeColumns="True"
+                                                     HideColumnHeaders="True"
+                                                     SelectedItem="{Binding DisplaySecurityInfoLeg1}"
+                                                     SelectedValueBinding="{Binding SecurityID}">
+                                        <auto:Intellibox.Columns>
+                                            <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                                            <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                                            <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                                        </auto:Intellibox.Columns>
+                                    </auto:Intellibox>
+                                    <TextBox Grid.Row="0"
+                                             Grid.Column="3"
+                                             Margin="1"
+                                             IsEnabled="False"
+                                             Text="{Binding DisplaySecurityInfoLeg1.SecurityName,
+                                                            Mode=TwoWay}" />
+                                </Grid>
+
+
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Text="组合编号:" />
+                                <ig:XamComboEditor x:Name="xamComboEditor1CombiNo"
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Margin="1"
+                                                   ItemsSource="{Binding Path=MenuBar.CombiNos}"
+                                                   SelectedItem="{Binding Path=SelectedCombiNoLeg1,
+                                                                          Mode=TwoWay}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Text="操作:" />
+                                <ig:XamComboEditor x:Name="xamComboEditor1"
+                                                   Grid.Row="2"
+                                                   Grid.Column="1"
+                                                   Margin="1"
+                                                   Foreground="{Binding EntrustDirectionLeg1,
+                                                                        Converter={StaticResource EntrustDirectionDisplayConverter}}"
+                                                   ItemsSource="{Binding StockEntrustDirectionList}"
+                                                   OverridesDefaultStyle="True"
+                                                   SelectedItem="{Binding EntrustDirectionLeg1,
+                                                                          Mode=TwoWay}">
+                                    <ig:XamComboEditor.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type ig:ComboEditorItemControl}}" TargetType="ig:ComboEditorItemControl">
+                                            <Setter Property="Foreground" Value="{Binding Content, RelativeSource={RelativeSource Self}, Converter={StaticResource EntrustDirectionDisplayConverter}, ConverterParameter={StaticResource ComboEditorForegroundBrush}}" />
+                                        </Style>
+                                    </ig:XamComboEditor.Resources>
+                                </ig:XamComboEditor>
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           Text="最小委托比例:" />
+                                <ComboBox Grid.Row="3"
+                                          Grid.Column="1"
+                                          Margin="1"
+                                          IsEditable="False"
+                                          Text="{Binding LimitEntrustRatioLeg1}">
+                                    <ComboBoxItem Content="100%" />
+                                    <ComboBoxItem Content="95%" />
+                                    <ComboBoxItem Content="90%" />
+                                    <ComboBoxItem Content="85%" />
+                                    <ComboBoxItem Content="80%" />
+                                    <ComboBoxItem Content="75%" />
+                                    <ComboBoxItem Content="70%" />
+                                    <ComboBoxItem Content="65%" />
+                                    <ComboBoxItem Content="60%" />
+                                    <ComboBoxItem Content="55%" />
+                                    <ComboBoxItem Content="50%" />
+                                    <ComboBoxItem Content="45%" />
+                                    <ComboBoxItem Content="40%" />
+                                    <ComboBoxItem Content="35%" />
+                                    <ComboBoxItem Content="30%" />
+                                    <ComboBoxItem Content="25%" />
+                                    <ComboBoxItem Content="20%" />
+                                    <ComboBoxItem Content="15%" />
+                                    <ComboBoxItem Content="10%" />
+                                    <ComboBoxItem Content="5%" />
+                                </ComboBox>
+                            </Grid>
+
+                        </GroupBox>
+
+                        <GroupBox x:Name="groupBox2"
+                                  Grid.Row="2"
+                                  BorderBrush="{Binding EntrustDirectionLeg2,
+                                                        Converter={StaticResource EntrustDirectionDisplayConverter}}">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="12"
+                                               Foreground="{Binding BorderBrush,
+                                                                    ElementName=groupBox2}"
+                                               Text="第二腿" />
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="0"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Text="参照品种:" />
+                                    <auto:Intellibox Grid.Row="0"
+                                                     Grid.Column="2"
+                                                     Margin="1"
+                                                     DataProvider="{Binding SecuritySearchProviderLeg2}"
+                                                     DisplayedValueBinding="{Binding SecurityID}"
+                                                     ExplicitlyIncludeColumns="True"
+                                                     HideColumnHeaders="True"
+                                                     SelectedItem="{Binding DisplaySecurityInfoLeg2}"
+                                                     SelectedValueBinding="{Binding SecurityID}">
+                                        <auto:Intellibox.Columns>
+                                            <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                                            <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                                            <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                                        </auto:Intellibox.Columns>
+                                    </auto:Intellibox>
+
+                                    <TextBox Grid.Row="0"
+                                             Grid.Column="3"
+                                             Margin="1"
+                                             IsEnabled="False"
+                                             Text="{Binding DisplaySecurityInfoLeg2.SecurityName,
+                                                            Mode=TwoWay}" />
+                                </Grid>
+
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Text="组合编号:" />
+                                <ig:XamComboEditor x:Name="xamComboEditor2CombiNo"
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Margin="1"
+                                                   ItemsSource="{Binding Path=MenuBar.CombiNos}"
+                                                   SelectedItem="{Binding Path=SelectedCombiNoLeg2,
+                                                                          Mode=TwoWay}" />
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Text="操作:" />
+
+                                <ig:XamComboEditor x:Name="xamComboEditor"
+                                                   Grid.Row="2"
+                                                   Grid.Column="1"
+                                                   Margin="1"
+                                                   Foreground="{Binding EntrustDirectionLeg2,
+                                                                        Converter={StaticResource EntrustDirectionDisplayConverter}}"
+                                                   ItemsSource="{Binding StockEntrustDirectionList}"
+                                                   OverridesDefaultStyle="True"
+                                                   SelectedItem="{Binding EntrustDirectionLeg2,
+                                                                          Mode=TwoWay}">
+                                    <ig:XamComboEditor.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type ig:ComboEditorItemControl}}" TargetType="ig:ComboEditorItemControl">
+                                            <Setter Property="Foreground" Value="{Binding Content, RelativeSource={RelativeSource Self}, Converter={StaticResource EntrustDirectionDisplayConverter}, ConverterParameter={StaticResource ComboEditorForegroundBrush}}" />
+                                        </Style>
+                                    </ig:XamComboEditor.Resources>
+                                </ig:XamComboEditor>
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           Text="最小委托比例:" />
+                                <ComboBox Grid.Row="3"
+                                          Grid.Column="1"
+                                          Margin="1"
+                                          IsEditable="False"
+                                          Text="{Binding LimitEntrustRatioLeg2}">
+                                    <ComboBoxItem Content="100%" />
+                                    <ComboBoxItem Content="95%" />
+                                    <ComboBoxItem Content="90%" />
+                                    <ComboBoxItem Content="85%" />
+                                    <ComboBoxItem Content="80%" />
+                                    <ComboBoxItem Content="75%" />
+                                    <ComboBoxItem Content="70%" />
+                                    <ComboBoxItem Content="65%" />
+                                    <ComboBoxItem Content="60%" />
+                                    <ComboBoxItem Content="55%" />
+                                    <ComboBoxItem Content="50%" />
+                                    <ComboBoxItem Content="45%" />
+                                    <ComboBoxItem Content="40%" />
+                                    <ComboBoxItem Content="35%" />
+                                    <ComboBoxItem Content="30%" />
+                                    <ComboBoxItem Content="25%" />
+                                    <ComboBoxItem Content="20%" />
+                                    <ComboBoxItem Content="15%" />
+                                    <ComboBoxItem Content="10%" />
+                                    <ComboBoxItem Content="5%" />
+                                </ComboBox>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Width="80"
+                            Height="30"
+                            Command="{Binding SuperviseCommand}"
+                            Content="加入监控" />
+                    <Button Grid.Column="1"
+                            Width="80"
+                            Height="30"
+                            Command="{Binding IssueEntrustCommand}"
+                            Content="直接下单" />
+                    <Button Grid.Column="2"
+                            Width="30"
+                            Height="30"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Command="{Binding ImportArbitrageCommand}"
+                            Content="⇦"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            ToolTip="导入套利配置" />
+
+                    <Button Grid.Column="3"
+                            Width="30"
+                            Height="30"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Command="{Binding ExportArbitrageCommand}"
+                            Content="⇨"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            ToolTip="导出套利配置" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

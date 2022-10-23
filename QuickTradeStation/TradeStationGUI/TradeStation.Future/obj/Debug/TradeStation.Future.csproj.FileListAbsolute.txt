@@ -1,0 +1,16 @@
+D:\QuickTradeStation\TradeStationGUI\build\log4net.config
+D:\QuickTradeStation\TradeStationGUI\build\packages.config
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Future.dll
+D:\QuickTradeStation\TradeStationGUI\build\TradeStation.Future.pdb
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\TradeStation.Future.csprojResolveAssemblyReference.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\Resources.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\Views\FutureMainView.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\Views\FutureMainView.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\Views\FutureQuotPanel.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\TradeStation.Future_MarkupCompile.cache
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\TradeStation.Future_MarkupCompile.lref
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\Views\FutureQuotPanel.baml
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\TradeStation.Future.g.resources
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\TradeStation.Future.dll
+D:\QuickTradeStation\TradeStationGUI\TradeStation.Future\obj\Debug\TradeStation.Future.pdb

@@ -1,0 +1,218 @@
+﻿<!--
+    // (c) Copyright Microsoft Corporation.
+    // This source is subject to Microsoft Public License (Ms-PL).
+    // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+    // All other rights reserved.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:commonutil="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+                    xmlns:converter="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:ig="http://schemas.infragistics.com/xaml"
+                    xmlns:igEditors="http://infragistics.com/Editors"
+                    xmlns:igdp="http://infragistics.com/DataPresenter"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:services="clr-namespace:TradeStation.Infrastructure.Services;assembly=TradeStation.Infrastructure"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:tradeConverter="clr-namespace:TradeStation.Modules.Trade.Converters"
+                    mc:Ignorable="d">
+
+    <ImageBrush x:Key="FilterBrush" ImageSource="{DynamicResource Filter}" />
+    <ImageBrush x:Key="Filter2Brush" ImageSource="{DynamicResource Filter2}" />
+
+    <Style x:Key="FilterBtnStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle x:Name="rectangle"
+                                   Margin="0"
+                                   Fill="{StaticResource FilterBrush}"
+                                   StrokeThickness="0" />
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Margin="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True" />
+                        <Trigger Property="IsDefaulted" Value="True" />
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="rectangle" Property="Fill" Value="{StaticResource Filter2Brush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="rectangle" Property="Fill" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <converter:PriceDigitalDisplayColorConverter x:Key="PriceDigitalDisplayColorConverter" />
+    <converter:StockQuantityDisplayConverter x:Key="StockQuantityDisplayConverter" />
+    <converter:DigitalCompareBrushConverter x:Key="DigitalCompareBrushConverter" />
+    <converter:OptionTypeDisplayConverter x:Key="OptionTypeDisplayConverter" />
+    <converter:StringNullOrEmptyReplacementConverter x:Key="StringNullOrEmptyReplacementConverter" />
+    <converter:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+    <converter:GenericEqualsConverter x:Key="GenericEqualsConverter" />
+    <tradeConverter:UnderlyingTypeFormatStringConverter x:Key="UnderlyingTypeFormatStringConverter" />
+
+    <ObjectDataProvider x:Key="odpEntrustDirection"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eEntrustDirection" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpEntrustPriceType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eEntrustPriceType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpChaseOrderType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eChaseOrderType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpMarketType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eMarketType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <converter:EntrustStateDisplayConverter x:Key="EntrustStateDisplayConverter" />
+    <converter:EntrustDirectionDisplayConverter x:Key="EntrustDirectionDisplayConverter" />
+    <converter:FuturesDirectionDisplayConverter x:Key="FuturesDirectionDisplayConverter" />
+    <converter:PositionFlagDisplayConverter x:Key="PositionFlagDisplayConverter" />
+    <converter:SecurityStatusDisplayConverter x:Key="SecurityStatusDisplayConverter" />
+    <converter:ArbitrageStatusDisplayConverter x:Key="ArbitrageStatusDisplayConverter" />
+    <converter:RatioDisplayConverter x:Key="RatioDisplayConverter" />
+
+    <ObjectDataProvider x:Key="odpFuturesDirection"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eFuturesDirection" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpInvestType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eInvestType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpPurchaseWay"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:ePurchaseWay" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpBasketCategoryType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eBasketCategory" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpEntrustState"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eEntrustState" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpPriceDifferenceType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:PriceDifferenceType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpBasketTradeMethod"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eBasketTradeMethod" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpCompareSymbol"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:CompareSymbol" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpArbitrageCategoryType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:ArbitrageCategoryType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpArbitrageTradeMethod"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:ArbitrageTradeMethod" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <!--  GenericFrameworkElement  -->
+    <Style x:Key="GenericFrameworkElement" TargetType="{x:Type FrameworkElement}">
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Width" Value="Auto" />
+    </Style>
+
+    <!--  GenericListView  -->
+    <Style x:Key="GenericListView"
+           BasedOn="{StaticResource GenericFrameworkElement}"
+           TargetType="{x:Type ListView}">
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+    <!--  AlternativeBackgroundListView  -->
+    <Style x:Key="AlternativeBackgroundListView"
+           BasedOn="{StaticResource GenericListView}"
+           TargetType="{x:Type ListView}">
+        <Setter Property="AlternationCount" Value="2" />
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="LightBlue" />
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

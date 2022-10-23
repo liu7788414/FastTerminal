@@ -1,0 +1,326 @@
+﻿<UserControl x:Class="TradeStation.Option.Views.CombinedFutureTradeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\\Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Grid Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="市场" />
+                    <ig:XamComboEditor Grid.Row="0" Grid.Column="1" Width="100"
+                                       ItemsSource="{Binding OptionMarkets}"
+                                       SelectedItem="{Binding SelectedOptionMarket}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding OptionMarketChangedCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ig:XamComboEditor>
+
+                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Text="买组合" />
+                    <ig:XamComboEditor Grid.Row="0" Grid.Column="3" Width="100"
+                                       ItemsSource="{Binding Menubar.CombiNos}"
+                                       SelectedItem="{Binding SelectedBuyCombineNo}">
+                    </ig:XamComboEditor>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="标的名称" />
+                    <ig:XamComboEditor Grid.Row="1" Grid.Column="1" Width="100"
+                                       ItemsSource="{Binding UnderlyingSecurityNames}"
+                                       SelectedItem="{Binding SelectedUnderlyingSecurity}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding UnderlyingSecurityChangedCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ig:XamComboEditor>
+
+                    <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Text="卖组合" />
+                    <ig:XamComboEditor Grid.Row="1" Grid.Column="3" Width="100"
+                                       ItemsSource="{Binding Menubar.CombiNos}"
+                                       SelectedItem="{Binding SelectedSellCombineNo}">
+                    </ig:XamComboEditor>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="期权月份" />
+                    <ig:XamComboEditor Grid.Row="2" Grid.Column="1" Width="100"
+                                       ItemsSource="{Binding DeliveryMonthList}"
+                                       SelectedItem="{Binding DeliveryMonth}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectedDeliveryMonthChangedCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ig:XamComboEditor>
+                </Grid>
+            </StackPanel>
+
+            <Border BorderBrush="#FFABABAB" BorderThickness="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="345">
+                    <ig:XamGrid ActiveItem="{Binding SelectedOptionItem}"
+                                AutoGenerateColumns="False"
+                                ItemsSource="{Binding DisplayOptions}"
+                                RowHover="Row">
+                        <ig:XamGrid.FilteringSettings>
+                            <ig:FilteringSettings AllowFiltering="FilterMenu" />
+                        </ig:XamGrid.FilteringSettings>
+                        <ig:XamGrid.SelectionSettings>
+                            <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+                        </ig:XamGrid.SelectionSettings>
+                        <ig:XamGrid.Columns>
+                            <ig:TemplateColumn Key="ExercisePrice"
+                                               HeaderText="行权价"
+                                               IsFilterable="False"
+                                               IsReadOnly="True">
+                                <ig:TemplateColumn.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource DigitFormatStringWithTagConverter}">
+                                                        <Binding Path="ExercisePrice" />
+                                                        <Binding Path="CallOptionSecurityInfo.PriceDigits" />
+                                                        <Binding Path="OptionExRightSymbol" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ig:TemplateColumn.ItemTemplate>
+                            </ig:TemplateColumn>
+                            <ig:TemplateColumn Key="CallOptionSecurityInfo.Quotation.BidVol1"
+                                               HeaderText="买量"
+                                               IsFilterable="False"
+                                               IsReadOnly="True">
+                                <ig:TemplateColumn.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource GreaterValueConverter}" ConverterParameter="true">
+                                                        <Binding Path="CallOptionSecurityInfo.Quotation.BidVol1" IsAsync="True" />
+                                                        <Binding Path="PutOptionSecurityInfo.Quotation.AskVol1" IsAsync="True" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ig:TemplateColumn.ItemTemplate>
+                            </ig:TemplateColumn>
+                            <ig:TemplateColumn Key="CallOptionSecurityInfo.Quotation.BidPx1"
+                                               HeaderText="买价"
+                                               IsFilterable="False"
+                                               IsReadOnly="True">
+                                <ig:TemplateColumn.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Foreground="Red">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource CombinedFuturePriceConverter}">
+                                                        <Binding Path="CallOptionSecurityInfo.Quotation.BidPx1" />
+                                                        <Binding Path="PutOptionSecurityInfo.Quotation.AskPx1" />
+                                                        <Binding Path="ExercisePrice" />
+                                                        <Binding Path="CallOptionSecurityInfo.PriceDigits" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ig:TemplateColumn.ItemTemplate>
+                            </ig:TemplateColumn>
+                            <ig:TemplateColumn Key="PutOptionSecurityInfo.Quotation.AskPx1"
+                                                HeaderText="卖价"
+                                                IsFilterable="False"
+                                                IsReadOnly="True">
+                                <ig:TemplateColumn.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Foreground="Green">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource CombinedFuturePriceConverter}">
+                                                        <Binding Path="CallOptionSecurityInfo.Quotation.AskPx1" />
+                                                        <Binding Path="PutOptionSecurityInfo.Quotation.BidPx1" />
+                                                        <Binding Path="ExercisePrice" />
+                                                        <Binding Path="PutOptionSecurityInfo.PriceDigits" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ig:TemplateColumn.ItemTemplate>
+                            </ig:TemplateColumn>
+                            <ig:TemplateColumn Key="PutOptionSecurityInfo.Quotation.AskVol1"
+                                               HeaderText="卖量"
+                                               IsFilterable="False"
+                                               IsReadOnly="True">
+                                <ig:TemplateColumn.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource GreaterValueConverter}" ConverterParameter="true">
+                                                        <Binding Path="CallOptionSecurityInfo.Quotation.AskVol1" IsAsync="True" />
+                                                        <Binding Path="PutOptionSecurityInfo.Quotation.BidVol1" IsAsync="True" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ig:TemplateColumn.ItemTemplate>
+                            </ig:TemplateColumn>
+                        </ig:XamGrid.Columns>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectedRowsCollectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectedOptionItemChangedCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ig:XamGrid>
+                </ScrollViewer>
+            </Border>
+
+            <StackPanel Orientation="Horizontal">
+                <Grid Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               VerticalAlignment="Center" TextAlignment="Left"
+                               Width="60"
+                               Text="行权价" />
+
+                    <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Width="120" Height="25"
+                                   HorizontalAlignment="Left">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource DigitFormatStringWithTagConverter}">
+                                    <Binding Path="SelectedOptionItem.ExercisePrice" />
+                                    <Binding Path="SelectedOptionItem.CallOptionSecurityInfo.PriceDigits" />
+                                    <Binding Path="SelectedOptionItem.OptionExRightSymbol" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               VerticalAlignment="Center" TextAlignment="Left"
+                               Width="60"
+                               Text="张数" />
+                    <ig:XamNumericInput Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="95"
+                                        ClipMode="Raw" DataMode="Raw" DisplayMode="Raw"
+                                        InvalidValueBehavior="RevertValue"
+                                        ValueType="{x:Type sys:Int32}"
+                                        PromptChar=""
+                                        Mask="nnnnnnnnn"
+                                        SpinButtonDisplayMode="Always"
+                                        Value="{Binding EntrustAmount, UpdateSourceTrigger=PropertyChanged}">
+                        <ig:XamNumericInput.ValueConstraint>
+                            <ig:ValueConstraint MinInclusive="1"></ig:ValueConstraint>
+                        </ig:XamNumericInput.ValueConstraint>
+                    </ig:XamNumericInput>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               VerticalAlignment="Center" TextAlignment="Left"
+                               Width="60"
+                               Text="委托类型" />
+                    <ig:XamComboEditor Grid.Row="2" Grid.Column="1" Width="95"
+                                       HorizontalAlignment="Left"
+                                       Margin="0,3,3,3"
+                                       IsEditable="False"
+                                       ItemsSource="{Binding CombinedOptionEntrustPriceTypes}"
+                                       SelectedItem="{Binding SelectedCombinedOptiontPriceType}">
+                    </ig:XamComboEditor>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               VerticalAlignment="Center" TextAlignment="Left"
+                               Width="60"
+                               Text="追加ticks" />
+                    <ig:XamNumericInput Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="95"
+                                        ClipMode="Raw" DataMode="Raw" DisplayMode="Raw"
+                                        InvalidValueBehavior="RevertValue"
+                                        ValueType="{x:Type sys:Int32}"
+                                        PromptChar=""
+                                        Mask="nn"
+                                        SpinButtonDisplayMode="Always"
+                                        Value="{Binding EntrustTickCount, UpdateSourceTrigger=PropertyChanged}">
+                    </ig:XamNumericInput>
+                </Grid>
+                <Grid Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               VerticalAlignment="Center" TextAlignment="Left"
+                               Width="60"
+                               Text="下单方法"/>
+                    <ig:XamComboEditor Grid.Row="1" Grid.Column="1" Width="95"
+                                       HorizontalAlignment="Left"
+                                       Margin="0,3,3,3"
+                                       IsEditable="False"
+                                       ItemsSource="{Binding Source={StaticResource odpBasketTradeMethod}}"
+                                       SelectedItem="{Binding SelectedBasketTradeMethod}">
+                    </ig:XamComboEditor>
+
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Height="25" Width="75"
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Content="买入">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding CombinedFutureBuyCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button Height="25" Width="75"
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Content="卖出">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding CombinedFutureSellCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

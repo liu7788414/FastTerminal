@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.PositionPanelFutureForBasket"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:igdp="http://infragistics.com/DataPresenter"
+             xmlns:local="clr-namespace:TradeStation.Modules.Trade.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="400"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <ig:XamGrid x:Name="xamGrid"
+                    Grid.Row="0"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding Path=Trader.PositionInfoCollection.FuturePositionInfoList}"
+                    RowHover="Row">
+            <ig:XamGrid.SelectionSettings>
+                <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+            </ig:XamGrid.SelectionSettings>
+            <ig:XamGrid.EditingSettings>
+                <ig:EditingSettings AllowEditing="None" />
+            </ig:XamGrid.EditingSettings>
+            <ig:XamGrid.ConditionalFormattingSettings>
+                <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+            </ig:XamGrid.ConditionalFormattingSettings>
+
+            <!--  #BEGIN SNIPPET#  -->
+            <ig:XamGrid.FilteringSettings>
+                <ig:FilteringSettings AllowFiltering="FilterMenu" />
+            </ig:XamGrid.FilteringSettings>
+
+            <ig:XamGrid.ColumnMovingSettings>
+                <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+            </ig:XamGrid.ColumnMovingSettings>
+            <ig:XamGrid.PagerSettings>
+                <ig:PagerSettings AllowPaging="Bottom"
+                                  DisplayPagerWhenOnlyOnePage="False"
+                                  PageSize="100"
+                                  PagerRowHeight="25" />
+            </ig:XamGrid.PagerSettings>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellDoubleClicked">
+                    <i:InvokeCommandAction Command="{Binding ClosePositionCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ig:XamGrid.Columns>
+                <ig:TextColumn Key="MarketType"
+                               HeaderText="市场"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityID"
+                               HeaderText="合约代码"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityName"
+                               HeaderText="品种名称"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="CombiNo"
+                               HeaderText="组合"
+                               IsReadOnly="True" />
+
+                <ig:TemplateColumn Key="PositionFlag"
+                                   HeaderText="多空标志"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding PositionFlag, Converter={StaticResource PositionFlagDisplayConverter}}" Text="{Binding PositionFlag}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+
+                <ig:TextColumn Key="CurrentAmount"
+                               HeaderText="当前数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TodayAmount"
+                               HeaderText="今日数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="LastdayAmount"
+                               HeaderText="昨仓数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="EnableAmount"
+                               HeaderText="可用"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TodayEnableAmount"
+                               HeaderText="今日可用"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="LastdayEnableAmount"
+                               HeaderText="昨仓可用"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="StockholderId"
+                               HeaderText="股东代码"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="HoldSeat"
+                               HeaderText="持仓席位"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="InvestType"
+                               HeaderText="投资类型"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="CurrentCostPrice"
+                               FormatString="{}{0:N2}"
+                               HeaderText="当前成本价"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TodayBuyAmount"
+                               HeaderText="当日开仓数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TodaySellAmount"
+                               HeaderText="当日平仓数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TodayBuyBalance"
+                               HeaderText="当日开仓金额"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TodaySellBalance"
+                               HeaderText="当日平仓金额"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TemplateColumn Key="DynamicProfit"
+                                   HeaderText="持仓盈亏"
+                                   IsFilterable="False"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding DynamicProfit, Converter={StaticResource PriceDigitalDisplayColorConverter}}" Text="{Binding DynamicProfit, StringFormat={}{0:F2}}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+                <ig:TemplateColumn Key="CloseProfit"
+                                   HeaderText="平仓盈亏"
+                                   IsFilterable="False"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding CloseProfit, Converter={StaticResource PriceDigitalDisplayColorConverter}}" Text="{Binding CloseProfit, StringFormat={}{0:F2}}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+                <ig:TemplateColumn Key="TotalProfit"
+                                   HeaderText="总盈亏"
+                                   IsFilterable="False"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding TotalProfit, Converter={StaticResource PriceDigitalDisplayColorConverter}}" Text="{Binding TotalProfit, StringFormat={}{0:F2}}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+            </ig:XamGrid.Columns>
+        </ig:XamGrid>
+        <Grid Grid.Row="1">
+            <CheckBox x:Name="cbShowPosition0"
+                      Margin="20,0,0,0"
+                      Checked="CheckBox_Checked"
+                      Content="显示持仓为0的证券"
+                      FontSize="14"
+                      IsChecked="True"
+                      Unchecked="CheckBox_Checked" />
+            <local:ToolBarNew Margin="50,0,30,0" HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xamDockManager version="15.1.20151.2251">
+  <contentPanes>
+    <contentPane name="cpFundEntrust" location="DockedLeft" lastFloatingSize="1878,80" lastFloatingWindowRect="945,695,1894,118" lastFloatingLocation="945,695" lastActivatedTime="2016-10-27T03:11:07.3513746Z" />
+    <contentPane name="cpFundEtfStockList" location="DockedLeft" lastFloatingSize="1878,444" lastFloatingWindowRect="868,299,1894,482" lastFloatingLocation="868,299" lastActivatedTime="2016-10-27T03:11:02.8221156Z" />
+    <contentPane name="cpFundEtfTradeResultDetail" location="DockedLeft" lastFloatingSize="1878,444" lastFloatingWindowRect="1043,300,1894,482" lastFloatingLocation="1043,300" lastActivatedTime="2016-10-27T03:11:02.5180982Z" />
+    <contentPane name="cpFundEtfEntrustDetail" location="DockedLeft" lastFloatingSize="1878,444" lastFloatingWindowRect="1090,309,1894,482" lastFloatingLocation="1090,309" lastActivatedTime="2016-10-27T03:11:02.0400708Z" />
+    <contentPane name="cpFundEtfBaseInfo" location="DockedLeft" lastFloatingSize="1878,444" lastFloatingWindowRect="1121,305,1894,482" lastFloatingLocation="1121,305" lastActivatedTime="2016-10-27T03:11:01.012012Z" />
+    <contentPane name="cpFundTradeResult" location="DockedLeft" lastFloatingSize="1878,80" lastFloatingWindowRect="1066,781,1894,118" lastFloatingLocation="1066,781" lastActivatedTime="2016-10-27T03:07:04.6065997Z" />
+    <contentPane name="cpFundPurchaseRedemption" location="DockedLeft" lastFloatingSize="1878,444" lastFloatingWindowRect="823,708,1894,482" lastFloatingLocation="823,708" lastActivatedTime="2016-10-27T03:06:21.1511142Z" />
+    <contentPane name="cpFundEtfPurchase" location="DockedLeft" lastFloatingSize="1878,444" lastFloatingWindowRect="-23,237,1894,482" lastFloatingLocation="-23,237" lastActivatedTime="2016-10-25T06:12:12.4551907Z" />
+  </contentPanes>
+  <panes>
+    <splitPane name="Z1242675700f84c0f813fceebf7c0a362" splitterOrientation="Vertical" location="DockedLeft" extent="1035">
+      <splitPane name="Z3dde769da58c44d39044543278b825ab" splitterOrientation="Horizontal" relativeSize="209.560592327548,100">
+        <splitPane name="Z96e5e48580b14fdc809d3b4a94c38703" splitterOrientation="Vertical" relativeSize="100,87.652645861601">
+          <contentPane name="cpFundEtfPurchase" relativeSize="25.5448308096851,100" />
+          <tabGroup name="Z5782383914bd4cd580f6eca73f631dbe" selectedIndex="3" relativeSize="119.059356613394,100">
+            <contentPane name="cpFundEtfBaseInfo" />
+            <contentPane name="cpFundEtfEntrustDetail" />
+            <contentPane name="cpFundEtfTradeResultDetail" />
+            <contentPane name="cpFundEtfStockList" relativeSize="98.2809086585733,100" />
+          </tabGroup>
+        </splitPane>
+        <splitPane name="Z03950d68a93e44d7b726010fb6c9d59d" splitterOrientation="Vertical" relativeSize="100,112.347354138399">
+          <contentPane name="cpFundPurchaseRedemption" relativeSize="34.5784418356457,100" />
+          <tabGroup name="Z435035ea7bcc48a8a6baeecc358dbd2f" selectedIndex="1" relativeSize="165.421558164354,100">
+            <contentPane name="cpFundTradeResult" relativeSize="209.347345132743,100" />
+            <contentPane name="cpFundEntrust" />
+          </tabGroup>
+        </splitPane>
+      </splitPane>
+    </splitPane>
+    <splitPane name="spQuotePaneFund" splitterOrientation="Horizontal" location="DockedLeft" />
+    <splitPane name="Z1d9b04b5f0a04071939565ee7d64c5a7" splitterOrientation="Vertical" location="Floating" floatingLocation="-23,237" floatingSize="1878,444">
+      <contentPane name="cpFundEtfPurchase" relativeSize="16.0492718019742,100" />
+    </splitPane>
+    <splitPane name="Zde5fc296616b42408d393f2dccb3cba4" splitterOrientation="Vertical" location="Floating" floatingLocation="945,695" floatingSize="1878,80">
+      <tabGroup name="Z56cd6a445d30471f8a70905d6a1ffb02" selectedIndex="-1" relativeSize="84.5683401914175,100">
+        <contentPane name="cpFundEntrust" />
+      </tabGroup>
+    </splitPane>
+    <splitPane name="Z9a810cc838854338aa89f8f3709fd616" splitterOrientation="Vertical" location="Floating" floatingLocation="823,708" floatingSize="1878,444">
+      <contentPane name="cpFundPurchaseRedemption" relativeSize="46.0484674441775,100" />
+    </splitPane>
+    <splitPane name="Ze1b242cbd0b74abbbf8cc1d85e8aa210" splitterOrientation="Vertical" location="Floating" floatingLocation="1066,781" floatingSize="1878,80">
+      <contentPane name="cpFundTradeResult" relativeSize="209.347345132743,100" />
+    </splitPane>
+    <splitPane name="Z564d889cde8641b588ac7cd2cdd6aaf9" splitterOrientation="Vertical" location="Floating" floatingLocation="868,299" floatingSize="1878,444">
+      <contentPane name="cpFundEtfStockList" relativeSize="98.2809086585733,100" />
+    </splitPane>
+    <splitPane name="Z197c18739d1e4d86af907994232999bf" splitterOrientation="Vertical" location="Floating" floatingLocation="1043,300" floatingSize="1878,444">
+      <contentPane name="cpFundEtfTradeResultDetail" />
+    </splitPane>
+    <splitPane name="Z2ebf826453df48c8ad00246719a6e59a" splitterOrientation="Vertical" location="Floating" floatingLocation="1090,309" floatingSize="1878,444">
+      <contentPane name="cpFundEtfEntrustDetail" />
+    </splitPane>
+    <splitPane name="Za7dd05ff183245bc8061d55d16c341c0" splitterOrientation="Vertical" location="Floating" floatingLocation="1121,305" floatingSize="1878,444">
+      <contentPane name="cpFundEtfBaseInfo" />
+    </splitPane>
+  </panes>
+</xamDockManager>

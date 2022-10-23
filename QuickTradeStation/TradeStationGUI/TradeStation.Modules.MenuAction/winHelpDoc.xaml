@@ -1,0 +1,17 @@
+﻿<Window x:Class="TradeStation.Modules.MenuAction.winHelpDoc"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WPFPdfViewer="clr-namespace:WPFPdfViewer;assembly=WPFPdfViewer"
+        xmlns:ig="http://schemas.infragistics.com/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpg="clr-namespace:WPG;assembly=WPG"
+        Title="帮助文档"
+        Width="700"
+        Height="700"
+        ShowInTaskbar="False"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <WPFPdfViewer:PdfViewer x:Name="pdfViewer" />
+    </Grid>
+</Window>

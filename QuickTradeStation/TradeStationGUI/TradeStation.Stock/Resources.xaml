@@ -1,0 +1,46 @@
+﻿<!--
+    // (c) Copyright Microsoft Corporation.
+    // This source is subject to Microsoft Public License (Ms-PL).
+    // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+    // All other rights reserved.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:commonutil="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+                    xmlns:converter="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+                    xmlns:realTimeConverter="clr-namespace:TradeStation.Modules.RealTimePrice.Converters;assembly=TradeStation.Modules.RealTimePrice"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:ig="http://schemas.infragistics.com/xaml"
+                    xmlns:igEditors="http://infragistics.com/Editors"
+                    xmlns:igdp="http://infragistics.com/DataPresenter"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:services="clr-namespace:TradeStation.Infrastructure.Services;assembly=TradeStation.Infrastructure"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="d">
+    <converter:IsGreaterThanConverter x:Key="IsGreaterThanConverter" />
+    <converter:DigitFormatStringConverter x:Key="DigitFormatStringConverter" />
+    <converter:DigitalCompareBrushConverter x:Key="DigitalCompareBrushConverter" />
+    <converter:PriceDigitalDisplayColorConverter x:Key="PriceDigitalDisplayColorConverter" />
+    <realTimeConverter:StockTimeConverter x:Key="StockTimeConverter" />
+    <realTimeConverter:StockDataVolumeConverter x:Key="StockDataVolumeConverter" />
+    <realTimeConverter:RadioButtonToEnumConverter x:Key="RadioButtonToEnumConverter" />
+
+    <ObjectDataProvider x:Key="odpDisplayedKLinePeriodType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eDisplayedKLinePeriodType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="odpDisplayedExRightType"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="commonutil:eDisplayedExRightType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+</ResourceDictionary>

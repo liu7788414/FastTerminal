@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="TradeStation.Modules.Trade.Views.Intellibox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+             xmlns:commonutil="clr-namespace:TradeStation.Infrastructure.CommonUtils;assembly=TradeStation.Infrastructure"
+             xmlns:converter="clr-namespace:TradeStation.Infrastructure.Converters;assembly=TradeStation.Infrastructure"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:igdp="http://infragistics.com/DataPresenter"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:TradeStation.Infrastructure.Services;assembly=TradeStation.Infrastructure"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <auto:Intellibox Grid.Row="0"
+                     Grid.Column="1"
+                     DataProvider="{Binding SecuritySearchProvider}"
+                     DisplayedValueBinding="{Binding SecurityID}"
+                     ExplicitlyIncludeColumns="True"
+                     HideColumnHeaders="True"
+                     SelectedItem="{Binding DisplaySecurityInfo}"
+                     SelectedValueBinding="{Binding SecurityID}">
+        <auto:Intellibox.Columns>
+            <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+            <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+            <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+        </auto:Intellibox.Columns>
+    </auto:Intellibox>
+</UserControl>

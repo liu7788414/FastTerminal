@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xamDockManager version="15.1.20151.2251">
+  <contentPanes>
+    <contentPane name="cpStockQuote" location="DockedLeft" lastActivatedTime="2016-08-01T01:22:00.3235993Z" />
+    <contentPane name="cpInstrumentInfo" location="DockedLeft" lastFloatingSize="1878,400" lastFloatingWindowRect="1541,680,1894,438" lastFloatingLocation="1541,680" lastActivatedTime="2016-08-01T01:21:36.3972308Z" />
+    <contentPane name="cpFutureEntrust" location="DockedLeft" lastFloatingSize="1878,400" lastFloatingWindowRect="806,889,1894,438" lastFloatingLocation="806,889" lastActivatedTime="2016-08-01T01:17:03.5206231Z" />
+    <contentPane name="cpFutureTrade" location="DockedLeft" lastFloatingSize="1878,400" lastFloatingWindowRect="937,402,1894,438" lastFloatingLocation="937,402" lastActivatedTime="2016-07-29T08:54:51.3901292Z" />
+    <contentPane name="cpFuturePosition" location="DockedLeft" lastFloatingSize="1878,400" lastFloatingWindowRect="1422,903,1894,438" lastFloatingLocation="1422,903" lastActivatedTime="2016-07-28T06:41:32.2567249Z" />
+    <contentPane name="cpFutureMarginInfo" location="DockedLeft" lastFloatingSize="1878,400" lastFloatingWindowRect="1314,563,1894,438" lastFloatingLocation="1314,563" lastActivatedTime="2016-07-28T06:41:06.260238Z" />
+    <contentPane name="cpFutureTradeResult" location="DockedLeft" lastFloatingSize="1878,400" lastFloatingWindowRect="860,565,1894,438" lastFloatingLocation="860,565" lastActivatedTime="2016-07-28T06:41:01.8409853Z" />
+  </contentPanes>
+  <panes>
+    <splitPane name="spQuotePaneFuture" splitterOrientation="Horizontal" location="DockedLeft">
+      <tabGroup name="tGroupFutureRealTimePriceRegion" selectedIndex="0" relativeSize="100,145.384133938351">
+        <contentPane name="cpStockQuote" />
+      </tabGroup>
+      <splitPane name="Z7cf57500e5404b1590cfab930f8bc3ca" splitterOrientation="Vertical" relativeSize="100,114.59110196734">
+        <contentPane name="cpFutureTrade" relativeSize="41.6042780748662,100" />
+        <contentPane name="cpFutureTradeResult" relativeSize="114.438502673797,100" />
+        <tabGroup name="Ze40576a79641493dbfb47aa47eb01703" selectedIndex="0" relativeSize="143.957219251337,100">
+          <contentPane name="cpInstrumentInfo" />
+          <contentPane name="cpFutureMarginInfo" />
+        </tabGroup>
+      </splitPane>
+      <splitPane name="Z4822a24098734bad808718aa92dd00a3" splitterOrientation="Vertical" relativeSize="100,40.0247640943096">
+        <contentPane name="cpFutureEntrust" relativeSize="93.0064661937347,100" />
+        <contentPane name="cpFuturePosition" relativeSize="89.6673305977092,100" />
+      </splitPane>
+    </splitPane>
+    <splitPane name="Zb637c929bd8f45f6b156e101dcf937aa" splitterOrientation="Vertical" location="Floating" floatingLocation="937,402" floatingSize="1878,400">
+      <contentPane name="cpFutureTrade" />
+    </splitPane>
+    <splitPane name="Zaf793bea8c824f73ae274a1f2cbabdfa" splitterOrientation="Vertical" location="Floating" floatingLocation="860,565" floatingSize="1878,400">
+      <contentPane name="cpFutureTradeResult" />
+    </splitPane>
+    <splitPane name="Zd1fa0be1483347c586af9ecb140cb955" splitterOrientation="Vertical" location="Floating" floatingLocation="1314,563" floatingSize="1878,400">
+      <contentPane name="cpFutureMarginInfo" />
+    </splitPane>
+    <splitPane name="Z6321c342d29e47e5ae13ec9a7a703b76" splitterOrientation="Vertical" location="Floating" floatingLocation="806,889" floatingSize="1878,400">
+      <contentPane name="cpFutureEntrust" />
+    </splitPane>
+    <splitPane name="Z410bf9cca29045dc91063e3855e6726a" splitterOrientation="Vertical" location="Floating" floatingLocation="1422,903" floatingSize="1878,400">
+      <contentPane name="cpFuturePosition" />
+    </splitPane>
+    <splitPane name="Z5a4b598827e4440ea40b4128919dfa5e" splitterOrientation="Vertical" location="Floating" floatingLocation="1541,680" floatingSize="1878,400">
+      <tabGroup name="Zff0224f62c054c86ab9fe022ce8929cf" selectedIndex="-1" relativeSize="117.326203208556,100">
+        <contentPane name="cpInstrumentInfo" />
+      </tabGroup>
+    </splitPane>
+  </panes>
+</xamDockManager>

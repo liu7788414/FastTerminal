@@ -1,0 +1,281 @@
+﻿<Window x:Class="TradeStation.Modules.Trade.Views.AdvancedQueryPanelOption"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="clr-namespace:FeserWard.Controls;assembly=IntelliBox"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ig="http://schemas.infragistics.com/xaml"
+        xmlns:local="http://schemas.AvalonControls/AvalonControlsLibrary/Controls"
+        Title="委托列表查询"
+        Width="820"
+        Height="880"
+        Icon="{DynamicResource AosuLogo}"
+        ShowInTaskbar="False"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ThreeDBorderWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Content="证券代码:" />
+            <auto:Intellibox Grid.Row="0"
+                             Grid.Column="1"
+                             DataProvider="{Binding SecuritySearchProvider}"
+                             DisplayedValueBinding="{Binding SecurityID}"
+                             ExplicitlyIncludeColumns="True"
+                             HideColumnHeaders="True"
+                             SelectedItem="{Binding DisplaySecurityInfo}"
+                             SelectedValueBinding="{Binding SecurityID}">
+                <auto:Intellibox.Columns>
+                    <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityID}" Header="代码" />
+                    <auto:IntelliboxColumn DisplayMemberBinding="{Binding ExID}" Header="交易所" />
+                    <auto:IntelliboxColumn DisplayMemberBinding="{Binding SecurityName}" Header="名称" />
+                </auto:Intellibox.Columns>
+            </auto:Intellibox>
+
+            <Label Grid.Row="0"
+                   Grid.Column="2"
+                   Content="组合编号:" />
+            <ig:XamComboEditor Grid.Row="0"
+                               Grid.Column="3"
+                               ItemsSource="{Binding Path=MenuBar.CombiNos}"
+                               SelectedItem="{Binding Path=SelectedCombiNo,
+                                                      Mode=TwoWay}" />
+            <Label Grid.Row="1" Content="证券名称:" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     IsEnabled="False"
+                     Text="{Binding DisplaySecurityInfo.SecurityName,
+                                    Mode=TwoWay}" />
+            <Label Grid.Row="1"
+                   Grid.Column="2"
+                   Content="委托起始时间:" />
+            <local:TimePicker Name="startTimePicker"
+                              Grid.Row="1"
+                              Grid.Column="3"
+                              SelectedHour="{Binding SelectedStartHour,
+                                                     Mode=TwoWay}"
+                              SelectedMinute="{Binding SelectedStartMinute,
+                                                       Mode=TwoWay}"
+                              SelectedSecond="{Binding SelectedStartSecond,
+                                                       Mode=TwoWay}" />
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Content="交易所:" />
+            <ig:XamComboEditor Grid.Row="2"
+                               Grid.Column="1"
+                               IsEnabled="False"
+                               ItemsSource="{Binding Source={StaticResource odpMarketType}}"
+                               SelectedItem="{Binding Path=DisplaySecurityInfo.MarketType,
+                                                      Mode=TwoWay}" />
+
+            <Label Grid.Row="2"
+                   Grid.Column="2"
+                   Content="委托结束时间:" />
+            <local:TimePicker Name="endTimePicker"
+                              Grid.Row="2"
+                              Grid.Column="3"
+                              SelectedHour="{Binding SelectedEndHour,
+                                                     Mode=TwoWay}"
+                              SelectedMinute="{Binding SelectedEndMinute,
+                                                       Mode=TwoWay}"
+                              SelectedSecond="{Binding SelectedEndSecond,
+                                                       Mode=TwoWay}" />
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Content="委托状态:" />
+            <ig:XamComboEditor Grid.Row="3"
+                               Grid.Column="1"
+                               Foreground="{Binding EntrustState,
+                                                    Converter={StaticResource EntrustStateDisplayConverter}}"
+                               ItemsSource="{Binding EntrustStateList}"
+                               SelectedItem="{Binding SelectedEntrustState,
+                                                      Mode=TwoWay}" />
+
+
+            <Label Grid.Row="3"
+                   Grid.Column="2"
+                   Content="委托方向:" />
+            <ig:XamComboEditor Grid.Row="3"
+                               Grid.Column="3"
+                               Foreground="{Binding EntrustDirection,
+                                                    Converter={StaticResource EntrustDirectionDisplayConverter}}"
+                               IsEditable="False"
+                               ItemsSource="{Binding OptionEntrustDirectionList}"
+                               OverridesDefaultStyle="True"
+                               SelectedItem="{Binding SelectedEntrustDirection,
+                                                      Mode=TwoWay}" />
+            <Button Grid.Row="4"
+                    Grid.Column="1"
+                    Command="{Binding QryCommand}"
+                    Content="查询" />
+            <Button Grid.Row="4"
+                    Grid.Column="2"
+                    Click="Button_Click"
+                    Content="取消" />
+        </Grid>
+        <ig:XamGrid Name="xamGrid"
+                    Grid.Row="1"
+                    ActiveItem="{Binding SelectedEntrustInfo}"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding Result}"
+                    RowHover="Row">
+            <ig:XamGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding CancelAllEntrustsCommand}" Header="全部撤单" />
+                </ContextMenu>
+            </ig:XamGrid.ContextMenu>
+            <ig:XamGrid.SelectionSettings>
+                <ig:SelectionSettings CellClickAction="SelectRow" CellSelection="None" />
+            </ig:XamGrid.SelectionSettings>
+            <ig:XamGrid.EditingSettings>
+                <ig:EditingSettings AllowEditing="None" />
+            </ig:XamGrid.EditingSettings>
+            <ig:XamGrid.ConditionalFormattingSettings>
+                <ig:ConditionalFormattingSettings AllowConditionalFormatting="True" />
+            </ig:XamGrid.ConditionalFormattingSettings>
+
+            <!--  #BEGIN SNIPPET#  -->
+            <ig:XamGrid.FilteringSettings>
+                <ig:FilteringSettings AllowFiltering="FilterMenu" />
+            </ig:XamGrid.FilteringSettings>
+
+            <ig:XamGrid.ColumnMovingSettings>
+                <ig:ColumnMovingSettings AllowColumnMoving="Immediate" />
+            </ig:XamGrid.ColumnMovingSettings>
+            <ig:XamGrid.PagerSettings>
+                <ig:PagerSettings AllowPaging="Bottom"
+                                  DisplayPagerWhenOnlyOnePage="False"
+                                  PageSize="100"
+                                  PagerRowHeight="25" />
+            </ig:XamGrid.PagerSettings>
+            <!--  #END SNIPPET#  -->
+            <ig:XamGrid.Columns>
+
+                <ig:TextColumn Key="MarketType"
+                               HeaderText="市场"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityID"
+                               HeaderText="合约代码"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="SecurityName"
+                               HeaderText="品种名称"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="CombiNo"
+                               HeaderText="组合"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="EntrustTime"
+                               HeaderText="委托时间"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="EntrustNo"
+                               HeaderText="委托号"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+
+                <ig:TemplateColumn Key="EntrustDirection"
+                                   HeaderText="方向"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding EntrustDirection, Converter={StaticResource EntrustDirectionDisplayConverter}}" Text="{Binding EntrustDirection}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+                <ig:TemplateColumn Key="FuturesDirection"
+                                   HeaderText="开平仓"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding FuturesDirection, Converter={StaticResource FuturesDirectionDisplayConverter}}" Text="{Binding FuturesDirection}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+                <ig:TemplateColumn Key="EntrustState"
+                                   HeaderText="状态"
+                                   IsReadOnly="True">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding EntrustState, Converter={StaticResource EntrustStateDisplayConverter}}" Text="{Binding EntrustState}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+                <ig:TextColumn Key="EntrustPriceType"
+                               HeaderText="价格类型"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="EntrustPrice"
+                               HeaderText="委价"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="EntrustAmount"
+                               HeaderText="委托数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="TotalDealAmount"
+                               HeaderText="成交数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+                <ig:TextColumn Key="CancelAmount"
+                               HeaderText="撤单数量"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+
+                <ig:TextColumn Key="DealTime"
+                               HeaderText="成交时间"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+
+
+                <ig:TemplateColumn Key="DealProgress"
+                                   HeaderText="成交进度"
+                                   IsFilterable="False">
+                    <ig:TemplateColumn.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DealProgress}" />
+                        </DataTemplate>
+                    </ig:TemplateColumn.ItemTemplate>
+                </ig:TemplateColumn>
+
+
+                <ig:TextColumn Key="RevokeCause"
+                               HeaderText="备注"
+                               IsFilterable="False"
+                               IsReadOnly="True" />
+
+            </ig:XamGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellDoubleClicked">
+                    <i:InvokeCommandAction Command="{Binding CancelEntrustCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ig:XamGrid>
+    </Grid>
+
+
+
+
+</Window>
